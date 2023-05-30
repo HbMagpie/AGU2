@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my.mapper.UserMapper">
+	<insert id="join">
+		insert into shopping_user values(#{useremail},#{userpw},#{username},
+		#{userphone},#{postnum},#{addr},#{detailaddress},#{seealso})
+	</insert>
+	<insert id="buyProduct">
+		insert into buyproduct values(#{useremail},#{username},#{productnum},#{productname},#{postnum},#{addr},#{detailaddress},#{seealso})	
+	</insert>
+	<select id="checkId" parameterType="string" resultType="_int">
+		select count(useremail) from shopping_user where useremail = #{useremail}
+	</select> 
+	<select id="login" parameterType="com.my.domain.UserDTO" resultType="com.my.domain.UserDTO">
+		select * from shopping_user where useremail = #{useremail} and binary(userpw) = #{userpw}
+	</select>
+	<select id="getUser" resultType="com.my.domain.UserDTO">
+		select * from shopping_user where useremail = #{useremail}
+	</select>
+	<select id="getPw" resultType="string">
+		select userpw from shopping_user where useremail = #{useremail}
+	</select>
+	<update id="pwChanges">
+		update shopping_user set userpw=#{userpw} where useremail=#{useremail}
+	</update>
+	<update id="nameCn">
+		update shopping_user set username=#{username} where useremail=#{useremail}
+	</update>
+	<update id="zipCn">
+		update shopping_user set postnum=#{postnum}, addr=#{addr}, detailaddress=#{detailaddress}, seealso=#{seealso} where useremail=#{useremail}
+	</update>
+	<delete id="bye">
+		delete from shopping_user where useremail = #{useremail}	
+	</delete>
+	<!-- 리뷰 매퍼 -->
+	<insert id="review">
+  		insert into review (useremail,username,productnum,reviewcontents) values(#{useremail},#{username},#{productnum},#{reviewcontents})
+  	</insert>
+  	<select id="getReviewnum" resultType="_int">
+  		select max(reviewnum) from review
+  	</select>
+  	<update id="reviewModify">
+  		update review set reviewcontents = #{reviewcontents} where reviewnum = #{reviewnum}
+  	</update>
+	<delete id="reviewDelete">
+		delete from review where reviewnum = #{reviewnum}
+	</delete>
+</mapper>
