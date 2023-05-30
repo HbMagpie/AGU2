@@ -158,7 +158,7 @@
                         <div class="card h-100">
                     <div class="col mb-5">
                 	            <!-- Product image-->
-                            <img class="card-img-top" src="/resources/img/item/${file.filename}"alt="..." />
+                            <img class="card-img-top" src="/resources/img/${file.filename}"alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
