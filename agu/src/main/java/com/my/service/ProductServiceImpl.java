@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.my.domain.Criteria;
 import com.my.domain.Files;
 import com.my.domain.ProductDTO;
 import com.my.domain.ReviewDTO;
@@ -18,9 +19,30 @@ import lombok.extern.log4j.Log4j;
 @Service
 @Log4j
 public class ProductServiceImpl implements ProductService{
+	
 	@Setter(onMethod_ = @Autowired)
 	private ProductMapper mapper;
 	
+	/* 상품 검색 */
+	@Override
+	public List<ProductDTO> getProductList(Criteria cri) {
+		
+		log.info("getGoodsList().......");
+		
+		return mapper.getProductList(cri);
+	}
+
+	/* 사품 총 갯수 */
+	@Override
+	public int productGetTotal(Criteria cri) {
+		
+		log.info("productGetTotal().......");
+		
+		return mapper.productGetTotal(cri);
+		
+	}
+	
+			
 	
 	@Override
 	public boolean addProduct(ProductDTO prod) {

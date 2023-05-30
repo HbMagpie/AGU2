@@ -28,4 +28,32 @@
   	<select id="getReview" resultType="com.my.domain.ReviewDTO">
   		select * from review where productnum = #{productnum}
   	</select>
+  	
+  	<!-- criteria(검색조건) -->
+	<sql id="criteria">
+		    <if test="keyword != null">
+				where (productname like concat ('%', #{keyword}, '%'))
+		    </if>
+	</sql>
+	
+	<!-- 상품 검색 -->
+	<select id="getProductList" resultType="com.my.domain.ProductDTO">
+	
+			select  a.productnum, a.productname, a.productprice, b.filename
+			from product a left outer join files b on a.productnum = b.productnum
+			<include refid="criteria"></include>
+			order by a.productnum asc 
+			limit #{skip}, #{amount}	
+	
+	</select>
+	
+	<!-- 상품 총 개수 -->
+	<select id="productGetTotal" resultType="int">
+
+  		select count(*) from product
+  		
+		<include refid="criteria"></include>
+		
+	</select>
+  	
   </mapper>

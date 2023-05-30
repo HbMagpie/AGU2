@@ -26,6 +26,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.my.domain.Criteria;
+import com.my.domain.PageDTO;
 import com.my.domain.ProductDTO;
 import com.my.domain.ReviewDTO;
 import com.my.service.ProductService;
@@ -38,8 +40,36 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/product/*")
 public class ProductController {
+	
 	@Setter(onMethod_ = @Autowired)
 	private ProductService service;
+	
+	
+	/* Start! 상품 검색 */
+	@GetMapping("/search")
+	public String searchProductGET(Criteria cri, Model model) {
+		
+		log.info("cri : " + cri);
+		
+		List<ProductDTO> list = service.getProductList(cri);
+		log.info("pre list : " + list);
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			log.info("list : " + list);
+		} else {
+			model.addAttribute("listcheck", "empty");
+			
+			return "search";
+		}
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, service.productGetTotal(cri)));
+		
+		
+		return "search";
+		
+	}
+	/* End! 상품 검색 */
+	
 	
 	
 	@GetMapping("/addproduct")

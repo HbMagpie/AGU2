@@ -112,7 +112,13 @@ div {
 
 /* End! 배너 슬라이드 박스 */ 
 
-
+/* Start! 검색 박스 영역 */
+.search_area {
+	width: 50px;
+	height: 100px;
+	float:left;
+}
+/* End! 검색 박스 영역 */
 
 .banner_container{
 	min-width: 1350px;
