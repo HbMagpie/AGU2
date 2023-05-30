@@ -8,6 +8,21 @@ use agu;
 DROP TABLE agu.files;
 DROP TABLE agu.product;
 
+-- product 테이블 컬럼 정보 확인 예시
+SHOW FULL COLUMNS FROM agu.product;
+
+-- product 테이블 샘플 데이터 조회
+SELECT * FROM agu.product;
+
+-- files 테이블 샘플 데이터 조회
+SELECT * FROM agu.files;
+
+-- buyproduct 테이블 샘플 데이터 조회
+SELECT * FROM agu.buyproduct;
+
+-- review 테이블 샘플 데이터 조회
+SELECT * FROM agu.review;
+
 -- shopping_user 테이블 생성
 create table shopping_user(
 	useremail varchar(300) primary key,

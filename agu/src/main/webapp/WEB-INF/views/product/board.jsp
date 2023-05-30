@@ -85,7 +85,7 @@
         					<div class="row">
         						<div class="col-md-6 col-sm-6">
         							<div class="product-main-img" style="position: relative; overflow:hidden;">
-        								<img src="/resources/img/item/${filename}" class="img-responsive">
+        								<img src="/resources/img/${filename}" class="img-responsive">
         							</div>
         						</div>
         						<div class="col-md-6 col-sm-6">
@@ -185,7 +185,7 @@
 		</div>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; AGU 2023</p></div>
         </footer>
         
         <!-- 우편번호 Modal -->
