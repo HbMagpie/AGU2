@@ -90,3 +90,30 @@ create table review(
     reviewcontents varchar(6000),
     regdate datetime default now()
 );
+
+-- -------------------------------------------------------------
+-- cate 테이블 삭제
+DROP TABLE agu.cate;
+ 
+-- cate 테이블 생성 및 코멘트 추가
+CREATE TABLE agu.cate (
+catenum INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '카테고리 번호',
+catename VARCHAR(30) COMMENT '카테고리명',
+PRIMARY KEY (catenum)
+) COMMENT '카테고리', default charset utf8;
+ 
+-- cate 테이블 컬럼 정보 확인
+SHOW FULL COLUMNS FROM agu.cate;
+ 
+-- cate 테이블 샘플 데이터 입력
+INSERT INTO agu.cate (catename) VALUES ('Best');
+INSERT INTO agu.cate (catename) VALUES ('New');
+INSERT INTO agu.cate (catename) VALUES ('Dress');
+INSERT INTO agu.cate (catename) VALUES ('Outer');
+INSERT INTO agu.cate (catename) VALUES ('Blouse');
+INSERT INTO agu.cate (catename) VALUES ('Tee');
+INSERT INTO agu.cate (catename) VALUES ('Knit');
+INSERT INTO agu.cate (catename) VALUES ('Bottom');
+
+-- cate 테이블 샘플 데이터 조회
+SELECT * FROM agu.cate;

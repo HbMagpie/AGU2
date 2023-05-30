@@ -83,12 +83,26 @@
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="#!">인기 상품</a></li>
                                 <li><a class="dropdown-item" href="#!">새 상품</a></li>
-                                <li><a class="dropdown-item" href="#!">tee</a></li>
-                                <li><a class="dropdown-item" href="#!">knit</a></li>
-                                <li><a class="dropdown-item" href="#!">outer</a></li>
-                                <li><a class="dropdown-item" href="#!">bottom</a></li>
+                                <li><a class="dropdown-item" href="#!">Dress</a></li>
+                                <li><a class="dropdown-item" href="#!">Outer</a></li>
+                                <li><a class="dropdown-item" href="#!">Blouse</a></li>
+                                <li><a class="dropdown-item" href="#!">Tee</a></li>
+                                <li><a class="dropdown-item" href="#!">Knit</a></li>
+                                <li><a class="dropdown-item" href="#!">Bottom</a></li>
                             </ul>
                         </li>
+                        <!-- Start! 검색 기능 -->
+                        <li>
+                        <div class="search_wrap">
+                			<form id="searchForm" action="/search" method="get">
+                				<div class="search_input">
+                					<input type="text" name="keyword">
+                    				<button class='btn search_btn'>검 색</button>                				
+                				</div>
+                			</form>
+                		</div>
+                        </li>
+                        <!-- End! 검색 기능 -->
                     </ul>
                     <c:if test="${loginUserid != null}">
                     	<form class="d-flex">
