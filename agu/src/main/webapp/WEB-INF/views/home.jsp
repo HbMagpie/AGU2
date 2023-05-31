@@ -94,7 +94,7 @@
                         <!-- Start! 검색 기능 -->
                         <li>
                         <div class="search_wrap">
-                			<form id="searchForm" action="/search" method="get">
+                			<form id="searchForm" action="/product/search" method="get">
                 				<div class="search_input">
                 					<input type="text" name="keyword">
                     				<button class='btn search_btn'>검 색</button>                				
