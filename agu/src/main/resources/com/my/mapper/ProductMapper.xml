@@ -37,7 +37,7 @@
 	</sql>
 	
 	<!-- 상품 검색 -->
-	<select id="getProductList" resultType="com.my.domain.ProductDTO">
+	<select id="getProductList" resultType="com.my.domain.ProductDTO2">
 	
 			select  a.productnum, a.productname, a.productprice, b.filename
 			from product a left outer join files b on a.productnum = b.productnum

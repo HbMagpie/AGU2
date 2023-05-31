@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.my.domain.Criteria;
-import com.my.domain.ProductDTO;
+import com.my.domain.ProductDTO2;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -26,7 +26,7 @@ public class ProductMapperTests {
 		//cri.setKeyword("test");
 		System.out.println("cri : " + cri);
 		
-		List<ProductDTO> list = mapper.getProductList(cri);
+		List<ProductDTO2> list = mapper.getProductList(cri);
 		System.out.println("list : " + list);
 		
 		System.out.println("==========");	

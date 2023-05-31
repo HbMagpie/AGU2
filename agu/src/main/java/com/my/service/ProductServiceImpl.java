@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.my.domain.Criteria;
 import com.my.domain.Files;
 import com.my.domain.ProductDTO;
+import com.my.domain.ProductDTO2;
 import com.my.domain.ReviewDTO;
 import com.my.mapper.ProductMapper;
 
@@ -25,9 +26,9 @@ public class ProductServiceImpl implements ProductService{
 	
 	/* 상품 검색 */
 	@Override
-	public List<ProductDTO> getProductList(Criteria cri) {
+	public List<ProductDTO2> getProductList(Criteria cri) {
 		
-		log.info("getGoodsList().......");
+		log.info("getProductList().......");
 		
 		return mapper.getProductList(cri);
 	}

@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.my.domain.Criteria;
 import com.my.domain.PageDTO;
 import com.my.domain.ProductDTO;
+import com.my.domain.ProductDTO2;
 import com.my.domain.ReviewDTO;
 import com.my.service.ProductService;
 import com.my.service.UserService;
@@ -51,7 +52,7 @@ public class ProductController {
 		
 		log.info("cri : " + cri);
 		
-		List<ProductDTO> list = service.getProductList(cri);
+		List<ProductDTO2> list = service.getProductList(cri);
 		log.info("pre list : " + list);
 		if(!list.isEmpty()) {
 			model.addAttribute("list", list);

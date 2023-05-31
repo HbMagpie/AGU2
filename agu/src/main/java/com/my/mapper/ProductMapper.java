@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.my.domain.Criteria;
 import com.my.domain.Files;
 import com.my.domain.ProductDTO;
+import com.my.domain.ProductDTO2;
 import com.my.domain.ReviewDTO;
 
 public interface ProductMapper {
@@ -20,7 +21,7 @@ public interface ProductMapper {
 	List<ReviewDTO> getReview(int productnum);
 	
 	/* 상품 검색 */
-	List<ProductDTO> getProductList(Criteria cri);
+	List<ProductDTO2> getProductList(Criteria cri);
 
 	/* 상품 총 갯수 */
 	int productGetTotal(Criteria cri);

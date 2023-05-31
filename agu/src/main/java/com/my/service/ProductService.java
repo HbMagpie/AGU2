@@ -5,6 +5,7 @@ import java.util.List;
 import com.my.domain.Criteria;
 import com.my.domain.Files;
 import com.my.domain.ProductDTO;
+import com.my.domain.ProductDTO2;
 import com.my.domain.ReviewDTO;
 
 public interface ProductService {
@@ -18,7 +19,7 @@ public interface ProductService {
 	List<ReviewDTO> getReview(int productnum);
 		
 	/* 상품 검색 */
-	List<ProductDTO> getProductList(Criteria cri);
+	List<ProductDTO2> getProductList(Criteria cri);
 
 	/* 상품 총 갯수 */
 	int productGetTotal(Criteria cri);
