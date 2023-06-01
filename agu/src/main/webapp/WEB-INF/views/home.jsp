@@ -185,6 +185,8 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/board?productnum=${product[status.index].productnum}">구매하러 가기</a></div>
+                            	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/editproduct?productnum=${product[status.index].productnum}">수정</a></div>
+                            
                             </div>
                         </div>
                     </div>&nbsp;&nbsp;&nbsp;
