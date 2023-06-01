@@ -44,9 +44,10 @@ create table product(
     productname varchar(300),
     productprice varchar(300),
     productcontents varchar(6000),
-	useremail varchar(300),
-    constraint user_product foreign key(useremail) references shopping_user(useremail)
+	useremail varchar(300)
 );
+    -- constraint user_product foreign key(useremail) references shopping_user(useremail)
+
 
 -- product 테이블 샘플 데이터 입력
 INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test111', 3000, 'test입니다1', 'test1234@naver.com');
@@ -55,13 +56,14 @@ INSERT INTO agu.product (productname, productprice, productcontents, useremail) 
 INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test444', 30000, 'test입니다4', 'test1234@naver.com');
 INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test555', 35000, 'test입니다5', 'test1234@naver.com');
 
+-- files 테이블 생성
 create table files(
 	productnum int,
 	filerealname varchar(3000),
     filename varchar(3000),
     fileurl varchar(3000),
     safefile varchar(6000),
-    constraint product_files foreign key(productnum) references product(productnum)
+    constraint product_files foreign key(productnum) references product(productnum) on delete cascade
 );
 
 -- files 테이블 샘플 데이터 입력

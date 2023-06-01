@@ -55,5 +55,12 @@
 		<include refid="criteria"></include>
 		
 	</select>
+	
+	<!-- 상품 정보 삭제 -->
+	<delete id="productDelete">
+		
+			delete from product where productnum = #{productnum}
+			
+	</delete>
   	
   </mapper>

@@ -18,6 +18,7 @@ public class ProductMapperTests {
 	@Autowired
 	private ProductMapper mapper;
 	
+	/*
 	@Test
 	public void getProductListTest() {
 		
@@ -32,5 +33,18 @@ public class ProductMapperTests {
 		System.out.println("==========");	
 		int productTotal = mapper.productGetTotal(cri);
 		System.out.println("totla : " + productTotal);
+	}
+	*/
+	
+	@Test
+	public void productDeleteTest() {
+		
+		int productnum = 2;
+		
+		int result = mapper.productDelete(productnum); 
+				
+		if(result == 1) {
+			System.out.println("삭제 성공");
+		}
 	}
 }
