@@ -185,14 +185,27 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/board?productnum=${product[status.index].productnum}">구매하러 가기</a></div>
-                            	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/editproduct?productnum=${product[status.index].productnum}">수정</a></div>
-                            
+                            	<button id="deleteBtn" class="btn btn-outline-dark mt-auto">삭 제</button>
                             </div>
+                            
+                            
+                        </div>
+                        <div>
+                            <form id="moveForm" action="/product/board" method="get" >
+                            	<input type="hidden" name="productname" value="${cri.productname}">
+                            	<input type="hidden" name="productcontents" value="${cri.productcontents}">
+                            	<input type="hidden" name="productprice" value="${cri.productprice}">
+                            	<input type="hidden" name="productnum" value="${productInfo.productnum}">
+                            	<button id="deleteBtn" class="btn delete_btn">삭 제</button>
+                            </form>                       
                         </div>
                     </div>&nbsp;&nbsp;&nbsp;
                   </c:forEach>
+                  		
                   </div>
+                  
                   </div>
+                  
                   </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
@@ -204,5 +217,20 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="/resources/js/scripts.js"></script>
+        
+        <script>
+        
+        /* 삭제 버튼 */
+    	$("#deleteBtn").on("click", function(e){
+    		e.preventDefault();
+    		let moveForm = $("#moveForm");
+    		moveForm.find("input").remove();
+    		moveForm.append('<input type="hidden" name="productnum" value="${productInfo.productnum}">');
+    		moveForm.attr("action", "/product/productDelete");
+    		moveForm.attr("method", "post");
+    		moveForm.submit();
+    	});
+        
+        </script>
     </body>
 </html>

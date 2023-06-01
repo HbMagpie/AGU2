@@ -79,10 +79,6 @@ public class ProductController {
 	public void addproduct() {
 	}
 	
-	
-			
-			
-	
 	@PostMapping("/uploadFile")
 	public  String insertinto(MultipartFile [] files, String productname, String productcontents, String productprice, String useremail,RedirectAttributes ra, HttpServletRequest request)throws IOException {
 		log.info(files);
@@ -142,7 +138,19 @@ public class ProductController {
 		model.addAttribute("review", review);
 	}
 	
-	
+	/* 상품 정보 삭제 */
+	@PostMapping("/productDelete")
+	public String productDeletePOST(int productnum, RedirectAttributes rttr) {
+		
+		log.info("productDeletePOST..........");		
+		
+		int result = service.productDelete(productnum);
+		
+		rttr.addFlashAttribute("delete_result", result);
+		
+		return "redirect:/home";
+		
+	}
 	
 }
 
