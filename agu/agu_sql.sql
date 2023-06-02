@@ -46,7 +46,7 @@ create table product(
     productprice varchar(300),
     productcontents varchar(6000),
 	useremail varchar(300)
-    );
+);
     -- constraint user_product foreign key(useremail) references shopping_user(useremail)
 
 
@@ -57,6 +57,7 @@ INSERT INTO agu.product (productname, productprice, productcontents, useremail) 
 INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test444', 30000, 'test4', 'test1234@naver.com');
 INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test555', 35000, 'test5', 'test1234@naver.com');
 
+-- files 테이블 생성
 create table files(
 	productnum int,
 	filerealname varchar(3000),

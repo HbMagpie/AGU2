@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,7 @@ import com.my.domain.ReviewDTO;
 import com.my.service.ProductService;
 import com.my.service.UserService;
 
+import jdk.internal.org.jline.utils.Log;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -72,7 +74,7 @@ public class ProductController {
 	/* End! 상품 검색 */
 	
 	
-	
+	/* 상품 등록 */
 	@GetMapping("/addproduct")
 	public void addproduct() {
 	}
@@ -135,6 +137,21 @@ public class ProductController {
 		model.addAttribute("product", prod);
 		model.addAttribute("review", review);
 	}
+	
+	/* 상품 정보 삭제 */
+	@PostMapping("/productDelete")
+	public String productDeletePOST(int productnum, RedirectAttributes rttr) {
+		
+		log.info("productDeletePOST..........");		
+		
+		int result = service.productDelete(productnum);
+		
+		rttr.addFlashAttribute("delete_result", result);
+		
+		return "redirect:/home";
+		
+	}
+	
 }
 
 

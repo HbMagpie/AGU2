@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>AGU</title>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
+        
  <link href="/resources/css/styles.css" rel="stylesheet" />
  <link href="/resources/css/product/board.css" rel="stylesheet" />
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css">
@@ -116,12 +120,18 @@
 										</div>
 									</div>
         							<input type="hidden" value="${product.productnum}">
-        							<div class="product-page-cart">
+        							
+        								<br>
         								<div class="product-quantity">
         									<button class="btn btn-primary buy" type="submit">구매하기</button>
         								</div>
-        							</div>
-        							</form>
+        								
+        								<div class="product-quantity">
+        									<button class="btn btn-primary" type="button">수정하기</button>
+        								</div>	
+        								
+        												        															
+	       							</form>
         						</div>
         					</div>
         				</div>
@@ -130,11 +140,12 @@
         	</div>
         </div>
         <div class="textarea-div">
-        <textarea rows="10" cols="10" readonly style="word-break:break-all;width:100%;text-align:center;">${product.productcontents}</textarea>
+        <textarea rows="5" cols="5" readonly style="word-break:break-all;width:100%;text-align:center;font-size:30px;">${product.productcontents}</textarea>
         </div>
         
         <!-- 리뷰 작성 -->
-		<button type="button" name="review" id="onReview">리뷰 작성하기</button>
+        
+		<button class="btm btn-primary" type="button" name="review" id="onReview" style="margin-top:20px;">리뷰 작성하기</button>
 		<div class="product-page-content" id="review" >
 			<ul id="myTap" class="nav nav-tabs">
 				<li class="active">
@@ -246,6 +257,7 @@ let productname = "${product.productname}";
 let productprice = "${product.productprice}";
 let username = "${loginUsername}";
 let buyForm = $(".buyForm");
+
 //구매하기 클릭시 이벤트
  $(".buy").on("click",function(e){
 	 postnum = $("#postnum").val();
@@ -267,6 +279,7 @@ let buyForm = $(".buyForm");
 	);
 	
 });
+
 
 // 주소 보러가기 클릭시 미 로그인 상태라면 alert창 띄움
 $(".link_right").on("click",function(e){
