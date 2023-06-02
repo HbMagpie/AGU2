@@ -7,6 +7,7 @@ use agu;
 -- 테이블 삭제 예시
 DROP TABLE agu.files;
 DROP TABLE agu.product;
+DROP TABLE agu.shopping_user;
 
 -- product 테이블 컬럼 정보 확인 예시
 SHOW FULL COLUMNS FROM agu.product;
@@ -24,7 +25,7 @@ SELECT * FROM agu.buyproduct;
 SELECT * FROM agu.review;
 
 -- shopping_user 테이블 생성
-create table shopping_user(
+create table user(
 	useremail varchar(300) primary key,
     userpw varchar(300) not null,
     username varchar(300),
@@ -36,7 +37,7 @@ create table shopping_user(
 );
 
 -- shopping_user 테이블 샘플 데이터 입력
-INSERT INTO agu.shopping_user VALUES ('test1234@naver.com', 'test1234!!', 'test00', '010-1234-5678', '02830', '서울 성북구 아리랑로 3', '상세주소', '1');
+INSERT INTO user VALUES ('test1234@naver.com', 'test1234!!', 'test00', '010-1234-5678', '02830', '서울 성북구 아리랑로', '상세주소', '1');
 
 -- product 테이블 생성
 create table product(
@@ -50,11 +51,11 @@ create table product(
 
 
 -- product 테이블 샘플 데이터 입력
-INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test111', 3000, 'test입니다1', 'test1234@naver.com');
-INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test222', 50000, 'test입니다2', 'test1234@naver.com');
-INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test333', 25500, 'test입니다3', 'test1234@naver.com');
-INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test444', 30000, 'test입니다4', 'test1234@naver.com');
-INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test555', 35000, 'test입니다5', 'test1234@naver.com');
+INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test111', 3000, 'test1', 'test1234@naver.com');
+INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test222', 50000, 'test2', 'test1234@naver.com');
+INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test333', 25500, 'test3', 'test1234@naver.com');
+INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test444', 30000, 'test4', 'test1234@naver.com');
+INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test555', 35000, 'test5', 'test1234@naver.com');
 
 -- files 테이블 생성
 create table files(

@@ -26,7 +26,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.my.domain.BuyProductDTO;
 import com.my.domain.UserDTO;
 import com.my.service.UserService;
-import com.my.service.UserphoneService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -35,9 +34,6 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/user/*")
 public class UserController {
-	
-	@Setter(onMethod_ = @Autowired)
-	private UserphoneService service;
 	
 	@Setter(onMethod_ = @Autowired)
 	private UserService services;
@@ -93,13 +89,6 @@ public class UserController {
 	return cnt;
 	}
 	
-	@PostMapping("/message")
-	@ResponseBody
-	public String message(@RequestParam("userphone") String userphone) {
-		String num = service.phone(userphone);
-		log.info(num);
-		return num;
-	}
 	@PostMapping("/pwChanges")
 	public String pwChanges(String useremail, String userpw, RedirectAttributes ra, HttpServletRequest resq) {
 		if(services.pwChanges(useremail,userpw)) {

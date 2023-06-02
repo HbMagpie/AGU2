@@ -117,7 +117,7 @@ function checkPW(){
 		pwre[0].textContent = "";
 	}
 }
-//전화번호 문자인증
+/*//전화번호 문자인증
 $("#randomnum").on("click",function(e){
 	let userphone = $("#userphone").val();
 	let numselect = $(".numselect");
@@ -149,7 +149,7 @@ $("#randomnum").on("click",function(e){
 			console.log("처리실패")
 		}
 	});
-})
+})*/
 
 
 //회원가입 유효성
@@ -158,8 +158,6 @@ $("#joinSubmit").on("click",function(e){
 	let numselect = $(".numselect");
 	let useremail = $("#useremail").val();
 	let idCheck = document.getElementsByClassName("idCheck");
-	let userphone = $("#userphone").val();
-	let phonecheck = $("#phonecheck").val();
 	let userpw = $("#userpw").val();
 	let userpwCheck = $("#userpw_re").val();
 	let username = $("#username").val();
@@ -207,9 +205,6 @@ $("#joinSubmit").on("click",function(e){
     }
     else if(detailaddress == ""){
     	alert("상세주소를 입력해주세요");
-    }
-    else if(numselect[0].textContent = "인증번호가 틀립니다." || phonecheck == ""){
-    		alert("전화번호 인증을 완료해주세요");
     }
     else{
     	joinForm.attr("action","/user/join");
