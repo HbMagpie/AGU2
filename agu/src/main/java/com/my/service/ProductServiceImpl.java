@@ -43,6 +43,15 @@ public class ProductServiceImpl implements ProductService{
 		
 	}
 	
+	/* 상품 정보 삭제 */
+	@Override
+	public int productDelete(int productnum) {
+
+		log.info("productDelete..........");
+		
+		return mapper.productDelete(productnum);
+	}
+	
 			
 	
 	@Override

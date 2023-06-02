@@ -25,4 +25,7 @@ public interface ProductMapper {
 
 	/* 상품 총 갯수 */
 	int productGetTotal(Criteria cri);
+	
+	/* 상품 정보 삭제 */
+	int productDelete(int productnum);
 }

@@ -79,10 +79,6 @@ public class ProductController {
 	public void addproduct() {
 	}
 	
-	
-			
-			
-	
 	@PostMapping("/uploadFile")
 	public  String insertinto(MultipartFile [] files, String productname, String productcontents, String productprice, String useremail,RedirectAttributes ra, HttpServletRequest request)throws IOException {
 		log.info(files);
@@ -96,7 +92,7 @@ public class ProductController {
 		
 		
 		/* String fileurl = "D:\\1900_WEB_LHS\\my\\workspace\\Shopping\\src\\main\\webapp\\resources\\img\\";*/
-		String fileurl = "C:\\Users\\Administrator\\git\\AGU\\agu\\src\\main\\webapp\\resources\\img\\";
+		String fileurl = "C:\\Users\\Administrator\\git\\agu1\\agu1\\agu\\src\\main\\webapp\\resources\\img\\";
         
         for (MultipartFile mf : files) {
         	//사용자가 업로드한 파일이 있다면 아래 로직 수행
@@ -142,7 +138,19 @@ public class ProductController {
 		model.addAttribute("review", review);
 	}
 	
-	
+	/* 상품 정보 삭제 */
+	@PostMapping("/productDelete")
+	public String productDeletePOST(int productnum, RedirectAttributes rttr) {
+		
+		log.info("productDeletePOST..........");		
+		
+		int result = service.productDelete(productnum);
+		
+		rttr.addFlashAttribute("delete_result", result);
+		
+		return "redirect:/home";
+		
+	}
 	
 }
 
