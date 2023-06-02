@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.getProductList(cri);
 	}
 
-	/* 사품 총 갯수 */
+	/* 상품 총 갯수 */
 	@Override
 	public int productGetTotal(Criteria cri) {
 		
