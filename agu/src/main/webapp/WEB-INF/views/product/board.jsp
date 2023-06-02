@@ -119,19 +119,15 @@
 											</div>
 										</div>
 									</div>
-        							<input type="hidden" value="${product.productnum}">
+        							<input type="hidden" name="productnum" value="${productInfo.productnum}">
         							
         								<br>
         								<div class="product-quantity">
         									<button class="btn btn-primary buy" type="submit">구매하기</button>
         								</div>
-        								
-        								<div class="product-quantity">
-        									<button class="btn btn-primary" type="button">수정하기</button>
-        								</div>	
-        								
-        												        															
+        																				        															
 	       							</form>
+	       							
         						</div>
         					</div>
         				</div>
@@ -142,6 +138,7 @@
         <div class="textarea-div">
         <textarea rows="5" cols="5" readonly style="word-break:break-all;width:100%;text-align:center;font-size:30px;">${product.productcontents}</textarea>
         </div>
+     
         
         <!-- 리뷰 작성 -->
         
@@ -280,7 +277,7 @@ let buyForm = $(".buyForm");
 	
 });
 
-
+   
 // 주소 보러가기 클릭시 미 로그인 상태라면 alert창 띄움
 $(".link_right").on("click",function(e){
 	let useremail = "${loginUserid}";

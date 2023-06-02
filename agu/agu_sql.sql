@@ -4,27 +4,24 @@ create database agu;
 -- agu 스키마 사용
 use agu;
 
--- 테이블 삭제 예시
-DROP TABLE agu.files;
+-- 테이블 삭제
+DROP TABLE agu.user;
 DROP TABLE agu.product;
-DROP TABLE agu.shopping_user;
+DROP TABLE agu.files;
+DROP TABLE agu.buyproduct;
+DROP TABLE agu.review;
 
--- product 테이블 컬럼 정보 확인 예시
+-- 테이블 컬럼 정보 확인 예시
 SHOW FULL COLUMNS FROM agu.product;
 
--- product 테이블 샘플 데이터 조회
+-- 테이블 샘플 데이터 조회
+SELECT * FROM agu.user;
 SELECT * FROM agu.product;
-
--- files 테이블 샘플 데이터 조회
 SELECT * FROM agu.files;
-
--- buyproduct 테이블 샘플 데이터 조회
 SELECT * FROM agu.buyproduct;
-
--- review 테이블 샘플 데이터 조회
 SELECT * FROM agu.review;
 
--- shopping_user 테이블 생성
+-- user 테이블 생성
 create table user(
 	useremail varchar(300) primary key,
     userpw varchar(300) not null,
@@ -36,7 +33,7 @@ create table user(
     seealso varchar(1000)
 );
 
--- shopping_user 테이블 샘플 데이터 입력
+-- user 테이블 샘플 데이터 입력
 INSERT INTO user VALUES ('test1234@naver.com', 'test1234!!', 'test00', '010-1234-5678', '02830', '서울 성북구 아리랑로', '상세주소', '1');
 
 -- product 테이블 생성
@@ -47,15 +44,9 @@ create table product(
     productcontents varchar(6000),
 	useremail varchar(300)
 );
-    -- constraint user_product foreign key(useremail) references shopping_user(useremail)
-
-
+    
 -- product 테이블 샘플 데이터 입력
 INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test111', 3000, 'test1', 'test1234@naver.com');
-INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test222', 50000, 'test2', 'test1234@naver.com');
-INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test333', 25500, 'test3', 'test1234@naver.com');
-INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test444', 30000, 'test4', 'test1234@naver.com');
-INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test555', 35000, 'test5', 'test1234@naver.com');
 
 -- files 테이블 생성
 create table files(
@@ -69,10 +60,6 @@ create table files(
 
 -- files 테이블 샘플 데이터 입력
 INSERT INTO agu.files (productnum, filerealname, filename, fileurl, safefile) VALUES (1, 'test입니다1', 'tee_01.png', 'ㅇㅇㅇ','ㅇㅇㅇ');
-INSERT INTO agu.files (productnum, filerealname, filename, fileurl, safefile) VALUES (2, 'test입니다2', 'tee_02.png', 'ㅇㅇㅇ','ㅇㅇㅇ');
-INSERT INTO agu.files (productnum, filerealname, filename, fileurl, safefile) VALUES (3, 'test입니다3', 'tee_03.png', 'ㅇㅇㅇ','ㅇㅇㅇ');
-INSERT INTO agu.files (productnum, filerealname, filename, fileurl, safefile) VALUES (4, 'test입니다4', 'tee_04.png', 'ㅇㅇㅇ','ㅇㅇㅇ');
-INSERT INTO agu.files (productnum, filerealname, filename, fileurl, safefile) VALUES (5, 'test입니다5', 'tee_05.png', 'ㅇㅇㅇ','ㅇㅇㅇ');
 
 create table buyproduct(
 	useremail varchar(300),
@@ -82,7 +69,9 @@ create table buyproduct(
 	postnum int,
 	addr varchar(1000),
     detailaddress varchar(3000),
-    seealso varchar(1000)
+    seealso varchar(1000),
+    constraint product_buyproduct foreign key(productnum) references product(productnum) on delete cascade
+
 );
 
 create table review(
@@ -91,10 +80,12 @@ create table review(
     username varchar(300),
     productnum int,
     reviewcontents varchar(6000),
-    regdate datetime default now()
+    regdate datetime default now(),
+    constraint product_review foreign key(productnum) references product(productnum) on delete cascade
 );
 
 -- -------------------------------------------------------------
+-- 카테고리 부분 아직 미구현..
 -- cate 테이블 삭제
 DROP TABLE agu.cate;
  
