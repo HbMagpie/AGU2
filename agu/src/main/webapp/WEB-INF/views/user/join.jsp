@@ -94,14 +94,6 @@
 				<td><input readonly name="seealso" type="text" id="seealso" placeholder="참고항목"></td>
 			</tr>
 			<tr>
-				<th><label for="userphone">전화번호</label></th>
-				<td><input type="text" name="userphone" id="userphone" placeholder="전화번호입력"><input type="button" value="인증번호 받기" id="randomnum" style="width:110px;"></td>
-			</tr>
-			<tr>
-				<th colspan="2"><input type="text" name="phonecheck" id="phonecheck" placeholder="인증번호 입력" style="display: block; margin:0 auto;"><input type="button" value="인증번호 확인" id="randomnumcheck" style="width:110px;"></th>
-				<td><span class ="numselect"></span></td>
-			</tr>
-			<tr>
 				<th colspan="2">
 					<input type="submit" id="joinSubmit" value="가입 완료">
 				</th>
