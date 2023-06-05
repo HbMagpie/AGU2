@@ -2,6 +2,7 @@ package com.my.service;
 
 import java.util.List;
 
+import com.my.domain.CateDTO;
 import com.my.domain.Criteria;
 import com.my.domain.Files;
 import com.my.domain.ProductDTO;
@@ -26,4 +27,7 @@ public interface ProductService {
 	
 	/* 상품 정보 삭제 */
 	int productDelete(int productnum);
+	
+	/* 카테고리 리스트 */
+	public List<CateDTO> cateList();
 }

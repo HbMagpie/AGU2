@@ -72,11 +72,23 @@
 			<br><br>
 			<tr>
 				<td id="result" colspan="2"></td>
-			</tr>			
+			</tr>	
+			<tr>
+				<div class="cate_wrap">
+					<span>카테고리</span>
+					<select class="cate">
+						<option selected value="none">선택</option>
+					</select>
+				</div>
+			</tr>
+			<tr>
+				<th><label for="catename">카테고리명</label></th>
+				<td><input type="text" name="catename" id="catename" placeholder="카테고리명 입력해주세요"></td>
+			</tr>		
 			<tr>
 				<th><label for="productname">상품명</label></th>
 				<td><input type="text" name="productname" id="productname" placeholder="상품명 입력해주세요"></td>
-			</tr>
+			</tr>	
 			<tr>
 				<th><label for="productprice">가격</label></th>
 				<td><input type="text" name="productprice" id="productprice" placeholder="가격을 적어주세요"></td>
@@ -105,13 +117,18 @@
 <script>
 $(document).ready(function(){
 	$("#submitButn").on("click",function(){
+		var catename = $("#catename").val();
 		var productname = $("#productname").val();
 		var productcontents = $("#productcontents").val();
 		var productprice = $("#productprice").val();
 		var useremail = $("#useremail").val();
 		var formData = new FormData(); 
 		
-		if(productname == ""){
+		if(catename == ""){
+			alert("카테고리명을 입력해주세요");
+			return false;
+		}
+		else if(productname == ""){
 			alert("상품명을 입력해주세요");
 			return false;
 		}
@@ -134,6 +151,7 @@ $(document).ready(function(){
 			for (var i = 0; i < files.length; i++) {
 				formData.append("files",files[i]);
 			}
+			formData.append("catename",catename);
 			formData.append("productname",productname);
 			formData.append("productcontents",productcontents);
 			formData.append("productprice",productprice);
@@ -158,6 +176,40 @@ $(document).ready(function(){
 		}
 	});
 });
+
+/*
+	// JSON 변환 확인
+	$(document).ready(function(){
+	console.log('${cateList}');
+}); */
+
+/* 카테고리 */
+let cateList = JSON.parse('${cateList}');
+
+let cateArray = new Array();
+let cateObj = new Object();
+
+let cateSelect = $(".cate");		
+
+for(let i = 0; i < cateList.length; i++){
+
+		cateObj = new Object();
+		
+		cateObj.catename = cateList[i].catename;
+		cateObj.catenum = cateList[i].catenum;		
+		
+		cateArray.push(cateObj);				
+	
+}	
+
+/* $(document).ready(function(){
+	console.log(cateArray);
+}); */
+
+for(let i = 0; i < cateArray.length; i++){
+	cateSelect.append("<option value='"+cateArray[i].catenum+"'>" + cateArray[i].catename + "</option>");
+}
+
 </script>
 </html>
 
