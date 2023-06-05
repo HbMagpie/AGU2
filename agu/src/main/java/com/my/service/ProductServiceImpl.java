@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.my.domain.CateDTO;
 import com.my.domain.Criteria;
 import com.my.domain.Files;
 import com.my.domain.ProductDTO;
@@ -50,6 +51,15 @@ public class ProductServiceImpl implements ProductService{
 		log.info("productDelete..........");
 		
 		return mapper.productDelete(productnum);
+	}
+	
+	/* 카테고리 리스트 */
+	@Override
+	public List<CateDTO> cateList() {
+		
+		log.info("(service)cateList........");
+		
+		return mapper.cateList();
 	}
 	
 			
