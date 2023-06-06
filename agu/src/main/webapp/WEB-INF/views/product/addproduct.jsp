@@ -67,7 +67,7 @@
             </div>
         </nav>
         <!-- nav 끝 -->
-	<form id="formsub" action="/" style="margin-left:50px">
+	<form id="formsub" action="/" style="margin-left:50px">	
 		<table id="container">
 			<br><br>
 			<tr>
