@@ -14,7 +14,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	 <resources mapping="/img/**" location="C:\Users\Administrator\git\AGU\agu\src\main\webapp\resources\img" />
+	 <resources mapping="/img/**" location="C:\Users\bit\git\AGU\agu\src\main\webapp\resources\img" />
 	<!-- <resources mapping="/img/**" location="D:\1900_WEB_LHS\my\workspace\Shopping\src\main\webapp\resources\img" /> -->
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

@@ -5,7 +5,7 @@
   
   <mapper namespace="com.my.mapper.ProductMapper">
   	<insert id="setProduct">
-		insert into product (productname,productprice,productcontents,useremail) values (#{productname},#{productprice},#{productcontents},#{useremail})
+		insert into product (productname,catename,productprice,productcontents,useremail) values (#{productname},#{catename},#{productprice},#{productcontents},#{useremail})
   	</insert>
   	<insert id="setFile">
   		insert into files values (#{productnum},#{filerealname},#{filename},#{fileurl},#{safefile})
@@ -62,5 +62,12 @@
 			delete from product where productnum = #{productnum}
 			
 	</delete>
+	
+	<!-- 카테고리 리스트 -->
+  	<select id="cateList" resultType="com.my.domain.CateDTO">
+  	
+  		select * from cate order by catenum
+  	
+  	</select>
   	
   </mapper>

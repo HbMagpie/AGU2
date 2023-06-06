@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.my.domain.Criteria;
+import com.my.domain.ProductDTO;
 import com.my.domain.ProductDTO2;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -36,6 +37,8 @@ public class ProductMapperTests {
 	}
 	*/
 	
+	/*
+	// 상품 삭제 테스트
 	@Test
 	public void productDeleteTest() {
 		
@@ -46,5 +49,28 @@ public class ProductMapperTests {
 		if(result == 1) {
 			System.out.println("삭제 성공");
 		}
+	} */
+	
+	/* 카테고리 리스트
+	@Test
+	public void cateListTest() throws Exception{
+		
+		System.out.println("cateList()..........." + mapper.cateList());
+		
+	} */
+	
+	/* 상품 등록 테스트*/
+	@Test
+	public void setProductTest() throws Exception{
+		
+		ProductDTO product = new ProductDTO();
+		
+		product.setProductname("mapper 테스트");
+		product.setCatename("BEST");
+		product.setProductprice("30000");
+		product.setProductcontents("여름");
+		product.setUseremail("test1234@naver.com");
+				
+		mapper.setProduct(product);
 	}
 }

@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.my.domain.Criteria;
 import com.my.domain.PageDTO;
 import com.my.domain.ProductDTO;
@@ -76,14 +77,28 @@ public class ProductController {
 	
 	/* 상품 등록 */
 	@GetMapping("/addproduct")
-	public void addproduct() {
+	public void addproduct(Model model) throws Exception {
+		
+		ObjectMapper objm = new ObjectMapper();
+		
+		List list = service.cateList();
+		
+		String cateList = objm.writeValueAsString(list);
+		
+		model.addAttribute("cateList", cateList);
+		
+		/* JSON 변환 확인
+		log.info("변경 전.........." + list);
+		log.info("변경 후.........." + cateList); */
+		
 	}
 	
-	@PostMapping("/uploadFile")
-	public  String insertinto(MultipartFile [] files, String productname, String productcontents, String productprice, String useremail,RedirectAttributes ra, HttpServletRequest request)throws IOException {
+	@PostMapping("/uploadFile")	  
+	public  String insertinto(MultipartFile [] files, String catename, String productname, String productcontents, String productprice, String useremail,RedirectAttributes ra, HttpServletRequest request)throws IOException {
 		log.info(files);
 		ProductDTO prod = new ProductDTO();
 		//상품 정보들을 먼저 테이블에 저장시켜 준다.
+		prod.setCatename(catename);
 		prod.setProductname(productname);
 		prod.setProductcontents(productcontents);
 		prod.setProductprice(productprice);
