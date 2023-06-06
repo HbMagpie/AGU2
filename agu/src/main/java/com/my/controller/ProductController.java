@@ -93,7 +93,7 @@ public class ProductController {
 		
 	}
 	
-	@PostMapping("/uploadFile")	  
+	@PostMapping("/uploadFile")
 	public  String insertinto(MultipartFile [] files, String catename, String productname, String productcontents, String productprice, String useremail,RedirectAttributes ra, HttpServletRequest request)throws IOException {
 		log.info(files);
 		ProductDTO prod = new ProductDTO();
