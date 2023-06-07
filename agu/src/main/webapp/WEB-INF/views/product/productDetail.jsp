@@ -67,6 +67,10 @@
 			alert("주소 변경에 실패하였습니다.");
 		</script>
 	</c:if>
+	
+	<input type="hidden" name="catename" value="${productInfo.catename}">
+        							
+        							
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
@@ -79,16 +83,25 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/">All Product</a></li>
+                                <li><a class="dropdown-item" href="#!">모든 상품</a></li>
                                 <li><hr class="dropdown-divider" /></li> 
-                                <li><a class="dropdown-item" href="/product/search?keyword=best">Best</a></li>                             
-                                <li><a class="dropdown-item" href="/product/search?keyword=new">New</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=dress">Dress</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=outer">Outer</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=blouse">Blouse</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=tee">Tee</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=knit">Knit</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=bottom">Bottom</a></li>
+                                <li><a class="dropdown-item" href="#!">인기 상품</a></li>
+                               
+                                <li> <a class="dropdown-item move" href='/product/productDetail?catename="New"'>New</a></li>
+								
+                               
+                              <%--  <li> <a class="dropdown-item move" href='<c:out value="${product[status.index].catename}"/>'>
+							<c:out value="${product[status.index].catename}"></c:out>
+								New</a> </li> --%>
+								
+								
+                                <li><a class="dropdown-item" href="#!">새 상품</a></li>
+                                <li><a class="dropdown-item" href="#!">Dress</a></li>
+                                <li><a class="dropdown-item" href="#!">Outer</a></li>
+                                <li><a class="dropdown-item" href="#!">Blouse</a></li>
+                                <li><a class="dropdown-item" href="#!">Tee</a></li>
+                                <li><a class="dropdown-item" href="#!">Knit</a></li>
+                                <li><a class="dropdown-item" href="#!">Bottom</a></li>
                             </ul>
                         </li>
                         <!-- Start! 검색 기능 -->
@@ -102,7 +115,7 @@
                 			</form>
                 		</div>
                         </li>
-                        <!-- End! 검색 기능 -->
+                        <!-- End! 검색 기능 -->           
                     </ul>
                     <c:if test="${loginUserid != null}">
                     	<form class="d-flex">
@@ -124,12 +137,51 @@
                     </c:if>
                 </div>
             </div>
-        </nav> 	 
-         <h2 style="margin-left:50%; margin-top:50px">검색 결과</h2>
+        </nav>
+       <!-- Start! 배너 슬라이드 박스 --> 
+        	<div class="slidebox">
+ 				<br>
+ 				<input type="radio" name="slide" id="slide01" checked>
+ 				<input type="radio" name="slide" id="slide02">
+ 				<input type="radio" name="slide" id="slide03">
+ 				<input type="radio" name="slide" id="slide04">
+ 		
+ 			<ul class="slidelist">
+ 				<li class="slideitem">
+ 					<div>
+ 						<a href=""><img src="/resources/img/banner/banner_01.png"></a>
+ 					</div>
+ 				</li>
+ 				<li class="slideitem">
+ 					<div>
+ 						<a href=""><img src="/resources/img/banner/banner_02.png"></a>
+ 					</div>
+ 				</li>
+ 				<li class="slideitem">
+ 					<div>
+ 						<a href=""><img src="/resources/img/banner/banner_03.png"></a>
+ 					</div>
+ 				</li>
+ 				<li class="slideitem">
+ 					<div>
+ 						<a href=""><img src="/resources/img/banner/banner_04.png"></a>				
+ 					</div>
+ 				</li>
+ 			</ul>
+ 			
+ 			<label for="slide01" class="btn-6"><span></span></label>
+ 			<label for="slide02" class="btn-6"><span></span></label>
+ 			<label for="slide03" class="btn-6"><span></span></label>
+ 			<label for="slide04" class="btn-6"><span></span></label>
+ 		</div>
+ 		<!-- End! 배너 슬라이드 박스 -->
+        		
+        			
+        	 
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <c:forEach items="${list}" var="list" varStatus="status">
+                <c:forEach items="${list}" var="file" varStatus="status">
                         <div class="card h-100">
                     <div class="col mb-5">
                 	            <!-- Product image-->
@@ -145,14 +197,18 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/board?productnum=${list.productnum}">구매하러 가기</a></div>
-                            	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/productDelete?productnum=${list.productnum}">삭제하기</a></div>
-                            </div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/board?productnum=${product[status.index].productnum}">구매하러 가기</a></div>
+        						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/productDelete?productnum=${product[status.index].productnum}">삭제하기</a></div>
+                            </div>                 
                         </div>
+                        
                     </div>&nbsp;&nbsp;&nbsp;
                   </c:forEach>
+                  		
                   </div>
+                  
                   </div>
+                  
                   </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
@@ -163,6 +219,19 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="/resources/js/scripts.js"></script>
+        <script src="/resources/js/scripts.js"></script> 
+        <script>
+        /* 상품 조회 페이지 */
+        $(".move").on("click", function(e){
+        	
+        	e.preventDefault();
+        	
+        	moveForm.append("<input type='hidden' name='catename' value='"+$(this).attr("href") + "'>");
+        	moveForm.attr("action", "/product/productDetail");
+        	moveForm.submit();
+        	
+        	
+        });
+        </script>     
     </body>
 </html>

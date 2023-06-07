@@ -32,4 +32,7 @@ public interface ProductMapper {
 	
 	/* 카테고리 리스트 */
 	public List<CateDTO> cateList();
+	
+	/* 상품 조회 페이지 */
+	public ProductDTO productGetDetail(String catename);
 }

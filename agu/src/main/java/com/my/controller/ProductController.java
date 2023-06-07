@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.my.domain.Criteria;
 import com.my.domain.PageDTO;
@@ -73,7 +74,6 @@ public class ProductController {
 		
 	}
 	/* End! 상품 검색 */
-	
 	
 	/* 상품 등록 */
 	@GetMapping("/addproduct")
@@ -164,6 +164,25 @@ public class ProductController {
 		rttr.addFlashAttribute("delete_result", result);
 		
 		return "redirect:/";
+		
+	}
+	
+	/* 상품 조회 페이지 */
+	@GetMapping("/productDetail")
+	public void productGetInfoGET(String catename, Criteria cri, Model model) throws JsonProcessingException {
+		
+		log.info("productGetInfo()........." + catename);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		/* 카테고리 리스트 데이터 */
+		model.addAttribute("cateList", mapper.writeValueAsString(service.cateList()));	
+		
+		/* 목록 페이지 조건 정보 */
+		model.addAttribute("cri", cri);
+		
+		/* 조회 페이지 정보 */
+		model.addAttribute("productInfo", service.productGetDetail(catename));
 		
 	}
 	

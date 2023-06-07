@@ -62,7 +62,14 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.cateList();
 	}
 	
-			
+	/* 상품 조회 페이지 */
+	@Override
+	public ProductDTO productGetDetail(String catename) {
+		
+		log.info("(service)productGetDetail......." + catename);
+		
+		return mapper.productGetDetail(catename);
+	}		
 	
 	@Override
 	public boolean addProduct(ProductDTO prod) {
