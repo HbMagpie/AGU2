@@ -30,14 +30,16 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">모든 상품</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">인기 상품</a></li>
-                                <li><a class="dropdown-item" href="#!">새 상품</a></li>
-                            	<li><a class="dropdown-item" href="#!">tee</a></li>
-                                <li><a class="dropdown-item" href="#!">knit</a></li>
-                                <li><a class="dropdown-item" href="#!">outer</a></li>
-                                <li><a class="dropdown-item" href="#!">bottom</a></li>
+                               <li><a class="dropdown-item" href="/">All Product</a></li>
+                                <li><hr class="dropdown-divider" /></li> 
+                                <li><a class="dropdown-item" href="/product/search?keyword=best">Best</a></li>                             
+                                <li><a class="dropdown-item" href="/product/search?keyword=new">New</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=dress">Dress</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=outer">Outer</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=blouse">Blouse</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=tee">Tee</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=knit">Knit</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=bottom">Bottom</a></li>
                            
                             </ul>
                         </li>

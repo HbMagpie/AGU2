@@ -67,6 +67,9 @@
 			alert("주소 변경에 실패하였습니다.");
 		</script>
 	</c:if>
+	
+	 
+     
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
@@ -79,16 +82,16 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">모든 상품</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">인기 상품</a></li>
-                                <li><a class="dropdown-item" href="#!">새 상품</a></li>
-                                <li><a class="dropdown-item" href="#!">Dress</a></li>
-                                <li><a class="dropdown-item" href="#!">Outer</a></li>
-                                <li><a class="dropdown-item" href="#!">Blouse</a></li>
-                                <li><a class="dropdown-item" href="#!">Tee</a></li>
-                                <li><a class="dropdown-item" href="#!">Knit</a></li>
-                                <li><a class="dropdown-item" href="#!">Bottom</a></li>
+                                <li><a class="dropdown-item" href="/">All Product</a></li>
+                                <li><hr class="dropdown-divider" /></li> 
+                                <li><a class="dropdown-item" href="/product/search?keyword=best">Best</a></li>                             
+                                <li><a class="dropdown-item" href="/product/search?keyword=new">New</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=dress">Dress</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=outer">Outer</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=blouse">Blouse</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=tee">Tee</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=knit">Knit</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=bottom">Bottom</a></li>
                             </ul>
                         </li>
                         <!-- Start! 검색 기능 -->
@@ -102,7 +105,7 @@
                 			</form>
                 		</div>
                         </li>
-                        <!-- End! 검색 기능 -->
+                        <!-- End! 검색 기능 -->           
                     </ul>
                     <c:if test="${loginUserid != null}">
                     	<form class="d-flex">
@@ -206,6 +209,19 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="/resources/js/scripts.js"></script>      
+        <script src="/resources/js/scripts.js"></script> 
+        <script>
+        /* 상품 조회 페이지 */
+        $(".move").on("click", function(e){
+        	
+        	e.preventDefault();
+        	
+        	moveForm.append("<input type='hidden' name='catename' value='"+$(this).attr("href") + "'>");
+        	moveForm.attr("action", "/product/productDetail");
+        	moveForm.submit();
+        	
+        	
+        });
+        </script>     
     </body>
 </html>

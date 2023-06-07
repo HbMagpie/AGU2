@@ -18,6 +18,7 @@ public class ProductMapperTests {
 
 	@Autowired
 	private ProductMapper mapper;
+	private String New;
 	
 	/*
 	@Test
@@ -59,7 +60,7 @@ public class ProductMapperTests {
 		
 	} */
 	
-	/* 상품 등록 테스트*/
+	/* 상품 등록 테스트
 	@Test
 	public void setProductTest() throws Exception{
 		
@@ -72,5 +73,19 @@ public class ProductMapperTests {
 		product.setUseremail("test1234@naver.com");
 				
 		mapper.setProduct(product);
+	} */
+	
+	/* 상품 조회 페이지 */
+	@Test
+	public void productGetDetailTest() {
+		
+		String catename = "New";
+		
+		ProductDTO result = mapper.productGetDetail(catename);
+		
+		System.out.println("상품 조회 데이터 : " + result);
+		
+		
 	}
+	
 }

@@ -35,10 +35,16 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">모든 상품</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">인기 상품</a></li>
-                                <li><a class="dropdown-item" href="#!">새 상품</a></li>
+                                <li><a class="dropdown-item" href="/">All Product</a></li>
+                                <li><hr class="dropdown-divider" /></li> 
+                                <li><a class="dropdown-item" href="/product/search?keyword=best">Best</a></li>                             
+                                <li><a class="dropdown-item" href="/product/search?keyword=new">New</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=dress">Dress</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=outer">Outer</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=blouse">Blouse</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=tee">Tee</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=knit">Knit</a></li>
+                                <li><a class="dropdown-item" href="/product/search?keyword=bottom">Bottom</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -73,6 +79,7 @@
 			<tr>
 				<td id="result" colspan="2"></td>
 			</tr>	
+			<!-- 카테고리 리스트
 			<tr>
 				<div class="cate_wrap">
 					<span>카테고리</span>
@@ -80,14 +87,14 @@
 						<option selected value="none">선택</option>
 					</select>
 				</div>
-			</tr>
+			</tr> -->
 			<tr>
 				<th><label for="catename">카테고리명</label></th>
-				<td><input type="text" name="catename" id="catename" placeholder="카테고리명 입력해주세요"></td>
+				<td><input type="text" name="catename" id="catename" placeholder="카테고리명을 입력해주세요"> <a style="color:red; font-size:18px;"> ※ (Best, New, Dress, Outer, Blouse, Tee, Knit, Bottom) 중 택1</a></td>
 			</tr>		
 			<tr>
 				<th><label for="productname">상품명</label></th>
-				<td><input type="text" name="productname" id="productname" placeholder="상품명 입력해주세요"></td>
+				<td><input type="text" name="productname" id="productname" placeholder="상품명을 입력해주세요"><a style="color:red; font-size:18px;"> ※ 반드시 카테고리명을 포함해서 작성해주세요.</a> </td>
 			</tr>	
 			<tr>
 				<th><label for="productprice">가격</label></th>
@@ -183,7 +190,11 @@ $(document).ready(function(){
 	console.log('${cateList}');
 }); */
 
-/* 카테고리 */
+/* $(document).ready(function(){
+console.log(cateArray);
+}); */
+
+/* 카테고리 리스트
 let cateList = JSON.parse('${cateList}');
 
 let cateArray = new Array();
@@ -202,13 +213,11 @@ for(let i = 0; i < cateList.length; i++){
 	
 }	
 
-/* $(document).ready(function(){
-	console.log(cateArray);
-}); */
+
 
 for(let i = 0; i < cateArray.length; i++){
 	cateSelect.append("<option value='"+cateArray[i].catenum+"'>" + cateArray[i].catename + "</option>");
-}
+} */
 
 </script>
 </html>
