@@ -17,7 +17,7 @@
         <link href="/resources/css/home.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
     </head>
-    <style>
+<style>
 @font-face {
     font-family: 'SUITE-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
@@ -125,7 +125,7 @@
                 </div>
             </div>
         </nav> 	 
-         <h2 style="margin-left:50%; margin-top:50px">검색 결과</h2>
+         <h2 style="margin-left:200px; margin-top:50px">검색 결과💡</h2>
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">

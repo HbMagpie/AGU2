@@ -30,6 +30,7 @@ public class Criteria {
     /* Criteria 기본 생성자 */
     public Criteria(){
         this(1,10);
+        this.skip = 0;
     }
     
     /* 검색 타입 데이터 배열 변환 */
