@@ -6,36 +6,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.my.domain.Criteria;
-import com.my.domain.NoticeDTO;
-import com.my.mapper.NoticeMapper;
+import com.my.domain.FaqDTO;
+import com.my.mapper.FaqMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service
 @Log4j
-public class NoticeServiceImpl implements NoticeService{
+public class FaqServiceImpl implements FaqService{
 	@Setter(onMethod_ = @Autowired)
-	private NoticeMapper mapper;
+	private FaqMapper mapper;
 	
 	/* 게시판 등록 */
 	@Override
-    public void enroll(NoticeDTO notice) {
+    public void enroll(FaqDTO faq) {
         
-        mapper.enroll(notice);
+        mapper.enroll(faq);
         
     }
 	
 	/* 게시판 목록 */
     @Override
-    public List<NoticeDTO> getList() {
+    public List<FaqDTO> getList() {
     	
     	 return mapper.getList();
     }
 
 	/* 게시판 목록(페이징 적용) */
     @Override
-    public List<NoticeDTO> getListPaging(Criteria cri) {
+    public List<FaqDTO> getListPaging(Criteria cri) {
         
         return mapper.getListPaging(cri);
     } 
@@ -49,16 +49,16 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	/* 게시판 조회 */
     @Override
-    public NoticeDTO getPage(int bno) {
+    public FaqDTO getPage(int bno) {
          
         return mapper.getPage(bno);
     }
     
     /* 게시판 수정 */
     @Override
-    public int modify(NoticeDTO notice) {
+    public int modify(FaqDTO faq) {
         
-        return mapper.modify(notice);
+        return mapper.modify(faq);
     }
     
     /* 게시판 삭제 */

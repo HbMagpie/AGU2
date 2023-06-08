@@ -11,7 +11,7 @@
 <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <link href="/resources/css/styles.css" rel="stylesheet" />
-<link href="/resources/css/board/notice.css" rel="stylesheet" />
+<link href="/resources/css/board/faq.css" rel="stylesheet" />
 </head>
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
@@ -70,7 +70,7 @@
 <div id="wrap">
     <div id="container">
         <div class="inner">        
-			<h2>Notice 상세</h2>
+			<h2>FAQ 상세</h2>
 			<table width="100%" class="table02">
                 <colgroup>
                         <col width="20%">
@@ -95,7 +95,7 @@
           <button class="btn black mr5" id="list_btn">목록으로</button>
           <button class="btn black mr5" id="modify_btn">수정/삭제</button>
     </div>
-	<form id="infoForm" action="/notice/modify" method="get">
+	<form id="infoForm" action="/faq/modify" method="get">
 		<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
 		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
 		<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
@@ -109,12 +109,12 @@
 	
 	$("#list_btn").on("click", function(e){
 		form.find("#bno").remove();
-		form.attr("action", "/notice/list");
+		form.attr("action", "/faq/list");
 		form.submit();
 	});
 	
 	$("#modify_btn").on("click", function(e){
-		form.attr("action", "/notice/modify");
+		form.attr("action", "/faq/modify");
 		form.submit();
 	});	
 </script>

@@ -9,33 +9,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.my.domain.Criteria;
-import com.my.domain.NoticeDTO;
+import com.my.domain.FaqDTO;
 import com.my.domain.PageMakerDTO;
-import com.my.service.NoticeService;
+import com.my.service.FaqService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/notice/*")
-public class NoticeController {
+@RequestMapping("/faq/*")
+public class FaqController {
 	
 	@Autowired
-    private NoticeService nservice;
+    private FaqService fservice;
 	
 	/* @Setter(onMethod_ = @Autowired)
-	private NoticeService services; */
+	private FaqService services; */
     
 	/* 게시판 목록 페이지 접속(페이징 적용) */
     @GetMapping("/list")
-    public void noticeListGET(Model model, Criteria cri) {
+    public void faqListGET(Model model, Criteria cri) {
         
-    	/*  log.info("noticeListGET"); */
+    	/*  log.info("faqListGET"); */
         
-        model.addAttribute("list", nservice.getListPaging(cri));
+        model.addAttribute("list", fservice.getListPaging(cri));
         
-        int total = nservice.getTotal();
+        int total = fservice.getTotal();
         
         PageMakerDTO pageMake = new PageMakerDTO(cri, total);
         
@@ -46,7 +46,7 @@ public class NoticeController {
 	/* 게시판 등록 페이지 접속 */
     @GetMapping("/enroll")
     // => @RequestMapping(value="enroll", method=RequestMethod.GET)
-    public void noticeEnrollGET() {
+    public void faqEnrollGET() {
         
     	/*  log.info("게시판 등록 페이지 진입"); */ 
         
@@ -54,22 +54,22 @@ public class NoticeController {
     
     /* 게시판 등록 */
     @PostMapping("/enroll")
-    public String noticeEnrollPOST(NoticeDTO notice, RedirectAttributes rttr) {
+    public String faqEnrollPOST(FaqDTO faq, RedirectAttributes rttr) {
         
-       /* log.info("NoticeDTO : " + notice); */
+       /* log.info("FaqDTO : " + faq); */
         
-        nservice.enroll(notice);
+        fservice.enroll(faq);
         
         rttr.addFlashAttribute("result", "enrol success");
         
-        return "redirect:/notice/list";
+        return "redirect:/faq/list";
     }
     
     /* 게시판 조회 */
     @GetMapping("/get")
-    public void noticeGetPageGET(int bno, Model model, Criteria cri) {
+    public void faqGetPageGET(int bno, Model model, Criteria cri) {
         
-        model.addAttribute("pageInfo", nservice.getPage(bno));
+        model.addAttribute("pageInfo", fservice.getPage(bno));
         
         model.addAttribute("cri", cri);
         
@@ -77,9 +77,9 @@ public class NoticeController {
     
     /* 수정 페이지 이동 */
     @GetMapping("/modify")
-    public void noticeModifyGET(int bno, Model model, Criteria cri) {
+    public void faqModifyGET(int bno, Model model, Criteria cri) {
         
-        model.addAttribute("pageInfo", nservice.getPage(bno));
+        model.addAttribute("pageInfo", fservice.getPage(bno));
         
         model.addAttribute("cri", cri);
         
@@ -87,25 +87,25 @@ public class NoticeController {
     
     /* 페이지 수정 */
     @PostMapping("/modify")
-    public String noticeModifyPOST(NoticeDTO notice, RedirectAttributes rttr) {
+    public String faqModifyPOST(FaqDTO faq, RedirectAttributes rttr) {
         
-        nservice.modify(notice);
+        fservice.modify(faq);
         
         rttr.addFlashAttribute("result", "modify success");
         
-        return "redirect:/notice/list";
+        return "redirect:/faq/list";
         
     }
     
     /* 페이지 삭제 */
     @PostMapping("/delete")
-    public String noticeDeletePOST(int bno, RedirectAttributes rttr) {
+    public String faqDeletePOST(int bno, RedirectAttributes rttr) {
         
-        nservice.delete(bno);
+        fservice.delete(bno);
         
         rttr.addFlashAttribute("result", "delete success");
         
-        return "redirect:/notice/list";
+        return "redirect:/faq/list";
     }
 
 }
