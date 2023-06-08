@@ -1,14 +1,13 @@
 package com.my.domain;
 
-import lombok.Data;
+import java.util.Arrays;
 
-@Data
 public class Criteria {
 
 	/* 현재 페이지 번호 */
     private int pageNum;
-    
-    /* 페이지 표시 개수 */
+
+	/* 페이지 표시 개수 */
     private int amount;
     
     /* 페이지 skip */
@@ -37,4 +36,61 @@ public class Criteria {
     public String[] getTypeArr() {
         return type == null? new String[] {}:type.split("");
     }
+    
+    
+    public int getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum) {
+		
+		this.skip= (pageNum-1)*this.amount;
+		
+		this.pageNum = pageNum;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		
+		this.skip= (this.pageNum-1)*amount;
+		
+		this.amount = amount;
+	}
+
+	public int getSkip() {
+		return skip;
+	}
+
+	public void setSkip(int skip) {
+		this.skip = skip;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	@Override
+	public String toString() {
+		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", skip=" + skip + ", type=" + type
+				+ ", keyword=" + keyword + ", getTypeArr()=" + Arrays.toString(getTypeArr()) + ", getPageNum()="
+				+ getPageNum() + ", getAmount()=" + getAmount() + ", getSkip()=" + getSkip() + ", getType()="
+				+ getType() + ", getKeyword()=" + getKeyword() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
 }

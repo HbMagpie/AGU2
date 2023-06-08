@@ -12,6 +12,7 @@ DROP TABLE agu.review;
 DROP TABLE agu.cate;
 DROP TABLE agu.product;
 DROP TABLE agu.notice;
+DROP TABLE agu.faq;
 
 -- 테이블 컬럼 정보 확인 예시
 SHOW FULL COLUMNS FROM agu.product;
@@ -24,6 +25,7 @@ SELECT * FROM agu.files;
 SELECT * FROM agu.buyproduct;
 SELECT * FROM agu.review;
 SELECT * FROM agu.notice;
+SELECT * FROM agu.faq;
 
 -- user 테이블 생성
 create table user(
@@ -120,3 +122,17 @@ create table notice(
 
 -- notice 테이블 샘플 데이터 입력
 INSERT INTO agu.notice (title, content, writer, regdate, updatedate) VALUES ('test1제목', 'test1내용', 'test1작성자', now(), now());
+
+-- faq 테이블 생성
+create table faq(
+    bno int auto_increment,
+    title varchar(150),
+    content varchar(2000),
+    writer varchar(50),
+    regdate timestamp default now(),
+    updatedate timestamp default now(),
+    constraint product_faq PRIMARY key(bno)
+);
+
+-- faq 테이블 샘플 데이터 입력
+INSERT INTO agu.faq (title, content, writer, regdate, updatedate) VALUES ('test1제목', 'test1내용', 'test1작성자', now(), now());

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my.mapper.FaqMapper">
+
+	<!-- 게시판 등록 -->
+    <insert id="enroll">      
+        insert into faq(title, content, writer) values (#{title}, #{content}, #{writer})
+    </insert>
+    
+    <!-- 게시판 목록 -->
+    <select id="getList" resultType="com.my.domain.FaqDTO">   
+        select * from faq
+    </select>
+    
+    <!-- 게시물 목록(페이징) -->
+    <select id="getListPaging" resultType="com.my.domain.FaqDTO">
+    
+        select * from (
+                select bno, title, writer, regdate, updatedate  
+                from faq order by bno desc) as T1
+        <!-- limit ((${pageNum}-1)*${amount}), ${amount} -->
+        limit #{skip},#{amount}
+    
+    </select>
+    
+    <!-- 게시물 총 갯수 -->
+    <select id="getTotal" resultType="int">
+    
+        select count(*) from faq
+    
+    </select>
+    
+    <!-- 게시판 조회 -->
+    <select id="getPage" resultType="com.my.domain.FaqDTO">  
+        select * from faq where bno = #{bno}
+    </select>
+    
+    <!-- 게시판 수정 -->
+    <update id="modify">
+        update faq set title = #{title}, content = #{content}, updatedate = now() where bno = #{bno}
+    </update>
+    
+    <!-- 게시판 삭제 -->
+    <delete id="delete">
+        delete from faq where bno = #{bno}
+    </delete>
+    
+</mapper>

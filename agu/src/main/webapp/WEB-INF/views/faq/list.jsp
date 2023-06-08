@@ -10,8 +10,8 @@
 
 <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<link href="/resources/css/styles.css" rel="stylesheet" />
-<link href="/resources/css/board/notice.css" rel="stylesheet" />
+<link href="/resources/css/styles.css" rel="stylesheet" /> 
+<link href="/resources/css/board/faq.css" rel="stylesheet" />
 </head>
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
@@ -69,55 +69,125 @@
 
 <div id="wrap">
     <div id="container">
-        <div class="inner">        
-			<h2>Notice 상세</h2>
-			<table width="100%" class="table02">
-                <colgroup>
-                        <col width="20%">
-                        <col width="*">
-                    </colgroup>
-                    <tbody id="tbody">
-                        <tr>
-                            <th>제목<span class="t_red">*</span></th>
-                            <td><input id="board_subject" name="title" readonly="readonly" class="tbox01" value='<c:out value="${pageInfo.title}"/>'></td>
-                        </tr>
-                        <tr>
-                            <th>작성자<span class="t_red">*</span></th>
-                            <td><input id="board_writer" name="writer" readonly="readonly" class="tbox01" value='<c:out value="${pageInfo.writer}"/>'></td>
-                        </tr>
-                        <tr>
-                            <th>내용<span class="t_red">*</span></th>
-                            <td><textarea id="board_content" name="content" readonly="readonly" cols="10" rows="5" class="textarea01"><c:out value="${pageInfo.content}"/></textarea></td>
-                        </tr>
-                    </tbody>
-                </table>  	
+        <div class="inner">
+<h2>FAQ</h2>
+	<table width="100%" class="table01">
+		<colgroup>
+             <col width="10%" />
+             <col width="25%" />
+             <col width="10%" />
+             <col width="15%" />
+             <col width="20%" />
+        </colgroup>
+		<thead>
+			<tr>
+				<th class="bno_width">번호</th>
+				<th class="title_width">제목</th>
+				<th class="writer_width">작성자</th>
+				<th class="regdate_width">작성일</th>
+				<th class="updatedate_width">수정일</th>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+        </tbody>   
+        
+			<c:forEach items="${list}" var="list">
+            <tr>
+            	<td><c:out value="${list.bno}"/></td>
+            	
+                <td>
+                	<a class="move" href='<c:out value="${list.bno}"/>'>
+                        <c:out value="${list.title}"/>
+                    </a>
+                </td>
+                <td><c:out value="${list.writer}"/></td>
+                <td><c:out value="${list.regdate}"/></td>
+                <td><c:out value="${list.updateDate}"/></td>
+            </tr>
+        </c:forEach>
+	</table>
+	<div class="pageInfo_wrap" >
+        <div class="pageInfo_area">
+        	<ul id="pageInfo" class="pageInfo">
+        	
+        		<!-- 이전페이지 버튼 -->
+                <c:if test="${pageMaker.prev}">
+                    <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
+                </c:if>
+                
+        		<!-- 각 번호 페이지 버튼 -->
+            	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+            		<li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a href="${num}">${num}</a></li>
+            	</c:forEach>
+            	
+            	<!-- 다음페이지 버튼 -->
+                <c:if test="${pageMaker.next}">
+                    <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
+                </c:if> 	
+ 			</ul>
+        </div>
+      </div>
+       <form id="moveForm" method="get">    
+		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+    	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">  
+    </form>
     <div class="btn_right mt15">
-          <button class="btn black mr5" id="list_btn">목록으로</button>
-          <button class="btn black mr5" id="modify_btn">수정/삭제</button>
+         <a href="/faq/enroll" class="btn black mr5">작성하기</a>
     </div>
-	<form id="infoForm" action="/notice/modify" method="get">
-		<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
-		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
-		<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
-	</form>
- </div>
-    </div>
+  </div> 
 </div>
-	
+</div>
+
 <script>
-	let form = $("#infoForm");
-	
-	$("#list_btn").on("click", function(e){
-		form.find("#bno").remove();
-		form.attr("action", "/notice/list");
-		form.submit();
-	});
-	
-	$("#modify_btn").on("click", function(e){
-		form.attr("action", "/notice/modify");
-		form.submit();
-	});	
+$(document).ready(function(){
+
+    let result =  '<c:out value="${result}"/>'
+    
+	checkAlert(result);
+    
+    function checkAlert(result){
+        
+        if(result === ''){
+            reutrn;
+        }
+        
+        if(result === "enrol success"){
+            alert("등록이 완료되었습니다.");
+        }
+        
+        if(result === "modify success"){
+            alert("수정이 완료되었습니다.");
+        }
+        
+        if(result === "delete success"){
+            alert("삭제가 완료되었습니다.");
+        }
+        
+    }   
+
+});
+
+let moveForm = $("#moveForm");
+
+$(".move").on("click", function(e){
+    e.preventDefault();
+    
+    moveForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
+    moveForm.attr("action", "/faq/get");
+    moveForm.submit();
+});
+
+$(".pageInfo a").on("click", function(e){
+	 
+    e.preventDefault();
+    moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+    moveForm.attr("action", "/faq/list");
+    moveForm.submit();
+        
+});
+
 </script>
 
 </body>
+
 </html>
