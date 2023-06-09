@@ -1,7 +1,10 @@
 package com.my.service;
 
 
+import java.util.List;
+
 import com.my.domain.BuyProductDTO;
+import com.my.domain.Criteria;
 import com.my.domain.ReviewDTO;
 import com.my.domain.UserDTO;
 
@@ -20,4 +23,13 @@ public interface UserService {
 	int getReviewnum();
 	boolean reviewModify(ReviewDTO review);
 	boolean bye(String useremail);
+	
+	/* 회원 목록 */
+    public List<UserDTO> getList();
+    
+    /* 회원 목록(페이징 적용) */
+    public List<UserDTO> getListPaging(Criteria cri);
+    
+    /* 전체 회원수 */
+    public int getTotal();
 }

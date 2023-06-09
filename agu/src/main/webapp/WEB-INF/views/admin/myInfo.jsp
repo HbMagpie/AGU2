@@ -10,7 +10,7 @@
 <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
 
 <link href="/resources/css/styles.css" rel="stylesheet" />
-<link href="/resources/css/user/myinfo.css" rel="stylesheet" />
+<link href="/resources/css/admin/myinfo.css" rel="stylesheet" />
 </head>
 <body>
        <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,12 +38,12 @@
                             </ul>
                         </li>
                     </ul>
-                    <c:if test="${loginUserid != null}">
+                    <c:if test="${loginAdminid != null}">
                     	<form class="d-flex">
                     	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    		<li class="nav-item"><a href="/user/myInfo" class="nav-link">내정보</a></li>
+                    		<li class="nav-item"><a href="/admin/myInfo" class="nav-link">내정보</a></li>
                     		<li class="nav-item"><a href="/product/addproduct" class="nav-link">상품 등록</a></li>
-                    		<li class="nav-item"><a href="/user/logout"class="nav-link">로그아웃</a></li>
+                    		<li class="nav-item"><a href="/admin/logout"class="nav-link">로그아웃</a></li>
                     	</ul>
                     	</form>
                     </c:if>
@@ -59,8 +59,8 @@
 							<img src="https://static.nid.naver.com/images/web/user/default.png" width="84" height="84">
 						</a>
 						<div class="profile">
-							<p class="username">${loginUsername}</p>
-							<p class="useremail">${loginUserid}</p>
+							<p class="adminname">${loginAdminname}</p>
+							<p class="adminemail">${loginAdminid}</p>
 						</div>
 					</div>
 				</div>
@@ -108,12 +108,12 @@
 									<li>
 										<div class="myaccount">
 											<div class="myname">
-												<div class="name_text">${loginUsername}</div>
+												<div class="name_text">${loginAdminname}</div>
 												<button type="button" class="btn_edit">
 													<span class="text">이름 변경</span>
 												</button>
 											</div>
-											<div class="myaddress">${loginUserid}</div>
+											<div class="myaddress">${loginAdminid}</div>
 										</div>
 									</li>
 								</ul>
@@ -121,7 +121,7 @@
 							<ul class="subindex_row">
 								<li>
 									<div id="phoneNoReDiv" class="row_item phone">
-										<span id="phoneNoReSpan" class="item_text">전화번호 : ${userphone}</span>
+										<span id="phoneNoReSpan" class="item_text">전화번호 : ${adminphone}</span>
 										<button type="button" id="phoneNoReBtn" class="btn_edit">
 											<span id="phoneNoReBtbTXT" class="text">수정</span>
 										</button>
@@ -129,7 +129,7 @@
 								</li>
 								<li>
 									<div class="row_item mail">
-										<span class="item_text">이메일 : ${loginUserid}</span>
+										<span class="item_text">이메일 : ${loginAdminid}</span>
 									</div>
 								</li>
 							</ul>

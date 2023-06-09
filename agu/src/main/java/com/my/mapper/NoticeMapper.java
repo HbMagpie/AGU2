@@ -10,7 +10,7 @@ public interface NoticeMapper {
 	/* 작성자 등록 */
     public void enroll(NoticeDTO notice);
     
-    /* 게시판 목록(페이징 적용) */
+    /* 게시판 목록 */
     public List<NoticeDTO> getList();
     
     /* 게시판 목록(페이징 적용) */

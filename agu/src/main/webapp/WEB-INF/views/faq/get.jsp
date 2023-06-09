@@ -15,57 +15,9 @@
 </head>
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
-	<!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="/">AGU</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/notice/list">Notice</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/faq/list">FAQ</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/">All Product</a></li>
-                                <li><hr class="dropdown-divider" /></li> 
-                                <li><a class="dropdown-item" href="/product/search?keyword=best">Best</a></li>                             
-                                <li><a class="dropdown-item" href="/product/search?keyword=new">New</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=dress">Dress</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=outer">Outer</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=blouse">Blouse</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=tee">Tee</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=knit">Knit</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=bottom">Bottom</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <c:if test="${loginUserid != null}">
-                    	<form class="d-flex">
-                    	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    		<li class="nav-item"><a href="/user/myInfo" class="nav-link">내정보</a></li>
-                    		<li class="nav-item"><a href="/product/addproduct" class="nav-link">상품 등록</a></li>
-                    		<li class="nav-item"><a href="/user/logout"class="nav-link">로그아웃</a></li>
-                    	</ul>
-                    	</form>
-                    </c:if>
-                    <c:if test="${loginUserid == null }">
-                    	<script>
-                    		alert("로그인 후 이용해주세요");
-                    		history.go(-1);
-                    	</script>
-                    </c:if>
-                    <c:if test="${f != null}">
-                    	<script>
-                    		alert("상품 등록 실패");
-                    		return false;
-                    	</script>
-                    </c:if>
-                </div>
-            </div>
-        </nav>
-        <!-- nav 끝 -->
+<!-- nav 시작 -->
+<%@include file="../admin/nav.jsp" %>
+<!-- nav 끝 -->
 
 <div id="wrap">
     <div id="container">
@@ -91,10 +43,20 @@
                         </tr>
                     </tbody>
                 </table>  	
-    <div class="btn_right mt15">
-          <button class="btn black mr5" id="list_btn">목록으로</button>
-          <button class="btn black mr5" id="modify_btn">수정/삭제</button>
-    </div>
+                
+                <!-- 관리자만 공지사항 등록,삭제,수정 가능 -->
+				<c:if test="${loginAdminid != null}">
+					 <div class="btn_right mt15">
+         				 <button class="btn black mr5" id="list_btn">목록으로</button>
+         				 <button class="btn black mr5" id="modify_btn">수정/삭제</button>
+    				</div>
+				</c:if>
+				<c:if test="${loginUserid != null}">
+					 <div class="btn_right mt15">
+         				 <button class="btn black mr5" id="list_btn">목록으로</button>
+    				</div>
+				</c:if>
+ 
 	<form id="infoForm" action="/faq/modify" method="get">
 		<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
 		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>

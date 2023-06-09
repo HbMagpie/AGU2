@@ -71,17 +71,19 @@
                     </ul>
                     <form class="d-flex">
                     	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    		<li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
-                    		<li class="nav-item"><a href="/user/join"class="nav-link">회원가입</a></li>
+                    		<li class="nav-item"><a href="/admin/login" class="nav-link">관리자 로그인</a></li>
+                    		<li class="nav-item"><a href="/admin/join"class="nav-link">관리자 회원가입</a></li>
                     	</ul>
                     </form>
                 </div>
             </div>
         </nav>
+     <!-- Navigation-->
+     
 	<header>
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder" style="color:#000000;">로그인</h1>
+                    <h1 class="display-4 fw-bolder" style="color:#000000;">관리자 로그인</h1>
                     <p class="lead fw-normal text-white-50 mb-0"></p>
                 </div>
             </div>
@@ -91,14 +93,14 @@
 					<div class="inner">
 						<h2 class="heading alt"></h2>
 						<br>
-						<form class="loginForm" name="loginForm" id="loginForm" action="/user/login" method="post">
+						<form class="loginForm" name="loginForm" id="loginForm" action="/admin/login" method="post">
 							<div class="col-12">
-								<h3>아이디</h3>
-								<input type="text" name = "useremail">							
+								<h3>관리자 아이디</h3>
+								<input type="text" name = "adminemail">							
 							</div>
 							<div class="col-12">
-								<h3>비밀번호</h3>
-								<input type="password" name = "userpw">							
+								<h3>관리자 비밀번호</h3>
+								<input type="password" name = "adminpw">							
 							</div>
 							<div class="col-12" style="text-align: center">
 								<input type="submit" value="로그인" class="primary">

@@ -22,22 +22,24 @@
 <div id="wrap">
     <div id="container">
         <div class="inner">
-<h2>Notice</h2>
+<h2>회원 관리</h2>
 	<table width="100%" class="table01">
 		<colgroup>
              <col width="10%" />
              <col width="25%" />
-             <col width="10%" />
+             <col width="15%" />
              <col width="15%" />
              <col width="20%" />
+             <col width="15%" />
         </colgroup>
 		<thead>
 			<tr>
-				<th class="bno_width">번호</th>
-				<th class="title_width">제목</th>
-				<th class="writer_width">작성자</th>
-				<th class="regdate_width">작성일</th>
-				<th class="updatedate_width">수정일</th>
+				<th class="useremail_width">이메일</th>
+				<th class="username_width">이름</th>
+				<th class="postnum_width">우편 번호</th>
+				<th class="addr_width">주소</th>
+				<th class="detailaddress_width">상세주소</th>
+				<th class="seealso_width">참고항목</th>
 			</tr>
 		</thead>
 		<tbody id="tbody">
@@ -45,16 +47,17 @@
         
 			<c:forEach items="${list}" var="list">
             <tr>
-            	<td><c:out value="${list.bno}"/></td>
+            	<td><c:out value="${list.useremail}"/></td>
             	
                 <td>
-                	<a class="move" href='<c:out value="${list.bno}"/>'>
-                        <c:out value="${list.title}"/>
+                	<a class="move" href='<c:out value="${list.useremail}"/>'>
+                        <c:out value="${list.username}"/>
                     </a>
                 </td>
-                <td><c:out value="${list.writer}"/></td>
-                <td><c:out value="${list.regdate}"/></td>
-                <td><c:out value="${list.updateDate}"/></td>
+                <td><c:out value="${list.postnum}"/></td>
+                <td><c:out value="${list.addr}"/></td>
+                <td><c:out value="${list.detailaddress}"/></td>
+                <td><c:out value="${list.seealso}"/></td>
             </tr>
         </c:forEach>
 	</table>
@@ -83,13 +86,9 @@
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
     	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">  
     </form>
-    
-    	<!-- 관리자만 공지사항 등록,삭제,수정 가능 -->
-				<c:if test="${loginAdminid != null}">
-					<div class="btn_right mt15">
-       					  <a href="/notice/enroll" class="btn black mr5">작성하기</a>
-   					 </div>
-				</c:if>
+		<!-- <div class="btn_right mt15">
+       		 <a href="/notice/enroll" class="btn black mr5">작성하기</a>
+   		</div> -->
   </div> 
 </div>
 </div>

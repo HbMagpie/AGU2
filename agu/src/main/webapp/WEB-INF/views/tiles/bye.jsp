@@ -25,6 +25,8 @@
 	}
 </style>
 <meta charset="UTF-8">
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
 <link href="/resources/css/user/pwChange.css" rel="stylesheet"/>
 </head>
 <body>
