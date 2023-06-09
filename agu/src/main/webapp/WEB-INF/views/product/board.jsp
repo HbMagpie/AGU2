@@ -119,15 +119,24 @@
 											</div>
 										</div>
 									</div>
+									</form>
         							<input type="hidden" name="productnum" value="${productInfo.productnum}">
-        							
         								<br>
         								<div class="product-quantity">
-        									<button class="btn btn-primary buy" type="submit">구매하기</button>
+        									<button class="btn btn-primary buy" type="submit">바로구매</button>
         								</div>
-        																				        															
-	       							</form>
-	       							
+        								
+	      						   <!-- <div class="button_set">
+        								<button class="btn_cart">장바구니 담기</button>
+        								</div> 
+        								<div class="button_qantity">
+        									주문수량
+        									<input type="text" class="quantity_input" value="1">
+        									<span>
+        										<button class="plus_btn">+</button>
+        										<button class="minus_btn">-</button>
+        									</span>
+        								</div> -->
         						</div>
         					</div>
         				</div>
@@ -140,8 +149,7 @@
         </div>
      
         
-        <!-- 리뷰 작성 -->
-        
+        <!-- 리뷰 작성 -->  
 		<button class="btm btn-primary" type="button" name="review" id="onReview" style="margin-top:20px;">리뷰 작성하기</button>
 		<div class="product-page-content" id="review" >
 			<ul id="myTap" class="nav nav-tabs">
@@ -254,6 +262,7 @@ let productname = "${product.productname}";
 let productprice = "${product.productprice}";
 let username = "${loginUsername}";
 let buyForm = $(".buyForm");
+let quantity = $(".quantity_input").val();
 
 //구매하기 클릭시 이벤트
  $(".buy").on("click",function(e){
@@ -407,6 +416,48 @@ $("#mdfOk").on("click",function(e){
 		} 
 	)
 })
+
+//수량 버튼 조작
+$(".plus_btn").on("click", function(){
+	$(".quantity_input").val(++quantity);
+});
+$(".minus_btn").on("click", function(){
+	if(quantity > 1){
+		$(".quantity_input").val(--quantity);	
+	}
+});
+
+//서버로 전송할 데이터
+const form = {
+		useremail : '${user.useremail}',
+		productnum : '${productInfo.productnum}',
+		prodctCount : ''
+}
+
+//장바구니 추가 버튼
+$(".btn_cart").on("click", function(e){
+		form.productCount = $(".quantity_input").val();
+		$.ajax({
+			url: '/cart/add',
+			type: 'POST',
+			data: form,
+			success: function(result){
+				cartAlert(result);
+			}
+		})
+	});
+	
+	function cartAlert(result){
+		if(result == '0'){
+			alert("장바구니에 추가하지 못했습니다.");
+		} else if(result == '1'){
+			alert("장바구니에 추가되었습니다.");
+		} else if(result == '2'){
+			alert("장바구니에 이미 추가되어 있습니다.");
+		} else if(result == '5'){
+			alert("로그인이 필요합니다.");	
+		}
+	}
 </script>
 </html>
         

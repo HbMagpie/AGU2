@@ -5,6 +5,7 @@ create database agu;
 use agu;
 
 -- 테이블 삭제
+DROP TABLE agu.admin;
 DROP TABLE agu.user;
 DROP TABLE agu.files;
 DROP TABLE agu.buyproduct;
@@ -13,11 +14,13 @@ DROP TABLE agu.cate;
 DROP TABLE agu.product;
 DROP TABLE agu.notice;
 DROP TABLE agu.faq;
+DROP TABLE agu.cart;
 
 -- 테이블 컬럼 정보 확인 예시
 SHOW FULL COLUMNS FROM agu.product;
 
 -- 테이블 샘플 데이터 조회
+SELECT * FROM agu.admin;
 SELECT * FROM agu.user;
 SELECT * FROM agu.cate;
 SELECT * FROM agu.product;
@@ -26,6 +29,22 @@ SELECT * FROM agu.buyproduct;
 SELECT * FROM agu.review;
 SELECT * FROM agu.notice;
 SELECT * FROM agu.faq;
+SELECT * FROM agu.cart;
+
+-- admin 테이블 생성
+create table admin(
+	adminemail varchar(300) primary key,
+    adminpw varchar(300) not null,
+    adminname varchar(300),
+	adminphone varchar(300),
+    postnum varchar(300),
+    addr varchar(1000),
+    detailaddress varchar(3000),
+    seealso varchar(1000)
+);
+
+-- admin 테이블 샘플 데이터 입력
+INSERT INTO admin VALUES ('admin1234@naver.com', 'admin1234!!', '관리자', '010-1234-5678', '02830', '서울 성북구 아리랑로', '상세주소', '1');
 
 -- user 테이블 생성
 create table user(
@@ -95,7 +114,6 @@ create table buyproduct(
     detailaddress varchar(3000),
     seealso varchar(1000),
     constraint product_buyproduct foreign key(productnum) references product(productnum) on delete cascade
-
 );
 
 -- review 테이블 생성
@@ -136,3 +154,16 @@ create table faq(
 
 -- faq 테이블 샘플 데이터 입력
 INSERT INTO agu.faq (title, content, writer, regdate, updatedate) VALUES ('test1제목', 'test1내용', 'test1작성자', now(), now());
+
+-- cart 테이블 생성
+create table cart(
+    cartId  int auto_increment primary key,
+    useremail varchar(50),
+    productnum int,
+    productCount int,
+    foreign key (useremail) references user(useremail),
+    foreign key (productnum) references product(productnum)
+);
+
+-- cart 테이블 유니크 제약조건 걸기
+alter table cart add unique (useremail, productnum);

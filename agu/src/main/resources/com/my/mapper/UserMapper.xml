@@ -48,4 +48,30 @@
 	<delete id="reviewDelete">
 		delete from review where reviewnum = #{reviewnum}
 	</delete>
+	
+	<!-- 회원 목록 -->
+    <select id="getList" resultType="com.my.domain.UserDTO">   
+        select * from from (
+                select useremail, username, postnum, addr,detailaddress, seealso  
+                from user order by username desc)
+    </select>
+    
+    <!-- 회원 목록(페이징) -->
+    <select id="getListPaging" resultType="com.my.domain.UserDTO">
+    
+        select * from (
+                select useremail, username, postnum, addr,detailaddress, seealso  
+                from user order by username desc) as T1 
+        <!-- limit ((${pageNum}-1)*${amount}), ${amount} -->
+        limit #{skip},#{amount}
+    
+    </select>
+    
+    <!-- 전체 회원 수 -->
+    <select id="getTotal" resultType="int">
+    
+        select count(*) from user
+    
+    </select>
+    
 </mapper>

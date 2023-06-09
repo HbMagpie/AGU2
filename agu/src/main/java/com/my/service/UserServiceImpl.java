@@ -1,9 +1,12 @@
 package com.my.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.my.domain.BuyProductDTO;
+import com.my.domain.Criteria;
 import com.my.domain.ReviewDTO;
 import com.my.domain.UserDTO;
 import com.my.mapper.UserMapper;
@@ -85,6 +88,27 @@ public class UserServiceImpl implements UserService{
 	public boolean bye(String useremail) {
 		return mapper.bye(useremail) == 1;
 	}
+	
+	/* 회원 목록 */
+    @Override
+    public List<UserDTO> getList() {
+    	
+    	 return mapper.getList();
+    }
+
+	/* 회원 목록(페이징 적용) */
+    @Override
+    public List<UserDTO> getListPaging(Criteria cri) {
+        
+        return mapper.getListPaging(cri);
+    }
+    
+    /* 전체 회원수 */
+    @Override
+    public int getTotal() {
+        
+        return mapper.getTotal();
+    }
 }
 
 

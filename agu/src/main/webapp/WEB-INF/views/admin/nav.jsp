@@ -9,7 +9,7 @@
 }
 * {font-family: 'SUITE-Regular';}
 </style>        
-        
+        <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/">AGU</a>
@@ -31,7 +31,7 @@
                                 <li><a class="dropdown-item" href="/product/search?keyword=blouse">Blouse</a></li>
                                 <li><a class="dropdown-item" href="/product/search?keyword=tee">Tee</a></li>
                                 <li><a class="dropdown-item" href="/product/search?keyword=knit">Knit</a></li>
-                                <li><a class="dropdown-item" href="/product/search?keyword=bottom">Bottom</a></li>                        
+                                <li><a class="dropdown-item" href="/product/search?keyword=bottom">Bottom</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -57,14 +57,12 @@
                     	</form>
                     </c:if>
                     <c:if test="${loginUserid == null && loginAdminid == null }">
-                    	<form class="d-flex">
-                    	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    		<li class="nav-item"><a href="/admin/login" class="nav-link">관리자 로그인</a></li>
-                    		<li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
-                    		<li class="nav-item"><a href="/user/join"class="nav-link">회원가입</a></li>
-                    	</ul>
-                    </form>
+                    	<script>
+                    		alert("로그인 후 이용해주세요");
+                    		history.go(-1);
+                    	</script>
                     </c:if>
                 </div>
             </div>
         </nav>
+        <!-- nav 끝 -->

@@ -49,16 +49,18 @@
                             </ul>
                         </li>
                     </ul>
-                    <c:if test="${loginUserid != null}">
+                    <c:if test="${loginAdminid != null}">
                     	<form class="d-flex">
+                    	<input class= "adminemail" type="hidden" value="${loginAdminid}">
                     	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    		<li class="nav-item"><a href="/user/myInfo" class="nav-link">내정보</a></li>
+                    		<li class="nav-item"><a href="/admin/myInfo" class="nav-link" id="myinfo">내정보</a></li>
+                    		<li class="nav-item"><a href="/admin/userMng" class="nav-link" id="myinfo">회원 관리</a></li>
                     		<li class="nav-item"><a href="/product/addproduct" class="nav-link">상품 등록</a></li>
-                    		<li class="nav-item"><a href="/user/logout"class="nav-link">로그아웃</a></li>
+                    		<li class="nav-item"><a href="/admin/logout"class="nav-link">관리자 로그아웃</a></li>
                     	</ul>
                     	</form>
                     </c:if>
-                    <c:if test="${loginUserid == null }">
+                    <c:if test="${loginAdminid == null }">
                     	<script>
                     		alert("로그인 후 이용해주세요");
                     		history.go(-1);
@@ -106,8 +108,8 @@
 				<td><textarea name="productcontents" id="productcontents" cols="50" rows="20"></textarea></td>
 			</tr>
 			<tr>
-				<th><label for="useremail">작성자</label></th>
-				<td><input type="text" name="useremail" id="useremail" value="${loginUserid}" readonly></td>
+				<th><label for="adminemail">작성자</label></th>
+				<td><input type="text" name="adminemail" id="adminemail" value="${loginAdminid}" readonly></td>
 			</tr>
 			<tr>
 				<th><label for="files"> 이미지 파일</label></th>
@@ -129,7 +131,7 @@ $(document).ready(function(){
 		var productname = $("#productname").val();
 		var productcontents = $("#productcontents").val();
 		var productprice = $("#productprice").val();
-		var useremail = $("#useremail").val();
+		var adminemail = $("#adminemail").val();
 		var formData = new FormData(); 
 		
 		if(catename == ""){
@@ -163,7 +165,7 @@ $(document).ready(function(){
 			formData.append("productname",productname);
 			formData.append("productcontents",productcontents);
 			formData.append("productprice",productprice);
-			formData.append("useremail",useremail);
+			formData.append("adminemail",adminemail);
 			console.log(formData);
 			$.ajax({
 				url: '/product/uploadFile',

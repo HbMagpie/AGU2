@@ -1,3 +1,4 @@
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -5,45 +6,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
-
-<link href="/resources/css/styles.css" rel="stylesheet"/>
-<link rel="stylesheet" href="/resources/css/main.css"/>
-<style>
-	.heading{
-		color:#000000;
-	}
-	.loginForm{
-		width:50%;
-		margin:0 auto;
-	}
-	.loginForm h3{
-		float:left;
-		width:30%;
-		color:#000000;
-		line-height: 3.24rem;
-	}
-	.loginForm input[type=text], .loginForm input[type=password]{
-		float:right;
-		width:70%;
-	}
-	.loginForm>.col-12::after{
-		display:block;
-		content:"";
-		height:50px;
-		clear:both;
-	}
-</style>
+<title>관리자 회원가입</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="/resources/css/styles.css" rel="stylesheet" />
+	<link href="/resources/css/admin/join.css" rel="stylesheet" />
 </head>
-<body style="background-color: rgb(245,246,247);">
-<c:if test="${f != null}">
-	<script>
-		alert("로그인에 실패하였습니다. 아이디와 비밀번호를 다시 확인해주세요");
-	</script>
-</c:if>
- <!-- Navigation-->
+<body>
+<!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/">AGU</a>
@@ -71,49 +42,87 @@
                     </ul>
                     <form class="d-flex">
                     	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    		<li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
-                    		<li class="nav-item"><a href="/user/join"class="nav-link">회원가입</a></li>
+                    		<li class="nav-item"><a href="/admin/login" class="nav-link">관리자 로그인</a></li>
+                    		<li class="nav-item"><a href="/admin/join"class="nav-link">관리자 회원가입</a></li>
                     	</ul>
                     </form>
                 </div>
             </div>
         </nav>
-	<header>
+<header>
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder" style="color:#000000;">로그인</h1>
+                    <h1 class="display-4 fw-bolder" style="color:#000000;">관리자 회원가입</h1>
                     <p class="lead fw-normal text-white-50 mb-0"></p>
                 </div>
             </div>
-	</header>
-	<div id="main">
-				<div class="wrapper style1 special">
-					<div class="inner">
-						<h2 class="heading alt"></h2>
-						<br>
-						<form class="loginForm" name="loginForm" id="loginForm" action="/user/login" method="post">
-							<div class="col-12">
-								<h3>아이디</h3>
-								<input type="text" name = "useremail">							
-							</div>
-							<div class="col-12">
-								<h3>비밀번호</h3>
-								<input type="password" name = "userpw">							
-							</div>
-							<div class="col-12" style="text-align: center">
-								<input type="submit" value="로그인" class="primary">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-	
-	<!-- Footer-->
-    <footer>
-        <div class="container"><p class="m-0 text-center text-white" style="color:#000000 !important;">Copyright &copy; AGU 2023</p></div>
-    </footer>
+</header>
+<div class="container mb-3">
+	<form name="joinForm" id="joinForm" method="post">
+		<table id="container">
+			<tr>
+				<td id="result" colspan="2"></td>
+			</tr>			
+			<tr>
+				<th><label for="adminemail">아이디</label></th>
+				<td><input type="text" name="adminemail" id="adminemail" placeholder="example@000.com" oninput="checkId()">
+				<br><span class="idCheck" id="idCheck"></span></td>
+			</tr>
+			<tr>
+				<th><label for="adminpw">비밀번호</label></th>
+				<td><input type="password" name="adminpw" id="adminpw" placeholder="8자리 이상 써주세요" oninput="checkPw()">
+				<br><span class ="pwCheck"></span></td>
+			</tr>
+			<tr>
+				<th><label for="adminpw_re">비밀번호 확인</label></th>
+				<td><input type="password" name="adminpw_re" id="adminpw_re" oninput="checkPW()">
+				<br><span class="pwRe"></span></td>
+			</tr>
+			<tr>
+				<th><label for="adminname">이름</label></th>
+				<td><input type="text" name="adminname" id="adminname"></td>
+			</tr>
+			<tr class="zipcode_area">
+				<th>우편번호</th>
+				<td>
+					<input readonly name="postnum" type="text" id="postnum" placeholder="우편번호"><input type="button" onclick="DaumPostcode()" value="우편번호 찾기">
+				</td>
+			</tr>
+			<tr class="addr_area">
+				<th>주소</th>
+				<td><input readonly name="addr" type="text" id="addr" placeholder="주소"></td>
+			</tr>
+			<tr>
+				<th>상세주소</th>
+				<td><input name="detailaddress" type="text" id="detailaddress" placeholder="상세주소"></td>
+			</tr>
+			<tr>
+				<th>참고항목</th>
+				<td><input readonly name="seealso" type="text" id="seealso" placeholder="참고항목"></td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					<input type="submit" id="joinSubmit" value="가입 완료">
+				</th>
+			</tr>
+		</table>
+	</form>
+</div>
+	<form id="phoneNumber" action="/admin/message">
+	</form>
+	 <!-- Footer-->
+        <footer>
+            <div class="container"><p class="m-0 text-center text-white" style="color:#000000 !important;">Copyright &copy; AGU 2023</p></div>
+        </footer>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/resources/js/join.js"></script>
 </body>
-<script src="/resources/js/scripts.js"></script>
-<script>
-</script>
 </html>
+
+
+
+
+
+
+
