@@ -85,10 +85,7 @@
        <form id="moveForm" method="get">    
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
     	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">  
-    </form>
-		<!-- <div class="btn_right mt15">
-       		 <a href="/notice/enroll" class="btn black mr5">작성하기</a>
-   		</div> -->
+    </form>	
   </div> 
 </div>
 </div>

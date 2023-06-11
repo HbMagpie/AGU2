@@ -5,7 +5,7 @@
   
   <mapper namespace="com.my.mapper.ProductMapper">
   	<insert id="setProduct">
-		insert into product (productname,catename,productprice,productcontents,useremail) values (#{productname},#{catename},#{productprice},#{productcontents},#{useremail})
+		insert into product (productname,catename,productprice,productcontents,adminemail) values (#{productname},#{catename},#{productprice},#{productcontents},#{adminemail})
   	</insert>
   	<insert id="setFile">
   		insert into files values (#{productnum},#{filerealname},#{filename},#{fileurl},#{safefile})

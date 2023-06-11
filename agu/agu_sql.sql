@@ -22,11 +22,11 @@ SHOW FULL COLUMNS FROM agu.product;
 -- 테이블 샘플 데이터 조회
 SELECT * FROM agu.admin;
 SELECT * FROM agu.user;
-SELECT * FROM agu.cate;
-SELECT * FROM agu.product;
 SELECT * FROM agu.files;
 SELECT * FROM agu.buyproduct;
 SELECT * FROM agu.review;
+SELECT * FROM agu.cate;
+SELECT * FROM agu.product;
 SELECT * FROM agu.notice;
 SELECT * FROM agu.faq;
 SELECT * FROM agu.cart;
@@ -84,11 +84,11 @@ create table product(
     productname varchar(300),
     productprice varchar(300),
     productcontents varchar(6000),
-	useremail varchar(300)
+	adminemail varchar(300)
 );
     
 -- product 테이블 샘플 데이터 입력
-INSERT INTO agu.product (productname, productprice, productcontents, useremail) VALUES ('test111', 3000, 'test1', 'test1234@naver.com');
+INSERT INTO agu.product (productname, productprice, productcontents, adminemail) VALUES ('test111', 3000, 'test1', 'admin1234@naver.com');
 
 -- files 테이블 생성
 create table files(
@@ -127,6 +127,17 @@ create table review(
     constraint product_review foreign key(productnum) references product(productnum) on delete cascade
 );
 
+-- cart 테이블 생성
+create table cart(
+    cartId  int not null auto_increment primary key,
+    useremail varchar(300),
+    productnum int,
+    productCount int default null,
+    unique key useremail (useremail, productnum),
+    constraint cart_ibfk_1 foreign key (useremail) references user(useremail),
+    constraint cart_ibfk_2 foreign key (productnum) references product(productnum)
+);
+
 -- notice 테이블 생성
 create table notice(
     bno int auto_increment,
@@ -154,16 +165,3 @@ create table faq(
 
 -- faq 테이블 샘플 데이터 입력
 INSERT INTO agu.faq (title, content, writer, regdate, updatedate) VALUES ('test1제목', 'test1내용', 'test1작성자', now(), now());
-
--- cart 테이블 생성
-create table cart(
-    cartId  int auto_increment primary key,
-    useremail varchar(50),
-    productnum int,
-    productCount int,
-    foreign key (useremail) references user(useremail),
-    foreign key (productnum) references product(productnum)
-);
-
--- cart 테이블 유니크 제약조건 걸기
-alter table cart add unique (useremail, productnum);

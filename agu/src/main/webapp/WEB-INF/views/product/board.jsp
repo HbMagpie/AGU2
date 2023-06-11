@@ -172,6 +172,11 @@
 							<a href="#" class="reviewBTN mdf" id="mdf">수정</a>
 							<a href="${review.reviewnum}" class="reviewBTN mdfOk" id="mdfOk" style="display:none;">수정 완료</a>
  							</c:if>
+ 							
+ 							<!-- 관리자는 리뷰 삭제만 가능 -->
+ 							<c:if test="${loginAdminid != null }">
+ 							<a href="${review.reviewnum}" class="reviewBTN del">삭제</a>
+ 							</c:if>
 						</div>
 					</div>
 				</c:forEach>

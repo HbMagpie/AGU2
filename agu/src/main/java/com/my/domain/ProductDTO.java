@@ -10,5 +10,5 @@ public class ProductDTO {
     private String productname;
     private String productprice;
     private String productcontents;
-	private String useremail;
+	private String adminemail;
 }

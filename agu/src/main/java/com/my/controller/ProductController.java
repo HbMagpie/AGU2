@@ -36,6 +36,7 @@ import com.my.domain.ProductDTO2;
 import com.my.domain.ReviewDTO;
 import com.my.service.ProductService;
 import com.my.service.UserService;
+import com.my.service.AdminService;
 
 import jdk.internal.org.jline.utils.Log;
 import lombok.Setter;
@@ -94,7 +95,7 @@ public class ProductController {
 	}
 	
 	@PostMapping("/uploadFile")
-	public  String insertinto(MultipartFile [] files, String catename, String productname, String productcontents, String productprice, String useremail,RedirectAttributes ra, HttpServletRequest request)throws IOException {
+	public  String insertinto(MultipartFile [] files, String catename, String productname, String productcontents, String productprice, String adminemail,RedirectAttributes ra, HttpServletRequest request)throws IOException {
 		log.info(files);
 		ProductDTO prod = new ProductDTO();
 		//상품 정보들을 먼저 테이블에 저장시켜 준다.
@@ -102,7 +103,7 @@ public class ProductController {
 		prod.setProductname(productname);
 		prod.setProductcontents(productcontents);
 		prod.setProductprice(productprice);
-		prod.setUseremail(useremail);
+		prod.setAdminemail(adminemail);
 		service.addProduct(prod);
 		
 		

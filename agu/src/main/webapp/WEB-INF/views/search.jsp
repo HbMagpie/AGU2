@@ -27,47 +27,7 @@
 * {font-family: 'SUITE-Regular';}
 </style>
     <body>
-    <c:if test="${byeSuc != null}">
-	    <script>
-	    	alert("회원탈퇴되셨습니다. 다음에 또 이용해주세요");
-	    </script>
-    </c:if>
-    <c:if test="${byeF != null}">
-    	<script>
-    		alert("회원탈퇴를 진행 하던 중 오류가 발생했습니다. 다시 시도해주세요");
-    	</script>
-    </c:if>
-    <c:if test="${t != null}">
-	<script>
-		alert("비밀번호 변경에 성공하였습니다.");
-	</script>
-	</c:if>
-	<c:if test="${f != null}">
-		<script>
-			alert("비밀번호 변경에 실패하셨습니다. 다시 시도해주세요");
-		</script>
-	</c:if>
-	<c:if test="${T != null}">
-		<script>
-			alert("이름 변경에 성공하였습니다.");
-		</script>
-	</c:if>
-	<c:if test="${F != null}">
-		<script>
-			alert("이름 변경에 실패하였습니다.");
-		</script>
-	</c:if>
-	<c:if test="${tT != null}">
-		<script>
-			alert("주소 변경에 성공하였습니다.");
-		</script>
-	</c:if>
-	<c:if test="${fF != null}">
-		<script>
-			alert("주소 변경에 실패하였습니다.");
-		</script>
-	</c:if>
-        <!-- Navigation-->
+       <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/">AGU</a>
@@ -103,21 +63,33 @@
                 			</form>
                 		</div>
                         </li>
-                        <!-- End! 검색 기능 -->
+                        <!-- End! 검색 기능 -->           
                     </ul>
+                    <c:if test="${loginAdminid != null}">
+                    	<form class="d-flex">
+                    	<input class= "adminemail" type="hidden" value="${loginAdminid}">
+                    	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    		<li class="nav-item"><a href="/admin/myInfo" class="nav-link" id="myinfo">내정보</a></li>
+                    		<li class="nav-item"><a href="/user/userMng" class="nav-link" id="myinfo">회원 관리</a></li>
+                    		<li class="nav-item"><a href="/product/addproduct" class="nav-link">상품 등록</a></li>
+                    		<li class="nav-item"><a href="/admin/logout"class="nav-link">관리자 로그아웃</a></li>
+                    	</ul>
+                    	</form>
+                    </c:if>
                     <c:if test="${loginUserid != null}">
                     	<form class="d-flex">
                     	<input class= "useremail" type="hidden" value="${loginUserid}">
                     	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     		<li class="nav-item"><a href="/user/myInfo" class="nav-link" id="myinfo">내정보</a></li>
-                    		<li class="nav-item"><a href="/product/addproduct" class="nav-link">상품 등록</a></li>
+                    		<li class="nav-item"><a href="/cart/${user.useremail}" class="nav-link">장바구니</a></li>
                     		<li class="nav-item"><a href="/user/logout"class="nav-link">로그아웃</a></li>
                     	</ul>
                     	</form>
                     </c:if>
-                    <c:if test="${loginUserid == null }">
+                    <c:if test="${loginUserid == null && loginAdminid == null }">
                     	<form class="d-flex">
                     	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    		<li class="nav-item"><a href="/admin/login" class="nav-link">관리자 로그인</a></li>
                     		<li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
                     		<li class="nav-item"><a href="/user/join"class="nav-link">회원가입</a></li>
                     	</ul>
@@ -125,7 +97,8 @@
                     </c:if>
                 </div>
             </div>
-        </nav> 	 
+        </nav>
+        	 
          <h2 style="margin-left:200px; margin-top:50px">검색 결과💡</h2>
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -147,8 +120,12 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/board?productnum=${list.productnum}">구매하러 가기</a></div>
-                            	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/productDelete?productnum=${list.productnum}">삭제하기</a></div>
                             </div>
+                            <c:if test="${loginAdminid != null}">
+								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/productDelete?productnum=${list.productnum}">상품 삭제하기</a></div>
+                            </div>
+							</c:if>
                         </div>
                     </div>&nbsp;&nbsp;&nbsp;
                   </c:forEach>
