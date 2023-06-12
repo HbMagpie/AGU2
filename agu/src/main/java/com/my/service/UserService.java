@@ -32,4 +32,7 @@ public interface UserService {
     
     /* 전체 회원수 */
     public int getTotal();
+    
+    /* 회원 삭제 */
+    public String delete(String usermail);
 }

@@ -174,7 +174,7 @@ public class UserController {
     	return "/tiles/bye";
     }
     
-    // 회원 관리 페이지 접속(페이징 적용) */
+    // 회원 관리 목록 */
     @GetMapping("/userMng")
     public void userListGET(Model model, Criteria cri) {
         
@@ -188,6 +188,17 @@ public class UserController {
         
         model.addAttribute("pageMaker", pageMake);
         
+    }
+    
+    /* 회원 삭제 */
+    @PostMapping("/delete")
+    public String userDeletePOST(String useremail, RedirectAttributes rttr) {
+        
+        services.delete(useremail);
+        
+        rttr.addFlashAttribute("result", "delete success");
+        
+        return "redirect:/user/userMng";
     }
 }
 
