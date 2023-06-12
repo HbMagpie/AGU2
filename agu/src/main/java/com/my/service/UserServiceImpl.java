@@ -109,6 +109,13 @@ public class UserServiceImpl implements UserService{
         
         return mapper.getTotal();
     }
+    
+    /* 회원 삭제 */
+    @Override
+    public String delete(String useremail) {
+        
+        return mapper.delete(useremail);
+    }
 }
 
 

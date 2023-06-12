@@ -23,14 +23,16 @@
     <div id="container">
         <div class="inner">
 <h2>회원 관리</h2>
+	<form id="deleteForm" action="/user/delete" method="post">
 	<table width="100%" class="table01">
 		<colgroup>
              <col width="10%" />
-             <col width="25%" />
-             <col width="15%" />
-             <col width="15%" />
-             <col width="20%" />
-             <col width="15%" />
+             <col width="10%" />
+             <col width="10%" />
+             <col width="10%" />
+             <col width="10%" />
+             <col width="10%" />
+             <col width="10%" />
         </colgroup>
 		<thead>
 			<tr>
@@ -40,6 +42,7 @@
 				<th class="addr_width">주소</th>
 				<th class="detailaddress_width">상세주소</th>
 				<th class="seealso_width">참고항목</th>
+				<th>회원 삭제</th>
 			</tr>
 		</thead>
 		<tbody id="tbody">
@@ -48,18 +51,14 @@
 			<c:forEach items="${list}" var="list">
             <tr>
             	<td><c:out value="${list.useremail}"/></td>
-            	
-                <td>
-                	<a class="move" href='<c:out value="${list.useremail}"/>'>
-                        <c:out value="${list.username}"/>
-                    </a>
-                </td>
+                <td><c:out value="${list.username}"/></td>
                 <td><c:out value="${list.postnum}"/></td>
                 <td><c:out value="${list.addr}"/></td>
                 <td><c:out value="${list.detailaddress}"/></td>
                 <td><c:out value="${list.seealso}"/></td>
-            </tr>
-        </c:forEach>
+	            <td><a class="btn black mr5" id="delete_btn">삭제</a></td>
+			</tr>
+      	  </c:forEach>        	
 	</table>
 	<div class="pageInfo_wrap" >
         <div class="pageInfo_area">
@@ -82,65 +81,60 @@
  			</ul>
         </div>
       </div>
+     </form>
        <form id="moveForm" method="get">    
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
     	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">  
-    </form>	
+    </form>
   </div> 
 </div>
 </div>
 
 <script>
-	$(document).ready(function() {
 
-		let result = '<c:out value="${result}"/>'
+let dForm = $("#deleteForm");  // 페이지 데이터 수정 from
 
-		checkAlert(result);
+$(document).ready(function() {
 
-		function checkAlert(result) {
+	let result = '<c:out value="${result}"/>'
 
-			if (result === '') {
-				reutrn;
-			}
+	checkAlert(result);
 
-			if (result === "enrol success") {
-				alert("등록이 완료되었습니다.");
-			}
+	function checkAlert(result) {
 
-			if (result === "modify success") {
-				alert("수정이 완료되었습니다.");
-			}
-
-			if (result === "delete success") {
-				alert("삭제가 완료되었습니다.");
-			}
-
+		if (result === '') {
+			reutrn;
 		}
 
-	});
+		if (result === "delete success") {
+			alert("삭제가 완료되었습니다.");
+		}
 
-	let moveForm = $("#moveForm");
+	}
 
-	$(".move").on(
-			"click",
-			function(e) {
-				e.preventDefault();
+});
 
-				moveForm.append("<input type='hidden' name='bno' value='"
-						+ $(this).attr("href") + "'>");
-				moveForm.attr("action", "/notice/get");
-				moveForm.submit();
-			});
+let moveForm = $("#moveForm");
 
-	$(".pageInfo a").on("click", function(e) {
 
-		e.preventDefault();
-		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-		moveForm.attr("action", "/notice/list");
-		moveForm.submit();
+$(".pageInfo a").on("click", function(e) {
 
-	});
+	e.preventDefault();
+	moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+	moveForm.attr("action", "/user/userMng");
+	moveForm.submit();
+
+});
+
+/* 삭제 버튼 */
+$("#delete_btn").on("click", function(e){
+    form.attr("action", "/user/delete");
+    form.attr("method", "post");
+    form.submit();
+});
+
 </script>
+
 
 </body>
 
