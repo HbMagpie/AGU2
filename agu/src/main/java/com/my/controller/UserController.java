@@ -174,7 +174,7 @@ public class UserController {
     	return "/tiles/bye";
     }
     
-    // 회원 관리 목록 */
+    // 회원 관리 목록(페이징 적용) */
     @GetMapping("/userMng")
     public void userListGET(Model model, Criteria cri) {
         
@@ -191,15 +191,19 @@ public class UserController {
     }
     
     /* 회원 삭제 */
-    @PostMapping("/delete")
-    public String userDeletePOST(String useremail, RedirectAttributes rttr) {
-        
-        services.delete(useremail);
-        
-        rttr.addFlashAttribute("result", "delete success");
-        
-        return "redirect:/user/userMng";
-    }
+	@GetMapping("/userDelete")
+	public String userDeletePOST(String useremail, RedirectAttributes rttr) {
+		
+		log.info("userDeletePOST..........");		
+		
+		String result = services.userDelete(useremail);
+		
+		rttr.addFlashAttribute("delete_result", result);
+		
+		return "redirect:/user/userMng";
+		
+	}
+
 }
 
 

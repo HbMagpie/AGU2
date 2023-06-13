@@ -35,5 +35,6 @@ public interface UserMapper {
     public int getTotal();
     
     /* 회원 삭제 */
-    public String delete(String usermail);
+    public String userDelete(String useremail);
+    
 }

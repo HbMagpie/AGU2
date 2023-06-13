@@ -75,8 +75,10 @@
     </select>
     
     <!-- 회원 삭제 -->
-    <delete id="delete">
-        delete from user where useremail = #{useremail}
-    </delete>
+	<delete id="userDelete">
+		
+			delete from user where useremail = #{useremail}
+			
+	</delete>
     
 </mapper>
