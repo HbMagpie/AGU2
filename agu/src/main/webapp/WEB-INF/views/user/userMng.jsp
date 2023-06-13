@@ -23,16 +23,15 @@
     <div id="container">
         <div class="inner">
 <h2>회원 관리</h2>
-	<form id="deleteForm" action="/user/delete" method="post">
 	<table width="100%" class="table01">
 		<colgroup>
              <col width="10%" />
              <col width="10%" />
              <col width="10%" />
+             <col width="30%" />
              <col width="10%" />
              <col width="10%" />
-             <col width="10%" />
-             <col width="10%" />
+             <col width="5%" />
         </colgroup>
 		<thead>
 			<tr>
@@ -56,85 +55,15 @@
                 <td><c:out value="${list.addr}"/></td>
                 <td><c:out value="${list.detailaddress}"/></td>
                 <td><c:out value="${list.seealso}"/></td>
-	            <td><a class="btn black mr5" id="delete_btn">삭제</a></td>
+                <td>
+                     <div class="text-center"><a class="btn black mr5" href="/user/userDelete?useremail=${list.useremail}">삭제</a></div>
+                </td>
 			</tr>
       	  </c:forEach>        	
 	</table>
-	<div class="pageInfo_wrap" >
-        <div class="pageInfo_area">
-        	<ul id="pageInfo" class="pageInfo">
-        	
-        		<!-- 이전페이지 버튼 -->
-                <c:if test="${pageMaker.prev}">
-                    <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
-                </c:if>
-                
-        		<!-- 각 번호 페이지 버튼 -->
-            	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-            		<li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a href="${num}">${num}</a></li>
-            	</c:forEach>
-            	
-            	<!-- 다음페이지 버튼 -->
-                <c:if test="${pageMaker.next}">
-                    <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
-                </c:if> 	
- 			</ul>
-        </div>
-      </div>
-     </form>
-       <form id="moveForm" method="get">    
-		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-    	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">  
-    </form>
   </div> 
 </div>
 </div>
-
-<script>
-
-let dForm = $("#deleteForm");  // 페이지 데이터 수정 from
-
-$(document).ready(function() {
-
-	let result = '<c:out value="${result}"/>'
-
-	checkAlert(result);
-
-	function checkAlert(result) {
-
-		if (result === '') {
-			reutrn;
-		}
-
-		if (result === "delete success") {
-			alert("삭제가 완료되었습니다.");
-		}
-
-	}
-
-});
-
-let moveForm = $("#moveForm");
-
-
-$(".pageInfo a").on("click", function(e) {
-
-	e.preventDefault();
-	moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-	moveForm.attr("action", "/user/userMng");
-	moveForm.submit();
-
-});
-
-/* 삭제 버튼 */
-$("#delete_btn").on("click", function(e){
-    form.attr("action", "/user/delete");
-    form.attr("method", "post");
-    form.submit();
-});
-
-</script>
-
 
 </body>
 
