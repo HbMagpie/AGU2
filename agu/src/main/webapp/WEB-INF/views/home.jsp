@@ -69,7 +69,6 @@
                     	<form class="d-flex">
                     	<input class= "adminemail" type="hidden" value="${loginAdminid}">
                     	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    		<li class="nav-item"><a href="/admin/myInfo" class="nav-link" id="myinfo">내정보</a></li>
                     		<li class="nav-item"><a href="/user/userMng" class="nav-link" id="myinfo">회원 관리</a></li>
                     		<li class="nav-item"><a href="/product/addproduct" class="nav-link">상품 등록</a></li>
                     		<li class="nav-item"><a href="/admin/logout"class="nav-link">관리자 로그아웃</a></li>
@@ -158,7 +157,8 @@
 		                    	<!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/board?productnum=${product[status.index].productnum}">구매하러 가기</a></div>
-        						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/productDelete?productnum=${product[status.index].productnum}">삭제하기</a></div>
+        						<br>
+        						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/productDelete?productnum=${product[status.index].productnum}">상품 삭제하기</a></div>
                             </div> 
 		                    </c:if>
 		                    <c:if test="${loginUserid != null}">
