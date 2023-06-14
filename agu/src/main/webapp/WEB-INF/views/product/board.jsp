@@ -205,10 +205,9 @@
 				</div>
 			</div> 
 		</div>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; AGU 2023</p></div>
-        </footer>
+		<!-- Footer 시작 -->
+		<%@include file="../tiles/footer.jsp" %>
+		<!-- Footer 끝 -->
         
         <!-- 우편번호 Modal -->
         <form action="/" method="get" class="buyForm">
