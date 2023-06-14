@@ -157,7 +157,6 @@
 		                    	<!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/board?productnum=${product[status.index].productnum}">구매하러 가기</a></div>
-        						<br>
         						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/productDelete?productnum=${product[status.index].productnum}">상품 삭제하기</a></div>
                             </div> 
 		                    </c:if>
@@ -183,10 +182,38 @@
                   </div>
                   
                   </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; AGU 2023</p></div>
-        </footer>
+ 
+ <!-- Start! footer 부분 -->      
+ <footer>
+ <hr color="#6aa888">
+ <table>
+	<tr>
+	  <td style="cursor:pointer;" onClick="location.href='/'">Home</td>
+	  <td></td>
+	  <td><p style="text-align:right;">은행정보 : 국민 11111111-11-111111 / 예금주 : (주)AGU / P.000-0000-0000, E.agu123@naver.com</p></td>
+	</tr>
+	<tr>
+	  <td style="cursor:pointer;" onClick="location.href='/notice/list'">공지사항</td>
+	  <td></td>  
+	  <td><p style="text-align:right;">통신판매업 신고번호 : 1111-ㅇㅇ-1111호[사업자정보확인]</p></td>
+	</tr>
+	<tr>	 
+	  <td style="cursor:pointer;"onclick="window.open('/admin/pers', '개인정보 취급방침', 'width=500, height=600')">개인정보 취급방침</td>  
+	  <td></td>
+	  <td><p style="text-align:right;">대표이사 : 아구, 주소 : 서울특별시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ빌딩 ㅇ층 ㅇㅇㅇ호</p></td>
+	</tr>
+	<tr>
+	  <td style="cursor:pointer;" onClick="window.open('/admin/use', '개인정보 취급방침', 'width=500, height=600')">이용 약관</td>
+	  <td></td>
+	  <td><p style="text-align:right;">반품, 교환 수거신청 : CJ대한통운 서울특별시 ㅇㅇ구 ㅇㅇ동</p></td>
+	</tr>
+ </table>
+  <br>
+  <p>Copyright ⓒ All Rights Reserved By AGU<p>
+  <br>
+</footer>
+<!-- End! footer 부분 -->
+
 		<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
         <script src="/resources/js/swiper.js"></script>
         <!-- Bootstrap core JS-->

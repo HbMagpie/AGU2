@@ -7,7 +7,7 @@
 <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
 <link href="/resources/css/styles.css" rel="stylesheet" />
 <link href="/resources/css/user/myinfo.css" rel="stylesheet" />
-<title>내 정보</title>
+<title>AGU</title>
 </head>
 <body>
  	<tiles:insertAttribute name="header"/>

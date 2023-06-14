@@ -7,9 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>파일 업로드 결과 </title>
+<title>AGU</title>
 </head>
 <body>
+<!-- 파일 업로드 결과 -->
 <% 
 	String filename = "";
 	int sizeLimit = 15 * 1024 * 1024; // 한번에 올릴 수 있는 파일 용량 : 15M로 제한
