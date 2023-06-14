@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>AGU</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
 
@@ -112,7 +112,7 @@
 	
 	<!-- Footer-->
     <footer>
-        <div class="container"><p class="m-0 text-center text-white" style="color:#000000 !important;">Copyright &copy; AGU 2023</p></div>
+        <div class="container"><p class="m-0 text-center text-white" style="color:#000000 !important;">Copyright ⓒ All Rights Reserved By AGU</p></div>
     </footer>
 </body>
 <script src="/resources/js/scripts.js"></script>

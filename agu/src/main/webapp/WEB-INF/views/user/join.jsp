@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>AGU</title>
 	<!-- Favicon-->
 	<link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
 	<!-- Core theme CSS (includes Bootstrap)-->
@@ -112,7 +112,7 @@
 	</form>
 	 <!-- Footer-->
         <footer>
-            <div class="container"><p class="m-0 text-center text-white" style="color:#000000 !important;">Copyright &copy; AGU 2023</p></div>
+            <div class="container"><p class="m-0 text-center text-white" style="color:#000000 !important;">Copyright ⓒ All Rights Reserved By AGU</p></div>
         </footer>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

@@ -171,6 +171,11 @@ public class AdminController {
     public String byePage() {
     	return "/tiles/bye";
     }
+    
+    /* 개인정보 취급방침 & 이용약관 */
+    @GetMapping({"/pers","/use"})
+	public void goPers() {
+	}
 
 }
 

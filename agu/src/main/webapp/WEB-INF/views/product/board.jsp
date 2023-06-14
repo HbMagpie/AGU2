@@ -74,6 +74,7 @@
 		}
 		.inlinereview{
 			display:inline;
+			width:80%;
 		}
 </style>
 </head>

@@ -11,7 +11,7 @@
 <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <link href="/resources/css/styles.css" rel="stylesheet" /> 
-<link href="/resources/css/board/notice.css" rel="stylesheet" />
+<link href="/resources/css/user/userMng.css" rel="stylesheet" />
 </head>
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
@@ -23,15 +23,15 @@
     <div id="container">
         <div class="inner">
 <h2>회원 관리</h2>
-	<table width="100%" class="table01">
+	<table width="120%" class="table01">
 		<colgroup>
              <col width="10%" />
              <col width="10%" />
+             <col width="15%" />
+             <col width="15%" />
+             <col width="20%" />
              <col width="10%" />
-             <col width="30%" />
              <col width="10%" />
-             <col width="10%" />
-             <col width="5%" />
         </colgroup>
 		<thead>
 			<tr>

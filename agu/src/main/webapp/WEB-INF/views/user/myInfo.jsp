@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 정보</title>
+<title>AGU</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
 
@@ -42,7 +42,6 @@
                     	<form class="d-flex">
                     	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     		<li class="nav-item"><a href="/user/myInfo" class="nav-link">내정보</a></li>
-                    		<li class="nav-item"><a href="/product/addproduct" class="nav-link">상품 등록</a></li>
                     		<li class="nav-item"><a href="/user/logout"class="nav-link">로그아웃</a></li>
                     	</ul>
                     	</form>

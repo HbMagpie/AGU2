@@ -20,6 +20,7 @@
     font-style: normal;
 }
 * {font-family: 'SUITE-Regular';}
+table {margin-left:20%;}
 </style>
 <body>
  <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
