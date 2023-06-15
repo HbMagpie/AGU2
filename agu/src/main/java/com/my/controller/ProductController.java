@@ -38,7 +38,6 @@ import com.my.service.ProductService;
 import com.my.service.UserService;
 import com.my.service.AdminService;
 
-import jdk.internal.org.jline.utils.Log;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -108,7 +107,7 @@ public class ProductController {
 		
 		
 		/* String fileurl = "D:\\1900_WEB_LHS\\my\\workspace\\Shopping\\src\\main\\webapp\\resources\\img\\";*/
-		String fileurl = "C:\\Users\\Administrator\\git\\AGU\\agu\\src\\main\\webapp\\resources\\img\\";
+		String fileurl = "C:\\Users\\Administrator\\git\\agu2\\AGU\\agu\\src\\main\\webapp\\resources\\img\\";
         
         for (MultipartFile mf : files) {
         	//사용자가 업로드한 파일이 있다면 아래 로직 수행
