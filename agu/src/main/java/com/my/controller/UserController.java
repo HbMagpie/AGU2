@@ -71,7 +71,6 @@ public class UserController {
 			session.setAttribute("loginUserid", loginUser.getUseremail());
 			session.setAttribute("loginUsername", loginUser.getUsername());
 			session.setAttribute("userpw", loginUser.getUserpw());
-			session.setAttribute("userphone", loginUser.getUserphone());
 			session.setAttribute("postnum", loginUser.getPostnum());
 			session.setAttribute("addr", loginUser.getAddr());
 			session.setAttribute("detailaddress", loginUser.getDetailaddress());

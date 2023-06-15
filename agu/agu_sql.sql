@@ -41,7 +41,7 @@ create table admin(
     addr varchar(1000),
     detailaddress varchar(3000),
     seealso varchar(1000)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- admin 테이블 샘플 데이터 입력
 INSERT INTO admin VALUES ('admin1234@naver.com', 'admin1234!!', '관리자', '010-1234-5678', '02830', '서울 성북구 아리랑로', '상세주소', '1');
@@ -51,21 +51,20 @@ create table user(
 	useremail varchar(300) primary key,
     userpw varchar(300) not null,
     username varchar(300),
-    userphone varchar(300),
     postnum varchar(300),
     addr varchar(1000),
     detailaddress varchar(3000),
     seealso varchar(1000)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- user 테이블 샘플 데이터 입력
-INSERT INTO user VALUES ('test1234@naver.com', 'test1234!!', 'test00', '010-1234-5678', '02830', '서울 성북구 아리랑로', '상세주소', '1');
+INSERT INTO user VALUES ('test1234@naver.com', 'test1234!!', 'test00', '02830', '서울 성북구 아리랑로', '상세주소', '1');
 
 -- cate 테이블 생성
 CREATE TABLE agu.cate (
 catenum int not null,
 catename varchar(30) not null primary key
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- cate 테이블 샘플 데이터 입력
 INSERT INTO agu.cate (catenum, catename) VALUES (1, 'Best');
@@ -84,8 +83,9 @@ create table product(
     productname varchar(300),
     productprice varchar(300),
     productcontents varchar(6000),
+    productDiscount decimal(2,2),
 	adminemail varchar(300)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
     
 -- product 테이블 샘플 데이터 입력
 INSERT INTO agu.product (productname, productprice, productcontents, adminemail) VALUES ('test111', 3000, 'test1', 'admin1234@naver.com');
@@ -98,7 +98,7 @@ create table files(
     fileurl varchar(3000),
     safefile varchar(6000),
     constraint product_files foreign key(productnum) references product(productnum) on delete cascade
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- files 테이블 샘플 데이터 입력
 INSERT INTO agu.files (productnum, filerealname, filename, fileurl, safefile) VALUES (1, 'test입니다1', 'tee_01.png', 'ㅇㅇㅇ','ㅇㅇㅇ');
@@ -114,7 +114,7 @@ create table buyproduct(
     detailaddress varchar(3000),
     seealso varchar(1000),
     constraint product_buyproduct foreign key(productnum) references product(productnum) on delete cascade
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- review 테이블 생성
 create table review(
@@ -125,7 +125,7 @@ create table review(
     reviewcontents varchar(6000),
     regdate datetime default now(),
     constraint product_review foreign key(productnum) references product(productnum) on delete cascade
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- cart 테이블 생성
 create table cart(
@@ -136,7 +136,7 @@ create table cart(
     unique key useremail (useremail, productnum),
     constraint cart_ibfk_1 foreign key (useremail) references user(useremail),
     constraint cart_ibfk_2 foreign key (productnum) references product(productnum)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- notice 테이블 생성
 create table notice(
@@ -147,7 +147,7 @@ create table notice(
     regdate timestamp default now(),
     updatedate timestamp default now(),
     constraint product_notice PRIMARY key(bno)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- notice 테이블 샘플 데이터 입력
 INSERT INTO agu.notice (title, content, writer, regdate, updatedate) VALUES ('test1제목', 'test1내용', 'test1작성자', now(), now());
@@ -161,7 +161,7 @@ create table faq(
     regdate timestamp default now(),
     updatedate timestamp default now(),
     constraint product_faq PRIMARY key(bno)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- faq 테이블 샘플 데이터 입력
 INSERT INTO agu.faq (title, content, writer, regdate, updatedate) VALUES ('test1제목', 'test1내용', 'test1작성자', now(), now());

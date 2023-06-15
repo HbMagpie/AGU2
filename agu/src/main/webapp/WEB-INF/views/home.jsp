@@ -80,7 +80,7 @@
                     	<input class= "useremail" type="hidden" value="${loginUserid}">
                     	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     		<li class="nav-item"><a href="/user/myInfo" class="nav-link" id="myinfo">내정보</a></li>
-                    		<li class="nav-item"><a href="/" class="nav-link">장바구니</a></li>
+                    		<li class="nav-item"><a href="/cart" class="nav-link">장바구니</a></li>
                     		<li class="nav-item"><a href="/user/logout"class="nav-link">로그아웃</a></li>
                     	</ul>
                     	</form>

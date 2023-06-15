@@ -6,7 +6,7 @@
 <mapper namespace="com.my.mapper.UserMapper">
 	<insert id="join">
 		insert into user values(#{useremail},#{userpw},#{username},
-		#{userphone},#{postnum},#{addr},#{detailaddress},#{seealso})
+		#{postnum},#{addr},#{detailaddress},#{seealso})
 	</insert>
 	<insert id="buyProduct">
 		insert into buyproduct values(#{useremail},#{username},#{productnum},#{productname},#{postnum},#{addr},#{detailaddress},#{seealso})	
