@@ -7,8 +7,10 @@
   org.springframework.beans.factory.annotation.Autowired; import
   org.springframework.test.context.ContextConfiguration; import
   org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-  
-  import com.my.domain.CartDTO;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
+
+import com.my.domain.CartDTO;
   
   @RunWith(SpringJUnit4ClassRunner.class)
   
@@ -59,19 +61,35 @@
   
   //카트 목록
   
-  @Test public void getCartTest() { 
-	  String useremail = "test1@naver.com";
+	/*
+	 * @Test public void getCartTest() { String useremail = "test0@naver.com";
+	 * 
+	 * 
+	 * List<CartDTO> list = mapper.getCart(useremail); for(CartDTO cart : list) {
+	 * System.out.println(cart); cart.initSaleTotal();
+	 * System.out.println("init cart : "+ cart); }
+	 * 
+	 * 
+	 * }
+	 */
   
-  
-  List<CartDTO> list = mapper.getCart(useremail); 
-  for(CartDTO cart : list) {
-  System.out.println(cart);
-  cart.initSaleTotal();
-  System.out.println("init cart : "+ cart);
+  @Test
+  public void getCartTest() {
+      String useremail = "test0@naver.com";
+    
+      List<CartDTO> list = mapper.getCart(useremail);
+      
+      // 컨트롤러 메서드로 전달하여 데이터를 담음
+      cartPageGET(useremail, list);
+  }
+
+  public String cartPageGET(String useremail, List<CartDTO> cartList) {
+	  Model model = new ExtendedModelMap();
+      model.addAttribute("cartInfo", cartList);
+      return "product/cart";
   }
   
   
-  }
   
   
 /*
