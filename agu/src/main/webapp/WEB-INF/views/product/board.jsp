@@ -266,7 +266,6 @@ let productname = "${product.productname}";
 let productprice = "${product.productprice}";
 let username = "${loginUsername}";
 let buyForm = $(".buyForm");
-/* let quantity = $(".quantity_input").val(); */
 
    
 // 주소 보러가기 클릭시 미 로그인 상태라면 alert창 띄움
@@ -413,7 +412,7 @@ $("#mdfOk").on("click",function(e){
     
   //서버로 전송할 데이터
     const form = {
-    		useremail : '${user.useremail}',
+    		useremail : '${loginUserid}',
     		productnum : '${product.productnum}',
     		productCount : ''
     }
@@ -434,7 +433,7 @@ $("#mdfOk").on("click",function(e){
     
     function cartAlert(result) {
     	if(result == '0') {
-    		alert("장바구니에 추가를 하지 못하였습니다.");
+    		alert("장바구니에 추가 하지 못하였습니다.");
     	} else if(result == '1'){
     		alert("장바구니에 추가되었습니다.");
     	} else if(result == '2'){

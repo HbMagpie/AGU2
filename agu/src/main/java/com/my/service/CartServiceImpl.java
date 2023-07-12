@@ -36,11 +36,25 @@ public class CartServiceImpl implements CartService {
 	public List<CartDTO> getCartList(String useremail){
 		
 		List<CartDTO> cart = cartMapper.getCart(useremail);
-		
+
 		for(CartDTO dto : cart) {
 			dto.initSaleTotal();
 		}
 		
 		return cart;
 	}
+	
+	@Override
+	public int modifyCount(CartDTO cart) {
+		
+		return cartMapper.modifyCount(cart);
+	}
+	
+	@Override
+	public int deleteCart(int cartId) {
+
+		return cartMapper.deleteCart(cartId);
+	}
+	
+	
 }

@@ -6,8 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.my.domain.UserDTO;
-
 public class CartInterceptor implements HandlerInterceptor {
 
 	@Override
@@ -16,14 +14,12 @@ public class CartInterceptor implements HandlerInterceptor {
 		
 		HttpSession session = request.getSession();
 		
-		UserDTO dto = (UserDTO)session.getAttribute("loginUserid");
+		Object loginUserObj = session.getAttribute("loginUserid");
 		
-		if(dto == null) {
-			response.sendRedirect("/home");
-			return false;
-		} else {
+		if (loginUserObj == null) {
+            response.sendRedirect("/home"); // "/home"으로 리다이렉트
+            return false;
+		} 
 			return true;
 		}
-	}
-
 }

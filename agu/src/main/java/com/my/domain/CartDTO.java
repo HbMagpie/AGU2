@@ -1,5 +1,7 @@
 package com.my.domain;
 
+import java.util.List;
+
 public class CartDTO {
 
 	private int cartId;
@@ -15,6 +17,8 @@ public class CartDTO {
 	private int salePrice;
 	private int totalPrice;
 	
+	//상품 이미지
+	private List<Files> filelist;
 	
 	public int getCartId() {
 		return cartId;
@@ -24,11 +28,11 @@ public class CartDTO {
 		this.cartId = cartId;
 	}
 
-	public String getUserEmail() {
+	public String getUseremail() {
 		return useremail;
 	}
 
-	public void setUserEmail(String useremail) {
+	public void setUseremail(String useremail) {
 		this.useremail = useremail;
 	}
 
@@ -80,6 +84,14 @@ public class CartDTO {
 		return totalPrice;
 	}
 	
+	public List<Files> getFileList() {
+		return filelist;
+	}
+
+	public void setFileList(List<Files> filelist) {
+		this.filelist = filelist;
+	}
+
 	public void initSaleTotal() {
 		this.salePrice = (int) (this.productprice * (1-this.productDiscount));
 		this.totalPrice = this.salePrice*this.productCount;
@@ -90,6 +102,6 @@ public class CartDTO {
 	@Override
 	public String toString() {
 		return "CartDTO [cartId=" + cartId + ", useremail=" + useremail + ", productnum=" + productnum + ", productCount="
-				+ productCount + ", productDiscount=" + productDiscount +", productname=" + productname + ", productprice=" + productprice + ", salePrice=" + salePrice +", totalPrice=" + totalPrice + "]";
+				+ productCount + ", productDiscount=" + productDiscount +", productname=" + productname + ", productprice=" + productprice + ", salePrice=" + salePrice +", totalPrice=" + totalPrice + ", filelist=" + filelist + "]";
 	}
 }
