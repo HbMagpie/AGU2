@@ -13,63 +13,13 @@
 <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
         
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    </head>
-    <style>
-@font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-* {font-family: 'SUITE-Regular';}
-</style>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="/">AGU</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">모든 상품</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">인기 상품</a></li>
-                                <li><a class="dropdown-item" href="#!">새 상품</a></li>
-                                <li><a class="dropdown-item" href="#!">Dress</a></li>
-                                <li><a class="dropdown-item" href="#!">Outer</a></li>
-                                <li><a class="dropdown-item" href="#!">Blouse</a></li>
-                                <li><a class="dropdown-item" href="#!">Tee</a></li>
-                                <li><a class="dropdown-item" href="#!">Knit</a></li>
-                                <li><a class="dropdown-item" href="#!">Bottom</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <c:if test="${loginUserid != null}">
-                    	<form class="d-flex">
-                    	<input class= "useremail" type="hidden" value="${loginUserid}">
-                    	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    		<li class="nav-item"><a href="/user/myInfo" class="nav-link" id="myinfo">내정보</a></li>
-                    		<!-- <li class="nav-item"><a href="/product/addproduct" class="nav-link">상품 등록</a></li> -->
-                    		<li class="nav-item"><a href="/cart/${loginUserid}" class="nav-link">장바구니</a></li>
-                    		<li class="nav-item"><a href="/user/logout"class="nav-link">로그아웃</a></li>
-                    	</ul>
-                    	</form>
-                    </c:if>
-                    <c:if test="${loginUserid == null }">
-                    	<form class="d-flex">
-                    	<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    		<li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
-                    		<li class="nav-item"><a href="/user/join"class="nav-link">회원가입</a></li>
-                    	</ul>
-                    </form>
-                    </c:if>
-                </div>
-            </div>
-        </nav>
+ </head>
+ <body>
+    <!-- header 영역 -->
+		<!-- header 시작 -->
+		<%@include file="../user/nav.jsp" %>
+		<!-- header 끝 -->
+    
     <!-- 장바구니 -->
        	 <div class="content_area">
 			
@@ -107,21 +57,21 @@
 							<tr>
 								<td class="td_width_1 cart_info_td">
 									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
-									<input type="hidden" class="individual_productprice_input" value="${product.productprice}">
+									<input type="hidden" class="individual_productprice_input" value="${ci.productprice}">
 									<input type="hidden" class="individual_salePrice_input" value="${ci.salePrice}">
 									<input type="hidden" class="individual_productCount_input" value="${ci.productCount}">
 									<input type="hidden" class="individual_totalPrice_input" value="${ci.salePrice * ci.productCount}">
-									<input type="hidden" class="individual_productnum_input" value="${product.productnum}">								
+									<input type="hidden" class="individual_productnum_input" value="${ci.productnum}">								
 								</td>
 								<td class="td_width_2">
-									<%-- <div class="image_wrap" data-productnum="${ci.imageList[0].productnum}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}">
+									<div class="image_wrap" data-productnum="${ci.fileList[0].productnum}" data-filename="${ci.fileList[0].filename}" data-filerealname="${ci.fileList[0].filerealname}" data-fileurl="${ci.fileList[0].fileurl}" data-safefile="${ci.fileList[0].safefile}">
 										<img>
-									</div>	 --%>							
+									</div>					
 								</td>
-								<td class="td_width_3">${product.productname}</td>
+								<td class="td_width_3">${ci.productname}</td>
 								<td class="td_width_4 price_td">
 									
-									판매가 : <span class="red_color"><fmt:formatNumber value="${product.productprice}" pattern="#,### 원" /></span>
+									판매가 : <span class="red_color"><fmt:formatNumber value="${ci.productprice}" pattern="#,### 원" /></span>
 									
 								</td>
 								<td class="td_width_4 table_text_align_center">
@@ -239,15 +189,16 @@ $(document).ready(function(){
 		const bobj = $(obj);
 		
 		if(bobj.data("productnum")){
-			const uploadPath = bobj.data("path");
-			const uuid = bobj.data("uuid");
-			const fileName = bobj.data("filename");
+			const filename = bobj.data("filename");
+			const filerealname = bobj.data("filerealname");
+			const fileurl = bobj.data("fileurl");
+			const safefile = bobj.data("safefile");
 			
-			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			const fileCallPath = encodeURIComponent(filename + "/s_" + fileurl + "_" + filename);
 			
-			$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+			$(this).find("img").attr('src', '/display?filename=' + fileCallPath);
 		} else {
-			$(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
+			$(this).find("img").attr('src', '/resources/img/aa.png');
 		}
 		
 	});
@@ -277,7 +228,7 @@ $(".all_check_input").on("click", function(){
 });
 
 
-/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+/* 총 주문 정보 세팅 */
 function setTotalInfo(){
 	
 	let totalPrice = 0;				// 총 가격
@@ -292,7 +243,7 @@ function setTotalInfo(){
 			// 총 가격
 			totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
 			// 총 갯수
-			totalCount += parseInt($(element).find(".individual_bookCount_input").val());			
+			totalCount += parseInt($(element).find(".individual_productCount_input").val());			
 		}
 
 	});

@@ -40,7 +40,7 @@ public class CartController {
 				
 				// 카트 등록
 				cart.setUseremail(useremail);
-				cart.setProductNum(productnum);
+				cart.setProductnum(productnum);
 				int result = cartService.addCart(cart);
 				return result + "" ;
 				
@@ -53,7 +53,6 @@ public class CartController {
 	    
 		List<CartDTO> cartList = cartService.getCartList(useremail);
 		model.addAttribute("cartInfo", cartList);
-		System.out.println("Cart Info:" + cartList);
 		
 		
 		return "product/cart";

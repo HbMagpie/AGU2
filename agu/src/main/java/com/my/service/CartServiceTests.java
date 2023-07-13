@@ -25,7 +25,7 @@ public class CartServiceTests {
 				
 				CartDTO dto = new CartDTO(); 
 				dto.setUseremail(useremail);
-				dto.setProductNum(productnum);
+				dto.setProductnum(productnum);
 				dto.setProductCount(productCount);
 			
 			//when

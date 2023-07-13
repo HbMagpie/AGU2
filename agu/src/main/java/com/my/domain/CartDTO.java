@@ -36,11 +36,11 @@ public class CartDTO {
 		this.useremail = useremail;
 	}
 
-	public int getProductNum() {
+	public int getProductnum() {
 		return productnum;
 	}
 
-	public void setProductNum(int productnum) {
+	public void setProductnum(int productnum) {
 		this.productnum = productnum;
 	}
 
@@ -52,19 +52,19 @@ public class CartDTO {
 		this.productCount = productCount;
 	}
 
-	public String getProductName() {
+	public String getProductname() {
 		return productname;
 	}
 
-	public void setProductName(String productname) {
+	public void setProductname(String productname) {
 		this.productname = productname;
 	}
 
-	public int getProductPrice() {
+	public int getProductprice() {
 		return productprice;
 	}
 
-	public void setProductPrice(int productprice) {
+	public void setProductprice(int productprice) {
 		this.productprice = productprice;
 	}
 	
