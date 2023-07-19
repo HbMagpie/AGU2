@@ -9,7 +9,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
-        
  <link href="/resources/css/styles.css" rel="stylesheet" />
  <link href="/resources/css/product/board.css" rel="stylesheet" />
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css">
@@ -102,7 +101,7 @@
         									</strong>
         								</div>
         							</div>
-        							<form action="/user/buyproduct">
+        							<form>
         							<div id="container" class="container">
 										<div id="content" class="content">
 											<div class="subindex_wrap" role="main">
@@ -202,7 +201,12 @@
 						</div>
 					</form>
 				</div>
-			</div> 
+			</div>
+			<!-- 주문 form -->
+			<form action="/order/${loginUserid}" method="get" class="order_form">
+				<input type="hidden" name="orders[0].productnum" value="${product.productnum}">
+				<input type="hidden" name="orders[0].productCount" value="">
+			</form>
 		</div>
 		<!-- Footer 시작 -->
 		<%@include file="../tiles/footer.jsp" %>
@@ -443,26 +447,12 @@ $("#mdfOk").on("click",function(e){
     	}
     }
 //바로구매 클릭시 이벤트
-    $(".btn_buy").on("click",function(e){
-   	 postnum = $("#postnum").val();
-   	 addr = $("#addr").val();
-   	 detailaddress = $("#detailaddress").val();
-   	 seealso = $("#seealso").val();
-   	if(useremail == ""){
-   		alert("로그인 후 진행해주세요");
-   		return false;
-   	}
-   	e.preventDefault();
-   	buyService.add(
-   			{useremail:useremail,username:username,productnum:productnum,productname:productname,postnum:postnum
-   				,addr:addr,detailaddress:detailaddress,seealso:seealso
-   			},
-   			function(result){
-   				alert(productname+"상품 구매완료");				
-   			}
-   	);
+   $(".btn_buy").on("click", function(){
+		let productCount = $(".quantity_input").val();
+		$(".order_form").find("input[name='orders[0].productCount']").val(productCount);
+		$(".order_form").submit();
+	});
    	
-   });
 </script>
 </html>
         

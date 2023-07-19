@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.my.domain.BuyProductDTO;
 import com.my.domain.Criteria;
 import com.my.domain.PageMakerDTO;
 import com.my.domain.UserDTO;
@@ -67,6 +66,7 @@ public class UserController {
 	public String login(String useremail, String userpw, HttpServletRequest resq, RedirectAttributes ra) {
 		HttpSession session = resq.getSession();
 		UserDTO loginUser = services.login(useremail, userpw);
+		
 		if(loginUser != null) {
 			session.setAttribute("loginUserid", loginUser.getUseremail());
 			session.setAttribute("loginUsername", loginUser.getUsername());

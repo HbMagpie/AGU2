@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.my.domain.BuyProductDTO;
 import com.my.domain.AdminDTO;
 import com.my.service.AdminService;
 
