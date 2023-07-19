@@ -12,9 +12,7 @@ public class CartDTO {
 	//상품
 	private String productname;
 	private int productprice;
-	private double productDiscount;
 	
-	private int salePrice;
 	private int totalPrice;
 	
 	//상품 이미지
@@ -67,18 +65,6 @@ public class CartDTO {
 	public void setProductprice(int productprice) {
 		this.productprice = productprice;
 	}
-	
-	public double getProductDiscount() {
-		return productDiscount;
-	}
-
-	public void setProductDiscount(double productDiscount) {
-		this.productDiscount = productDiscount;
-	}
-	
-	public int getSalePrice() {
-		return salePrice;
-	}
 
 	public int getTotalPrice() {
 		return totalPrice;
@@ -93,8 +79,7 @@ public class CartDTO {
 	}
 
 	public void initSaleTotal() {
-		this.salePrice = (int) (this.productprice * (1-this.productDiscount));
-		this.totalPrice = this.salePrice*this.productCount;
+		this.totalPrice = this.productprice*this.productCount;
 	}
 	
 	
@@ -102,6 +87,6 @@ public class CartDTO {
 	@Override
 	public String toString() {
 		return "CartDTO [cartId=" + cartId + ", useremail=" + useremail + ", productnum=" + productnum + ", productCount="
-				+ productCount + ", productDiscount=" + productDiscount +", productname=" + productname + ", productprice=" + productprice + ", salePrice=" + salePrice +", totalPrice=" + totalPrice + ", filelist=" + filelist + "]";
+				+ productCount + ", productname=" + productname + ", productprice=" + productprice + ", totalPrice=" + totalPrice + ", filelist=" + filelist + "]";
 	}
 }

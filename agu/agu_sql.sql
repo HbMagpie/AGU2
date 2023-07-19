@@ -4,18 +4,6 @@ create database agu;
 -- agu 스키마 사용
 use agu;
 
--- 테이블 삭제
-DROP TABLE agu.admin;
-DROP TABLE agu.user;
-DROP TABLE agu.files;
-DROP TABLE agu.buyproduct;
-DROP TABLE agu.review;
-DROP TABLE agu.cate;
-DROP TABLE agu.product;
-DROP TABLE agu.notice;
-DROP TABLE agu.faq;
-DROP TABLE agu.cart;
-
 -- 테이블 컬럼 정보 확인 예시
 SHOW FULL COLUMNS FROM agu.product;
 
@@ -165,3 +153,29 @@ create table faq(
 
 -- faq 테이블 샘플 데이터 입력
 INSERT INTO agu.faq (title, content, writer, regdate, updatedate) VALUES ('test1제목', 'test1내용', 'test1작성자', now(), now());
+
+create table order_buy(
+    orderId varchar(50) primary key,
+    addressee varchar(50) not null,
+    useremail varchar(300),
+    postnum varchar(100) not null,
+    addr varchar(100) not null,
+    detailaddress varchar(100) not null,
+    orderState varchar(30) not null,
+    deliveryCost int not null,
+    orderDate timestamp default now(),
+    constraint order_user FOREIGN KEY (useremail)REFERENCES user(useremail)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- 테이블 삭제
+DROP TABLE agu.admin;
+DROP TABLE agu.user;
+DROP TABLE agu.files;
+DROP TABLE agu.review;
+DROP TABLE agu.cate;
+DROP TABLE agu.product;
+DROP TABLE agu.notice;
+DROP TABLE agu.faq;
+DROP TABLE agu.cart;
+

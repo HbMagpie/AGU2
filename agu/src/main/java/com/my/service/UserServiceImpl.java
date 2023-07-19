@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.my.domain.BuyProductDTO;
 import com.my.domain.Criteria;
 import com.my.domain.ReviewDTO;
 import com.my.domain.UserDTO;
@@ -57,11 +56,6 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public boolean zipCn(UserDTO user) {
 		return mapper.zipCn(user) == 1;
-	}
-
-	@Override
-	public boolean buyProduct(BuyProductDTO buy) {
-		return mapper.buyProduct(buy) == 1;
 	}
 	
 	@Override
@@ -117,6 +111,14 @@ public class UserServiceImpl implements UserService{
 		log.info("userDelete..........");
 		
 		return mapper.userDelete(useremail);
+	}
+	
+	/* 주문자 정보 */
+	@Override
+	public UserDTO getUserInfo(String useremail) {
+		
+		return mapper.getUserInfo(useremail);
+		
 	}
 }
 

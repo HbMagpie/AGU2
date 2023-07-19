@@ -1,7 +1,6 @@
 package com.my.service;
 
 
-import com.my.domain.BuyProductDTO;
 import com.my.domain.ReviewDTO;
 import com.my.domain.AdminDTO;
 
@@ -15,7 +14,6 @@ public interface AdminService {
 	String getPw(String adminemail);
 	boolean nameCn(String adminemail, String adminname);
 	boolean zipCn(AdminDTO admin);
-	boolean buyProduct(BuyProductDTO buy);
 	boolean review(ReviewDTO review);
 	int getReviewnum();
 	boolean reviewModify(ReviewDTO review);

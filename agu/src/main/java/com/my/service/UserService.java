@@ -3,7 +3,6 @@ package com.my.service;
 
 import java.util.List;
 
-import com.my.domain.BuyProductDTO;
 import com.my.domain.Criteria;
 import com.my.domain.ReviewDTO;
 import com.my.domain.UserDTO;
@@ -18,7 +17,6 @@ public interface UserService {
 	String getPw(String useremail);
 	boolean nameCn(String useremail, String username);
 	boolean zipCn(UserDTO user);
-	boolean buyProduct(BuyProductDTO buy);
 	boolean review(ReviewDTO review);
 	int getReviewnum();
 	boolean reviewModify(ReviewDTO review);
@@ -35,5 +33,8 @@ public interface UserService {
     
     /* 회원 삭제 */
     public String userDelete(String useremail);
+    
+    /* 주문자 정보 */
+	public UserDTO getUserInfo(String useremail);
 
 }

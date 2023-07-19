@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.my.domain.BuyProductDTO;
 import com.my.domain.Criteria;
 import com.my.domain.ReviewDTO;
 import com.my.domain.UserDTO;
@@ -18,7 +17,6 @@ public interface UserMapper {
 	String getPw(String useremail);
 	int nameCn(@Param("useremail")String useremail, @Param("username")String username);
 	int zipCn(UserDTO user);
-	int buyProduct(BuyProductDTO buy);
 	int review(ReviewDTO review);
 	int getReviewnum();
 	boolean reviewDelete(int reviewnum);
@@ -36,5 +34,8 @@ public interface UserMapper {
     
     /* 회원 삭제 */
     public String userDelete(String useremail);
+    
+    /* 주문자 주소 정보 */
+	public UserDTO getUserInfo(String useremail);
     
 }

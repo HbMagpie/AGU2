@@ -8,9 +8,9 @@
 		insert into user values(#{useremail},#{userpw},#{username},
 		#{postnum},#{addr},#{detailaddress},#{seealso})
 	</insert>
-	<insert id="buyProduct">
-		insert into buyproduct values(#{useremail},#{username},#{productnum},#{productname},#{postnum},#{addr},#{detailaddress},#{seealso})	
-	</insert>
+	<select id="getUserInfo" resultType="com.my.domain.UserDTO">
+    select useremail, username, postnum, addr, detailaddress, seealso from user where useremail = #{useremail}
+	</select>
 	<select id="checkId" parameterType="string" resultType="_int">
 		select count(useremail) from user where useremail = #{useremail}
 	</select> 

@@ -58,9 +58,8 @@
 								<td class="td_width_1 cart_info_td">
 									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
 									<input type="hidden" class="individual_productprice_input" value="${ci.productprice}">
-									<input type="hidden" class="individual_salePrice_input" value="${ci.salePrice}">
 									<input type="hidden" class="individual_productCount_input" value="${ci.productCount}">
-									<input type="hidden" class="individual_totalPrice_input" value="${ci.salePrice * ci.productCount}">
+									<input type="hidden" class="individual_totalPrice_input" value="${ci.productprice * ci.productCount}">
 									<input type="hidden" class="individual_productnum_input" value="${ci.productnum}">								
 								</td>
 								<td class="td_width_2">
@@ -83,7 +82,7 @@
 									<a class="quantity_modify_btn" data-cartId="${ci.cartId}">변경</a>
 								</td>
 								<td class="td_width_4 table_text_align_center">
-									<fmt:formatNumber value="${ci.salePrice * ci.productCount}" pattern="#,### 원" />
+									<fmt:formatNumber value="${ci.productprice * ci.productCount}" pattern="#,### 원" />
 								</td>
 								<td class="td_width_4 table_text_align_center">
 									<button class="delete_btn" data-cartid="${ci.cartId}">삭제</button>
@@ -164,12 +163,12 @@
 				<input type="hidden" name="cartId" class="delete_cartId">
 				<input type="hidden" name="useremail" value="${loginUserid}">
 			</form>		
+			
 			<!-- 주문 form -->
-			<form action="/buy/${loginUserid}" method="get" class="order_form">
+			<form action="/order/${loginUserid}" method="get" class="order_form">
 
 			</form>				
 						
-			
 		</div>
 		
 		<!-- Footer 영역 -->

@@ -22,7 +22,7 @@
 
 <!-- 카트 목록 -->
 <select id="getCart" resultType="com.my.domain.CartDTO">
-	select a.cartId, a.useremail, a.productnum, a.productCount, b.productname, b.productprice, b.productDiscount
+	select a.cartId, a.useremail, a.productnum, a.productCount, b.productname, b.productprice
 	from cart a left outer join product b on a.productnum = b.productnum
 	where useremail = #{useremail}
 </select>

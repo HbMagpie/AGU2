@@ -3,7 +3,6 @@ package com.my.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.my.domain.BuyProductDTO;
 import com.my.domain.ReviewDTO;
 import com.my.domain.AdminDTO;
 import com.my.mapper.AdminMapper;
@@ -54,11 +53,6 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public boolean zipCn(AdminDTO admin) {
 		return mapper.zipCn(admin) == 1;
-	}
-
-	@Override
-	public boolean buyProduct(BuyProductDTO buy) {
-		return mapper.buyProduct(buy) == 1;
 	}
 	
 	@Override

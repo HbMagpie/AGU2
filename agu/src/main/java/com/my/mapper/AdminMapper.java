@@ -2,7 +2,7 @@ package com.my.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.my.domain.BuyProductDTO;
+
 import com.my.domain.ReviewDTO;
 import com.my.domain.AdminDTO;
 
@@ -15,7 +15,6 @@ public interface AdminMapper {
 	String getPw(String adminemail);
 	int nameCn(@Param("adminemail")String adminemail, @Param("adminname")String adminname);
 	int zipCn(AdminDTO admin);
-	int buyProduct(BuyProductDTO buy);
 	int review(ReviewDTO review);
 	int getReviewnum();
 	boolean reviewDelete(int reviewnum);
