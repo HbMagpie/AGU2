@@ -48,4 +48,28 @@
 	<delete id="reviewDelete">
 		delete from review where reviewnum = #{reviewnum}
 	</delete>
+	
+	<!-- 주문 리스트 -->
+	<select id="getOrderList" resultType="com.my.domain.OrderDTO">	
+			
+			select orderId, useremail, orderstate, orderdate
+		    from buy_order 
+		    <if test="keyword != null">
+		    	where useremail like concat('%',#{keyword}, '%')
+		    </if>
+		    order by orderdate desc
+		    limit #{skip}, #{amount}
+		    
+	</select>	
+	
+	<!-- 상품 총 개수 -->
+	<select id="getOrderTotal" resultType="int">
+	
+		select count(*) from buy_order
+		
+	    <if test="keyword != null">
+	    	where useremail like concat('%',#{keyword}, '%')
+	    </if>
+	
+	</select>
 </mapper>

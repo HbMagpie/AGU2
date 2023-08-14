@@ -1,5 +1,7 @@
 package com.my.controller;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +26,12 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.my.domain.AdminDTO;
+import com.my.domain.Criteria;
+import com.my.domain.OrderCancelDTO;
+import com.my.domain.OrderDTO;
+import com.my.domain.PageDTO;
 import com.my.service.AdminService;
+import com.my.service.OrderService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -36,6 +43,9 @@ public class AdminController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private AdminService services;
+	
+	@Autowired
+	private OrderService orderService;
 
 	@GetMapping({"/login","/join"})
 	public void goLogin() {
@@ -176,6 +186,31 @@ public class AdminController {
 	public void goPers() {
 	}
 
+    /* 주문 현황 페이지 */
+	@GetMapping("/orderList")
+	public String orderListGET(Criteria cri, Model model) {
+
+		List<OrderDTO> list = services.getOrderList(cri);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			model.addAttribute("pageMaker", new PageDTO(cri,services.getOrderTotal(cri)));
+		} else {
+			model.addAttribute("listCheck", "empty");
+		}
+		
+		return "/admin/orderList";
+	}
+	
+	/* 주문삭제 */
+	@PostMapping("/orderCancle")
+	public String orderCanclePOST(OrderCancelDTO dto) {
+		
+		orderService.orderCancle(dto);
+		
+		return "redirect:/admin/orderList?keyword=" + dto.getKeyword() + "&amount=" + dto.getAmount() + "&pageNum=" + dto.getPageNum();
+
+	}
 }
 
 

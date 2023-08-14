@@ -11,13 +11,15 @@ SHOW FULL COLUMNS FROM agu.product;
 SELECT * FROM agu.admin;
 SELECT * FROM agu.user;
 SELECT * FROM agu.files;
-SELECT * FROM agu.buyproduct;
 SELECT * FROM agu.review;
 SELECT * FROM agu.cate;
 SELECT * FROM agu.product;
 SELECT * FROM agu.notice;
 SELECT * FROM agu.faq;
 SELECT * FROM agu.cart;
+SELECT * FROM agu.buy_order;
+SELECT * FROM agu.buy_orderitem;
+
 
 -- admin 테이블 생성
 create table admin(
@@ -154,7 +156,7 @@ create table faq(
 -- faq 테이블 샘플 데이터 입력
 INSERT INTO agu.faq (title, content, writer, regdate, updatedate) VALUES ('test1제목', 'test1내용', 'test1작성자', now(), now());
 
-create table order_buy(
+create table buy_order(
     orderId varchar(50) primary key,
     addressee varchar(50) not null,
     useremail varchar(300),
@@ -165,6 +167,16 @@ create table order_buy(
     deliveryCost int not null,
     orderDate timestamp default now(),
     constraint order_user FOREIGN KEY (useremail)REFERENCES user(useremail)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+create table agu.buy_orderItem(
+    orderItemId int auto_increment primary key,
+    orderId varchar(50),
+    productnum int,
+    productCount int not null,
+    productprice int not null,
+    FOREIGN KEY (orderId) REFERENCES buy_order(orderId),
+    FOREIGN KEY (productnum) REFERENCES product(productnum)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 

@@ -72,6 +72,7 @@
                     		<li class="nav-item"><a href="/user/userMng" class="nav-link" id="myinfo">회원 관리</a></li>
                     		<li class="nav-item"><a href="/product/addproduct" class="nav-link">상품 등록</a></li>
                     		<li class="nav-item"><a href="/admin/logout"class="nav-link">관리자 로그아웃</a></li>
+                    		<li class="nav-item"><a href="/admin/orderList" class="nav-link">주문 현황</a></li>                        
                     	</ul>
                     	</form>
                     </c:if>

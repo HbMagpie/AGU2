@@ -107,5 +107,18 @@ import com.my.domain.CartDTO;
  * 
  * } 
  */
+  /* 장바구니 제거(주문 처리) */
+	@Test
+	public void deleteOrderCart() {
+		String useremail = "admin";
+		int productnum = 3201;
+		
+		CartDTO dto = new CartDTO();
+		dto.setUseremail(useremail);
+		dto.setProductnum(productnum);
+		
+		mapper.deleteOrderCart(dto);
+		
+	}
   }
  

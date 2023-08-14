@@ -1,10 +1,14 @@
 package com.my.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.my.domain.ReviewDTO;
 import com.my.domain.AdminDTO;
+import com.my.domain.Criteria;
+import com.my.domain.OrderDTO;
 import com.my.mapper.AdminMapper;
 
 import lombok.Setter;
@@ -78,6 +82,18 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public boolean bye(String adminemail) {
 		return mapper.bye(adminemail) == 1;
+	}
+	
+	/* 주문 상품 리스트 */
+	@Override
+	public List<OrderDTO> getOrderList(Criteria cri) {
+		return mapper.getOrderList(cri);
+	}
+	
+	/* 주문 총 갯수 */
+	@Override
+	public int getOrderTotal(Criteria cri) {
+		return mapper.getOrderTotal(cri);
 	}
 }
 
