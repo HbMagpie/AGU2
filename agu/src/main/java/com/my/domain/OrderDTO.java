@@ -148,7 +148,7 @@ public class OrderDTO {
 	}
 	
 	public void getOrderPriceInfo() {
-		/* 상품 비용 & 적립포인트 */
+		/* 상품 비용 */
 			for(OrderItemDTO order : orders) {
 				orderProductprice += order.getTotalPrice();
 			}

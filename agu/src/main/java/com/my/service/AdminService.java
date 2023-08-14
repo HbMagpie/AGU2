@@ -1,8 +1,12 @@
 package com.my.service;
 
 
-import com.my.domain.ReviewDTO;
+import java.util.List;
+
 import com.my.domain.AdminDTO;
+import com.my.domain.Criteria;
+import com.my.domain.OrderDTO;
+import com.my.domain.ReviewDTO;
 
 public interface AdminService {
 	boolean reviewDelete(int reviewnum);
@@ -18,4 +22,10 @@ public interface AdminService {
 	int getReviewnum();
 	boolean reviewModify(ReviewDTO review);
 	boolean bye(String adminemail);
+	
+	/* 주문 상품 리스트 */
+	public List<OrderDTO> getOrderList(Criteria cri);
+	
+	/* 주문 총 갯수 */
+	public int getOrderTotal(Criteria cri);
 }

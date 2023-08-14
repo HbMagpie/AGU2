@@ -60,12 +60,6 @@ table {margin-left:20%;}
                     	</ul>
                     	</form>
                     </c:if>
-                    <c:if test="${loginAdminid == null }">
-                    	<script>
-                    		alert("로그인 후 이용해주세요");
-                    		history.go(-1);
-                    	</script>
-                    </c:if>
                     <c:if test="${f != null}">
                     	<script>
                     		alert("상품 등록 실패");
@@ -172,7 +166,7 @@ $(document).ready(function(){
 				processData : false,
 				contentType : false,
 				data : formData,
-				datatype : JSON,
+				datatype : json,
 				type : "POST",
 				success : function(data){
 					if(data == "f"){

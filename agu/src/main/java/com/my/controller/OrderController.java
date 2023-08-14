@@ -4,6 +4,7 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.my.domain.OrderDTO;
 import com.my.domain.OrderPageDTO;
+import com.my.domain.UserDTO;
 import com.my.service.OrderService;
 import com.my.service.UserService;
 
@@ -39,6 +41,9 @@ public class OrderController {
 	public String orderPagePost(OrderDTO od, HttpServletRequest request) {
 		
 		System.out.println(od);
+		
+		orderService.order(od);
+		
 		
 		return "redirect:/";
 	}

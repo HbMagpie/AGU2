@@ -32,5 +32,11 @@
 	select * from cart
 	where useremail = #{useremail} and productnum = #{productnum}
 </select>
+
+	<delete id="deleteOrderCart">
+	
+		delete from cart where useremail = #{useremail} and productnum = #{productnum}
+	
+	</delete>
 	
   </mapper>
