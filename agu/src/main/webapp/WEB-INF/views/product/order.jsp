@@ -14,14 +14,16 @@
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
   <!-- 다음주소 -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- iamport.payment.js -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 </head>
 <body>
 
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
-        
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     
     </head>
     <style>
 @font-face {
@@ -329,10 +331,9 @@ function execution_daum_address(){
 }
 
 
-
 /* 총 주문 정보 세팅(배송비, 총 가격, 물품 수) */
 function setTotalInfo(){
-
+	
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let deliveryPrice = 0;			// 배송비
@@ -369,36 +370,87 @@ function setTotalInfo(){
 	
 }
 
-/* 주문 요청 */
-$(".order_btn").on("click", function(){
+var productNames = [];
 
-	/* 주소 정보 & 받는이*/
-	$(".addressInfo_input_div").each(function(i, obj){
-		if($(obj).find(".selectAddress").val() === 'T'){
-			$("input[name='addressee']").val($(obj).find(".addressee_input").val());
-			$("input[name='postnum']").val($(obj).find(".address1_input").val());
-			$("input[name='addr']").val($(obj).find(".address2_input").val());
-			$("input[name='detailaddress']").val($(obj).find(".address3_input").val());
-		}
-	});	
-		
+<c:forEach items="${orderList}" var="ol">
+    var productName = "${ol.productname}";
+    productNames.push(productName);
+</c:forEach>
+
+/* 주문 요청 */
+
+$(".order_btn").on("click", function() {
 	
-	/* 상품정보 */
-	let form_contents = ''; 
-	$(".goods_table_price_td").each(function(index, element){
-		let productnum = $(element).find(".individual_productnum_input").val();
-		let productCount = $(element).find(".individual_productCount_input").val();
-		let productnum_input = "<input name='orders[" + index + "].productnum' type='hidden' value='" + productnum + "'>";
-		form_contents += productnum_input;
-		let productCount_input = "<input name='orders[" + index + "].productCount' type='hidden' value='" + productCount + "'>";
-		form_contents += productCount_input;
-	});	
-	$(".order_form").append(form_contents);	
-	
-	/* 서버 전송 */
-	$(".order_form").submit();	
-	
-});	
+	// 주문 버튼 클릭 시에 finalTotalPrice 값
+	let finalTotalPrice = parseFloat($(".finalTotalPrice_span").text().replace(',', '')); // 쉼표 제거 후 숫자로 변환
+	let productName = "${ol.productname}";
+	/* 주소 정보 & 받는이 */
+    var IMP = window.IMP;
+    IMP.init('imp55665285'); // iamport 대신 자신의 "가맹점 식별코드"를 사용
+
+    $(".addressInfo_input_div").each(function(i, obj) {
+        if ($(obj).find(".selectAddress").val() === 'T') {
+            $("input[name='addressee']").val($(obj).find(".addressee_input").val());
+            $("input[name='postnum']").val($(obj).find(".address1_input").val());
+            $("input[name='addr']").val($(obj).find(".address2_input").val());
+            $("input[name='detailaddress']").val($(obj).find(".address3_input").val());
+
+            // 주소 정보 설정 후 아임포트 결제 요청
+            IMP.request_pay({
+                // 결제 정보 설정
+                pg: "html5_inicis",
+                pay_method: "card",
+                merchant_uid: "merchant_",
+                name: productNames.join(', '),
+                amount: finalTotalPrice,
+                buyer_email : "test22@naver.com",
+                buyer_tel : '010-1234-5678',
+                buyer_name: "김테스트",
+                buyer_addr: $("input[name='addr']").val(),
+                buyer_postcode: $("input[name='postnum']").val(),
+                m_redirect_url: "main.jsp",
+            }, 
+            function(rsp) {
+                if (rsp.success) {
+                    console.log(rsp);
+                    // 결제검증
+                    $.ajax({
+                        type : "POST",
+                        url : "/verifyIamport/" + rsp.imp_uid 
+                    }).done(function(data) {
+                        console.log(data);
+                        // 위의 rsp.paid_amount 와 data.response.amount를 비교한 후 import 서버 검증
+                        if(rsp.paid_amount == data.response.amount){
+                            alert("결제 및 결제검증완료");
+                         
+                         // 주문 정보 설정 후 총 가격 갱신
+                            setTotalInfo();
+                         
+                            /* 상품정보 서버 전송 */
+                            let form_contents = ''; 
+                            $(".goods_table_price_td").each(function(index, element){
+                                let productnum = $(element).find(".individual_productnum_input").val();
+                                let productCount = $(element).find(".individual_productCount_input").val();
+                                let productnum_input = "<input name='orders[" + index + "].productnum' type='hidden' value='" + productnum + "'>";
+                                form_contents += productnum_input;
+                                let productCount_input = "<input name='orders[" + index + "].productCount' type='hidden' value='" + productCount + "'>";
+                                form_contents += productCount_input;
+                            });    
+                            $(".order_form").append(form_contents);
+
+                            /* 서버 전송 */
+                            $(".order_form").submit();
+                            
+                            
+                        } else {
+                            alert("결제 실패" + rsp.error_msg);
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
 
 
 </script>
