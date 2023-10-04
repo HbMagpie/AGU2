@@ -16,7 +16,7 @@ public class CartDTO {
 	private int totalPrice;
 	
 	//상품 이미지
-	private List<Files> filelist;
+	private List<Files> fileList;
 	
 	public int getCartId() {
 		return cartId;
@@ -71,11 +71,11 @@ public class CartDTO {
 	}
 	
 	public List<Files> getFileList() {
-		return filelist;
+		return fileList;
 	}
 
-	public void setFileList(List<Files> filelist) {
-		this.filelist = filelist;
+	public void setFileList(List<Files> fileList) {
+		this.fileList = fileList;
 	}
 
 	public void initSaleTotal() {
@@ -87,6 +87,6 @@ public class CartDTO {
 	@Override
 	public String toString() {
 		return "CartDTO [cartId=" + cartId + ", useremail=" + useremail + ", productnum=" + productnum + ", productCount="
-				+ productCount + ", productname=" + productname + ", productprice=" + productprice + ", totalPrice=" + totalPrice + ", filelist=" + filelist + "]";
+				+ productCount + ", productname=" + productname + ", productprice=" + productprice + ", totalPrice=" + totalPrice + ", fileList=" + fileList + "]";
 	}
 }

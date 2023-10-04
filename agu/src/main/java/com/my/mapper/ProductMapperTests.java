@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.my.domain.Criteria;
+import com.my.domain.Files;
 import com.my.domain.ProductDTO;
 import com.my.domain.ProductDTO2;
 
@@ -17,7 +18,7 @@ import com.my.domain.ProductDTO2;
 public class ProductMapperTests {
 
 	@Autowired
-	private ProductMapper mapper;
+	private ProductMapper productMapper;
 	private String New;
 	
 	/*
@@ -76,16 +77,25 @@ public class ProductMapperTests {
 	} */
 	
 	/* 상품 조회 페이지 */
-	@Test
-	public void productGetDetailTest() {
-		
-		String catename = "New";
-		
-		ProductDTO result = mapper.productGetDetail(catename);
-		
-		System.out.println("상품 조회 데이터 : " + result);
-		
-		
-	}
+//	@Test
+//	public void productGetDetailTest() {
+//		
+//		String catename = "New";
+//		
+//		ProductDTO result = mapper.productGetDetail(catename);
+//		
+//		System.out.println("상품 조회 데이터 : " + result);
+//		
+//		
+//	}
+	
+	 @Test
+	    public void testGetFile() {
+	        // productMapper.getFile()를 호출하고 결과를 확인하는 코드를 작성
+	        List<Files> files = productMapper.getFile();
+	        for (Files file : files) {
+	            System.out.println(file.toString());
+	        }
+	    }
 	
 }

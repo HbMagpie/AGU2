@@ -63,7 +63,7 @@
 									<input type="hidden" class="individual_productnum_input" value="${ci.productnum}">								
 								</td>
 								<td class="td_width_2">
-									<div class="image_wrap" data-productnum="${ci.fileList[0].productnum}" data-filename="${ci.fileList[0].filename}" data-filerealname="${ci.fileList[0].filerealname}" data-fileurl="${ci.fileList[0].fileurl}" data-safefile="${ci.fileList[0].safefile}">
+									<div class="image_wrap" data-productnum="${ci.fileList[0].productnum}" data-filename="${ci.fileList[0].filename}" data-filerealname="${ci.fileList[0].filerealname}" data-path="${ci.fileList[0].fileurl}" data-safefile="${ci.fileList[0].safefile}">
 										<img>
 									</div>					
 								</td>
@@ -186,16 +186,16 @@ $(document).ready(function(){
 	$(".image_wrap").each(function(i, obj){
 	
 		const bobj = $(obj);
+		const productnum = bobj.data("productnum");
 		
 		if(bobj.data("productnum")){
+			const fileurl = bobj.data("path");
 			const filename = bobj.data("filename");
-			const filerealname = bobj.data("filerealname");
-			const fileurl = bobj.data("fileurl");
 			const safefile = bobj.data("safefile");
 			
-			const fileCallPath = encodeURIComponent(filename + "/s_" + fileurl + "_" + filename);
+			const fileCallPath = encodeURIComponent(filename);
 			
-			$(this).find("img").attr('src', '/display?filename=' + fileCallPath);
+			$(this).find("img").attr('src', '/product/display?filename=' + fileCallPath).attr('alt', '상품 이미지');
 		} else {
 			$(this).find("img").attr('src', '/resources/img/aa.png');
 		}

@@ -166,7 +166,7 @@ $(document).ready(function(){
 				processData : false,
 				contentType : false,
 				data : formData,
-				datatype : json,
+				datatype : 'json',
 				type : "POST",
 				success : function(data){
 					if(data == "f"){
