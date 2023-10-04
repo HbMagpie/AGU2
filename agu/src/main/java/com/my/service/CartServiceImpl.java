@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.my.domain.CartDTO;
 import com.my.domain.Files;
+import com.my.mapper.AttachMapper;
 import com.my.mapper.CartMapper;
-import com.my.mapper.ProductMapper;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -19,7 +19,7 @@ public class CartServiceImpl implements CartService {
 	private CartMapper cartMapper;
 	
 	@Autowired
-	private ProductMapper productMapper;
+	private AttachMapper attachMapper;
 	
 	@Override
 	public int addCart(CartDTO cart) {
@@ -38,15 +38,17 @@ public class CartServiceImpl implements CartService {
 			return 0;
 		}
 	}
+	@Override
 	public List<CartDTO> getCartList(String useremail) {
 	    List<CartDTO> cart = cartMapper.getCart(useremail);
-	    List<Files> fileList = new ArrayList<>();
+	    //List<Files> fileList = new ArrayList<>();
 
 	    for (CartDTO dto : cart) {
 	        dto.initSaleTotal();
 	        // 이미지 정보 얻기
-	        List<Files> files = productMapper.getFile(); // 파일 정보를 가져오는 메서드 호출
-	        fileList.addAll(files);
+	        int productnum = dto.getProductnum();
+	        List<Files> fileList = attachMapper.getAttachList(productnum); // 파일 정보를 가져오는 메서드 호출
+	        dto.setFileList(fileList);
 	    }
 		
 		return cart;

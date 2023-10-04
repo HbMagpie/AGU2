@@ -3,6 +3,7 @@ package com.my.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.UUID;
 
@@ -10,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,6 +41,7 @@ import com.my.domain.ReviewDTO;
 import com.my.service.ProductService;
 import com.my.service.UserService;
 import com.my.service.AdminService;
+import com.my.service.AttachService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -45,6 +50,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/product/*")
 public class ProductController {
+	
 	
 	@Setter(onMethod_ = @Autowired)
 	private ProductService service;
@@ -142,6 +148,7 @@ public class ProductController {
         return "redirect:/";
 }
 	
+	
 	@GetMapping("/board")
 	public void goboard(ProductDTO productnum, Model model) {
 		String filename = service.getFilename(productnum.getProductnum());
@@ -186,10 +193,44 @@ public class ProductController {
 		
 	}
 	
+	/* 이미지 출력 */
+	@GetMapping("/display")
+	public ResponseEntity<byte[]> getImage(String filename){
+		
+		log.info("getImage()........" + filename);
+		
+		File file = new File("C:\\Users\\hopei47\\git\\AGU\\agu\\src\\main\\webapp\\resources\\img\\" + filename);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-type", Files.probeContentType(file.toPath()));
+			
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
+
+//	/* 이미지 정보 반환 */
+//	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	public ResponseEntity<List<com.my.domain.Files>> getAttachList(int productnum){
+//		
+//		log.info("getAttachList.........." + productnum);
+//		
+//		 List<com.my.domain.Files> attachments = attachService.getAttachList(productnum);
+//		 return new ResponseEntity<List<com.my.domain.Files>>(attachments, HttpStatus.OK);
+//		
+//	}
+	
 }
-
-
-
 
 
 
