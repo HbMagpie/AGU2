@@ -156,6 +156,15 @@ create table faq(
 -- faq 테이블 샘플 데이터 입력
 INSERT INTO agu.faq (title, content, writer, regdate, updatedate) VALUES ('test1제목', 'test1내용', 'test1작성자', now(), now());
 
+CREATE TABLE agu.reply (
+    reply_id INT AUTO_INCREMENT PRIMARY KEY,
+    bno INT,
+    writer VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+    regdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    constraint reply_ibfk_1 FOREIGN KEY (bno) REFERENCES faq (bno) ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 create table buy_order(
     orderId varchar(50) primary key,
     addressee varchar(50) not null,

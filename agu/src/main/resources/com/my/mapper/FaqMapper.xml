@@ -11,20 +11,43 @@
     </insert>
     
     <!-- 게시판 목록 -->
-    <select id="getList" resultType="com.my.domain.FaqDTO">   
-        select * from faq
-    </select>
+    <!-- 게시판 목록 (질문과 답변 함께 조회) -->
+<select id="getListWithAnswers" resultType="com.my.domain.FaqDTO">
+	    SELECT
+	    q.bno AS bno,
+	    q.title AS title,
+	    q.content AS content,
+	    q.writer AS writer,
+	    q.regdate AS regdate,
+	    q.updatedate AS updatedate,
+	    a.reply_id AS reply_id, 
+	    a.title AS answerTitle,
+	    a.writer AS answerWriter,
+	    a.content AS answerContent,
+	    a.regdate AS answerRegdate
+	FROM faq q
+	LEFT JOIN reply a ON q.bno = a.bno
+	ORDER BY q.bno DESC
+	LIMIT #{skip}, #{amount}
+</select>
     
     <!-- 게시물 목록(페이징) -->
     <select id="getListPaging" resultType="com.my.domain.FaqDTO">
-    
-        select * from (
-                select bno, title, writer, regdate, updatedate  
-                from faq order by bno desc) as T1
-        <!-- limit ((${pageNum}-1)*${amount}), ${amount} -->
-        limit #{skip},#{amount}
-    
-    </select>
+    SELECT
+        q.bno AS bno,
+        q.title AS title,
+        q.content AS content,
+        q.writer AS writer,
+        q.regdate AS regdate,
+        q.updatedate AS updatedate,
+        a.reply_id AS reply_id,   
+        a.title AS answerTitle,
+        a.writer AS answerWriter,
+        a.content AS answerContent,
+        a.regdate AS answerRegdate
+    FROM faq q
+    LEFT JOIN reply a ON q.bno = a.bno
+</select>
     
     <!-- 게시물 총 갯수 -->
     <select id="getTotal" resultType="int">
@@ -48,4 +71,29 @@
         delete from faq where bno = #{bno}
     </delete>
     
+     <!-- 게시판 답변 등록 -->
+    <insert id="addReply">
+    insert into reply (bno, title, writer, content)
+    values (#{bno}, #{title}, #{writer}, #{content})
+</insert>
+
+	<!-- FAQ 답변을 가져오는 쿼리 -->
+    <select id="getReplyRead" resultType="com.my.domain.ReplyDTO">
+    SELECT reply_id, bno, title, writer, content, regdate
+    FROM reply
+    WHERE reply_id = #{reply_id}
+    </select>
+    
+    <!-- 답변 수정 -->
+	<update id="modifyReply">
+    	UPDATE reply
+    	SET title = #{title}, content = #{content}
+    	WHERE reply_id = #{reply_id}
+	</update>
+
+	<!-- 답변 삭제 -->
+	<delete id="deleteReply">
+	    DELETE FROM reply
+	    WHERE reply_id = #{reply_id}
+	</delete>
 </mapper>

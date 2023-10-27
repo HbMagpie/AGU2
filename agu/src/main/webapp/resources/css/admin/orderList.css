@@ -16,11 +16,13 @@ ul{
 /* 화면 전체 렙 */
 .wrapper{
 	width: 100%;
+	text-align: center;
 }
 /* content 랩 */
 .wrap{
 	width : 1080px;
 	margin: auto;
+	text-align: center;
 }
 
 .top_gnb_area .list{
@@ -43,6 +45,7 @@ ul{
     line-height: 110px;
     background-color: #5080bd;
     margin-bottom: 15px;
+    
 }
 .admin_top_wrap>span{
     margin-left: 30px;
@@ -59,9 +62,14 @@ ul{
 
 /* 관리자페이지 컨텐츠 영역 */
 .admin_content_wrap{
+	position: relative; 
     width: 80%;
     float:left;
     min-height:700px;
+    margin: 0 auto;
+    text-align:center;
+    left: 10%;
+    
 }
 .admin_content_subject{	/* 관리자 컨텐츠 제목 영역 */
     font-size: 40px;
@@ -71,6 +79,7 @@ ul{
     height: 80px;
     line-height: 80px;
     color: white;
+
 }
 
 
@@ -85,7 +94,6 @@ ul{
 .order_table_wrap{
 	padding: 20px 35px;
 	min-height: 570px;
-	
 }
 .order_table{
 	margin: auto;
@@ -98,6 +106,7 @@ ul{
 .order_table td{
 	padding: 10px 5px;
 	border : 1px solid #e9ebf0;
+	
 }
 .order_table thead{
 	background-color: #f8f9fd;	
@@ -153,7 +162,7 @@ ul{
     bottom: 10px;
     transform: translateX(-50%);
     text-align: center;
-    margin-bottom: 40px;
+    top: calc(120%);
 }
 .pageMaker{
     list-style: none;

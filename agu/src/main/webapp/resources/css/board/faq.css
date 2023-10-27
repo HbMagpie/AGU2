@@ -24,7 +24,7 @@ em, address{font-style:normal}  */
 /* layout */
 html, body{padding:0;margin:0;width:100%;height:100%;overflow:hidden;}
  
-#wrap{position:relative;width:100%;height:100%}
+#wrap{position:relative;width:100%;height:100%;}
 #container{position:absolute;top:10px;right:0;bottom:38px;left:0;overflow-x:hidden;overflow-y:auto}
 #container .inner{width:680px; margin:0 auto; padding:10px 0}
  
@@ -75,11 +75,34 @@ textarea.textarea01{width:410px;height:95px;margin:10px 0}
 .mb10{margin-bottom:10px}
 .mb25{margin-bottom:25px}
  
+ .custom-pageInfo-btn {
+  font-size: 20px;
+  margin-left: 18px;
+  padding: 7px;
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+}
+
+.custom-pageInfo-btn a {
+  color: black;
+  text-decoration: none;
+}
+.pageInfo_wrap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pageInfo_area {
+  text-align: center;
+}
  /* 페이지 이동 인터페이스 */
  .pageInfo{
       list-style : none;
       display: inline-block;
-    margin: 50px 0 0 100px;      
+    margin: 50px 0 0 100px;   
   }
   
  .pageInfo li{
@@ -92,6 +115,8 @@ textarea.textarea01{width:410px;height:95px;margin:10px 0}
  a:link {color:black; text-decoration: none;}
  a:visited {color:black; text-decoration: none;}
  a:hover {color:black; text-decoration: underline;}
+ 
+
  
 /* page_option 
 .page_info li{margin-bottom:10px;text-align:right}

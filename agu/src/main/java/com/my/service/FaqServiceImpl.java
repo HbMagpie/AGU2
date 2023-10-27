@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.my.domain.Criteria;
 import com.my.domain.FaqDTO;
+import com.my.domain.ReplyDTO;
 import com.my.mapper.FaqMapper;
 
 import lombok.Setter;
@@ -66,7 +67,35 @@ public class FaqServiceImpl implements FaqService{
     public int delete(int bno) {
         
         return mapper.delete(bno);
-    } 
+    }
+    
+    /* 답변 등록 */
+    @Override
+    public void addReply(ReplyDTO reply) {
+        mapper.addReply(reply);
+    }
+    
+    /* 답변 조회 */
+    @Override
+    public ReplyDTO getReplyRead(int reply_id) {
+    	// 데이터베이스에서 답변 정보 가져오기
+    	ReplyDTO reply = mapper.getReplyRead(reply_id);
+    	
+    	// 가져온 답변 정보를 반환
+        return reply; 
+    }
+    
+    /* 답변 수정 */
+    @Override
+    public int modifyReply(ReplyDTO reply) {
+        return mapper.modifyReply(reply);
+    }
+
+    /* 답변 삭제 */
+    @Override
+    public int deleteReply(int reply_id) {
+        return mapper.deleteReply(reply_id);
+    }
 }
 
 
