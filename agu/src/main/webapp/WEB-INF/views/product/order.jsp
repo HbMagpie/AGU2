@@ -380,7 +380,7 @@ var productNames = [];
 /* 주문 요청 */
 
 $(".order_btn").on("click", function() {
-	
+
 	// 주문 버튼 클릭 시에 finalTotalPrice 값
 	let finalTotalPrice = parseFloat($(".finalTotalPrice_span").text().replace(',', '')); // 쉼표 제거 후 숫자로 변환
 	let productName = "${ol.productname}";

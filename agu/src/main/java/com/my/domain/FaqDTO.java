@@ -7,14 +7,6 @@ import lombok.Data;
 @Data
 public class FaqDTO {
 	
-	/*
-	bno int auto_increment,
-    title varchar(150),
-    content varchar(2000),
-    writer varchar(50),
-    regdate timestamp default now(),
-    updatedate timestamp default now()
-    */
 	
 	/* 게시판 번호 */
     private int bno;
@@ -32,7 +24,21 @@ public class FaqDTO {
     private Date regdate;
     
     /* 수정 날짜 */
-    private Date updateDate;	
+    private Date updateDate;
+    
+    /* 게시판 답변 */
+    private ReplyDTO reply;
+    
+    /* 답변 ID */
+    private int reply_id;
+
+    public int getReply_id() {
+        return reply_id;
+    }
+
+    public void setReply_id(int reply_id) {
+        this.reply_id = reply_id;
+    }
 }
 
 

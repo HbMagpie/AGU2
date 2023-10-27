@@ -64,17 +64,17 @@
         	
         		<!-- 이전페이지 버튼 -->
                 <c:if test="${pageMaker.prev}">
-                    <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
+                    <li class="custom-pageInfo-btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
                 </c:if>
                 
         		<!-- 각 번호 페이지 버튼 -->
             	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-            		<li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a href="${num}">${num}</a></li>
+            		<li class="custom-pageInfo-btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a href="${num}">${num}</a></li>
             	</c:forEach>
             	
             	<!-- 다음페이지 버튼 -->
                 <c:if test="${pageMaker.next}">
-                    <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
+                    <li class="custom-pageInfo-btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
                 </c:if> 	
  			</ul>
         </div>

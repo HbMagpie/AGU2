@@ -128,9 +128,7 @@
                     </form>						
 					                                 
  
- 		<!-- Footer 시작 -->
-			<%@include file="../tiles/footer.jsp" %>
-		<!-- Footer 끝 -->
+ 	
 
 <script>
 

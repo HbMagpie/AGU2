@@ -2,8 +2,11 @@ package com.my.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.my.domain.Criteria;
 import com.my.domain.FaqDTO;
+import com.my.domain.ReplyDTO;
 
 public interface FaqMapper {
 
@@ -27,4 +30,19 @@ public interface FaqMapper {
     
     /* 게시판 삭제 */
     public int delete(int bno);
+    
+   /* 게시판 답변 등록 */
+    public void addReply(ReplyDTO reply);
+    
+   /* 게시판 답변 조회 */
+    public ReplyDTO getReplyRead(int raply_id);
+    
+    public List<FaqDTO> getListWithAnswers();
+    
+    /* 답변 수정 */
+    public int modifyReply(ReplyDTO reply);
+
+    /* 답변 삭제 */
+    public int deleteReply(int reply_id);
+    
 }

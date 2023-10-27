@@ -43,19 +43,33 @@
 		<tbody id="tbody">
         </tbody>   
         
-			<c:forEach items="${list}" var="list">
+			<c:forEach items="${list}" var="faq">
             <tr>
-            	<td><c:out value="${list.bno}"/></td>
+            	<td><c:out value="${faq.bno}"/></td>
             	
                 <td>
-                	<a class="move" href='<c:out value="${list.bno}"/>'>
-                        <c:out value="${list.title}"/>
+                	<a class="move" href="<c:out value='${faq.bno}'/>">
+        				<c:out value="${faq.title}"/>
                     </a>
                 </td>
-                <td><c:out value="${list.writer}"/></td>
-                <td><c:out value="${list.regdate}"/></td>
-                <td><c:out value="${list.updateDate}"/></td>
+                <td><c:out value="${faq.writer}"/></td>
+                <td><c:out value="${faq.regdate}"/></td>
+                <td><c:out value="${faq.updateDate}"/></td>
             </tr>
+            <!-- FAQ 아이템에 대한 답변을 여기에 추가 -->
+        <c:if test="${not empty faq.reply}">
+        <tr>
+            <td><c:out value="${faq.reply.bno}"/></td>
+            <td>
+                <a class="r_move" href="${faq.reply.bno}">
+                    <c:out value="${faq.reply.title}"/>
+                </a>
+            </td>
+            <td><c:out value="${faq.reply.writer}"/></td>
+            <td><c:out value="${faq.reply.regdate}"/></td>
+            <td><c:out value=""/></td>
+        </tr>
+        </c:if>
         </c:forEach>
 	</table>
 	<div class="pageInfo_wrap" >
@@ -64,17 +78,17 @@
         	
         		<!-- 이전페이지 버튼 -->
                 <c:if test="${pageMaker.prev}">
-                    <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
+                    <li class="custom-pageInfo-btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
                 </c:if>
                 
         		<!-- 각 번호 페이지 버튼 -->
             	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-            		<li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a href="${num}">${num}</a></li>
+            		<li class="custom-pageInfo-btn ${pageMaker.cri.pageNum == num ? 'active' : ''}"><a href="${num}">${num}</a></li>
             	</c:forEach>
             	
             	<!-- 다음페이지 버튼 -->
                 <c:if test="${pageMaker.next}">
-                    <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
+                    <li class="custom-pageInfo-btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
                 </c:if> 	
  			</ul>
         </div>
@@ -105,7 +119,7 @@ $(document).ready(function(){
     function checkAlert(result){
         
         if(result === ''){
-            reutrn;
+            return;
         }
         
         if(result === "enrol success"){
@@ -141,6 +155,14 @@ $(".pageInfo a").on("click", function(e){
     moveForm.attr("action", "/faq/list");
     moveForm.submit();
         
+});
+
+$(".r_move").on("click", function(e){
+    e.preventDefault();
+    
+    moveForm.append("<input type='hidden' name='reply_id' value='"+ $(this).attr("href")+ "'>");
+    moveForm.attr("action", "/faq/getReply");
+    moveForm.submit();
 });
 
 </script>
