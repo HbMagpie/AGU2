@@ -2,6 +2,8 @@ package com.my.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -92,11 +94,23 @@ public class FaqController {
     
     /* 수정 페이지 이동 */
     @GetMapping("/modify")
-    public void faqModifyGET(int bno, Model model, Criteria cri) {
+    public String faqModifyGET(int bno, Model model, Criteria cri, HttpSession session) {
         
-        model.addAttribute("pageInfo", fservice.getPage(bno));
+    	FaqDTO faq = fservice.getPage(bno);
+        String writerId = faq.getWriter();
         
-        model.addAttribute("cri", cri);
+    	// 세션에서 현재 로그인한 사용자의 아이디를 가져오기
+        String useremail = (String) session.getAttribute("loginUserid");
+        
+        if (useremail != null && useremail.equals(writerId)) {
+        	model.addAttribute("pageInfo", faq);
+        	model.addAttribute("cri", cri);
+        	return "faq/modify";
+        } else {
+        	 String errorMessage = "수정 권한이 없습니다.";
+             model.addAttribute("errorMessage", errorMessage);
+             return "faq/modify";
+        }
         
     }
     

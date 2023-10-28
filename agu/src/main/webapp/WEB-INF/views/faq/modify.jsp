@@ -53,15 +53,16 @@
                     </tbody>
                 </table>    
                 
-                <!-- 관리자만 공지사항 등록,삭제,수정 가능 -->
-				<c:if test="${loginAdminid != null}">
+                <!-- 질문자만 수정 가능 -->
+				<c:if test="${loginUserid != null}">
 					 <div class="btn_right mt15">
 						<a class="btn black mr5" id="list_btn">목록으로</a> 
 				        <a class="btn black mr5" id="modify_btn">수정완료</a>
 				        <a class="btn black mr5" id="delete_btn">삭제하기</a>
 				        <a class="btn black mr5" id="cancel_btn">수정취소</a>
 					</div>
-				</c:if>              	
+				</c:if>
+				             	
 	</form>
 	<form id="infoForm" action="/faq/modify" method="get">
 		<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
@@ -101,6 +102,8 @@
         form.attr("method", "post");
         form.submit();
     });
+	
+
 </script>
 
 </body>
