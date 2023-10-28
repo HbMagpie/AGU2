@@ -44,18 +44,37 @@
                     </tbody>
                 </table>  	
                 
-                <!-- 관리자만 FaQ 답변 가능 -->
-				<c:if test="${loginAdminid != null}">
+                <!-- 관리자만 답변 가능 -->
+                <c:if test="${loginAdminid != null}">
 					 <div class="btn_right mt15">
          				 <button class="btn black mr5" id="list_btn">목록으로</button>
-         				 <button class="btn black mr5" id="modify_btn">수정/삭제</button>
          				 <button class="btn black mr5" id="Reply_btn">답변하기</button>
     				</div>
 				</c:if>
 				<c:if test="${loginUserid != null}">
 					 <div class="btn_right mt15">
          				 <button class="btn black mr5" id="list_btn">목록으로</button>
+         				 <button class="btn black mr5" id="modify_btn">수정/삭제</button>
     				</div>
+				</c:if>
+				
+				<!-- 작성인만 수정가능 -->
+				<c:if test="${loginUserid == pageInfo.writer}">
+					<script>
+					    // 수정 버튼 클릭 시 수정 페이지로 이동
+					    $("#modify_btn").on("click", function(e){
+					        form.attr("action", "/faq/modify");
+					        form.submit();
+					    });
+					</script>
+				</c:if>
+				<c:if test="${loginUserid != pageInfo.writer}">
+    			<script>
+			        // 수정 버튼 클릭 시 알림 메시지 표시
+			        $("#modify_btn").on("click", function(e) {
+			            alert("수정 권한이 없습니다.");
+			        });
+			    </script>
 				</c:if>
  
 	<form id="infoForm" action="/faq/modify" method="get">
@@ -75,16 +94,14 @@
 		form.attr("action", "/faq/list");
 		form.submit();
 	});
-	
-	$("#modify_btn").on("click", function(e){
-		form.attr("action", "/faq/modify");
-		form.submit();
-	});
+
 	
 	$("#Reply_btn").on("click", function(e){
 		form.attr("action", "/faq/addReplyForm");
 		form.submit();
 	});
+	
+
 </script>
 
 </body>

@@ -38,7 +38,7 @@
                         </tr>
                         <tr>
                             <th>작성자<span class="t_red">*</span></th>
-                            <td><input id="board_writer" name="writer" readonly="readonly" value="${loginAdminname}" class="tbox01"/></td>
+                            <td><input id="board_writer" name="writer" readonly="readonly" value="${loginUserid}" class="tbox01"/></td>
                         </tr>
                         <tr>
                             <th>내용<span class="t_red">*</span></th>

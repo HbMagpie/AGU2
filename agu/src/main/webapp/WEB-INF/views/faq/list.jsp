@@ -98,8 +98,8 @@
     	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">  
     </form>
     
-   				 <!-- 관리자만 공지사항 등록,삭제,수정 가능 -->
-				<c:if test="${loginAdminid != null}">
+   				 <!-- 회원만 질문 가능 -->
+				<c:if test="${loginUserid != null}">
 					<div class="btn_right mt15">
        					  <a href="/faq/enroll" class="btn black mr5">작성하기</a>
    					 </div>
