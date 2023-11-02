@@ -186,7 +186,6 @@ $(document).ready(function(){
 	$(".image_wrap").each(function(i, obj){
 	
 		const bobj = $(obj);
-		const productnum = bobj.data("productnum");
 		
 		if(bobj.data("productnum")){
 			const fileurl = bobj.data("path");

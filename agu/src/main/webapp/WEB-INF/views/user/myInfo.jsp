@@ -87,14 +87,6 @@
 							</div>
 							<ul class="subindex_row">
 								<li>
-									<div id="phoneNoReDiv" class="row_item phone">
-										<span id="phoneNoReSpan" class="item_text">전화번호 : ${userphone}</span>
-										<button type="button" id="phoneNoReBtn" class="btn_edit">
-											<span id="phoneNoReBtbTXT" class="text">수정</span>
-										</button>
-									</div>
-								</li>
-								<li>
 									<div class="row_item mail">
 										<span class="item_text">이메일 : ${loginUserid}</span>
 									</div>

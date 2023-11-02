@@ -4511,6 +4511,7 @@ textarea.form-control-lg {
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
@@ -4604,10 +4605,16 @@ textarea.form-control-lg {
   border-radius: calc(0.25rem - 1px);
 }
 
+.card img {
+    display: block; /* 이미지를 블록 요소로 설정하여 가운데 정렬이 작동하도록 합니다. */
+    margin: 0 auto; /* 가로 중앙 정렬 */
+}
+
 .card-img,
 .card-img-top,
 .card-img-bottom {
-  width: 100%;
+  width: 206px;
+  height: 206px;
 }
 
 .card-img,
