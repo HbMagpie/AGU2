@@ -93,18 +93,6 @@ create table files(
 -- files 테이블 샘플 데이터 입력
 INSERT INTO agu.files (productnum, filerealname, filename, fileurl, safefile) VALUES (1, 'test입니다1', 'tee_01.png', 'ㅇㅇㅇ','ㅇㅇㅇ');
 
--- buyproduct 테이블 생성
-create table buyproduct(
-	useremail varchar(300),
-    username varchar(300),
-    productnum int,
-    productname varchar(300),
-	postnum int,
-	addr varchar(1000),
-    detailaddress varchar(3000),
-    seealso varchar(1000),
-    constraint product_buyproduct foreign key(productnum) references product(productnum) on delete cascade
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- review 테이블 생성
 create table review(

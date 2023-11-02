@@ -16,9 +16,9 @@ import com.my.domain.OrderDTO;
 import com.my.domain.OrderItemDTO;
 import com.my.domain.OrderPageItemDTO;
 import com.my.domain.UserDTO;
+import com.my.mapper.AttachMapper;
 import com.my.mapper.CartMapper;
 import com.my.mapper.OrderMapper;
-import com.my.mapper.ProductMapper;
 import com.my.mapper.UserMapper;
 
 @Service
@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
 	private OrderMapper orderMapper;
 	
 	@Autowired
-	private ProductMapper productMapper;
+	private AttachMapper attachMapper;
 	
 	@Autowired
 	private UserMapper userMapper;
@@ -52,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
 			
 			// 제품에 대한 이미지 정보 가져오기
 			
-			List<Files> fileList = productMapper.getFile();
+			List<Files> fileList = attachMapper.getAttachList(goodsInfo.getProductnum());
 			goodsInfo.setFileList(fileList);
 			
 			result.add(goodsInfo);	

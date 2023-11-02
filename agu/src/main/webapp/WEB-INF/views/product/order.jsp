@@ -149,7 +149,7 @@
 							<c:forEach items="${orderList}" var="ol">
 								<tr>
 									<td>
-										<div class="image_wrap" data-productnum="${ol.fileList[0].productnum}" data-filename="${ol.fileList[0].filename}" data-filerealname="${ol.fileList[0].filerealname}" data-fileurl="${ol.fileList[0].fileurl}" data-safefile="${ol.fileList[0].safefile}">
+										<div class="image_wrap" data-productnum="${ol.fileList[0].productnum}" data-filename="${ol.fileList[0].filename}" data-filerealname="${ol.fileList[0].filerealname}" data-path="${ol.fileList[0].fileurl}" data-safefile="${ol.fileList[0].safefile}">
 											<img>
 										</div>
 									</td>
@@ -232,15 +232,15 @@ $(document).ready(function(){
 	
 		const bobj = $(obj);
 		
+		
 		if(bobj.data("productnum")){
+			const fileurl = bobj.data("path");
 			const filename = bobj.data("filename");
-			const filerealname = bobj.data("filerealname");
-			const fileurl = bobj.data("fileurl");
 			const safefile = bobj.data("safefile");
 			
-			const fileCallPath = encodeURIComponent(filename + "/s_" + fileurl + "_" + filename);
+			const fileCallPath = encodeURIComponent(filename);
 			
-			$(this).find("img").attr('src', '/display?filename=' + fileCallPath);
+			$(this).find("img").attr('src', '/product/display?filename=' + fileCallPath).attr('alt', '상품 이미지');
 		} else {
 			$(this).find("img").attr('src', '/resources/img/aa.png');
 		}
@@ -370,11 +370,11 @@ function setTotalInfo(){
 	
 }
 
-var productNames = [];
+var Productnames = [];
 
 <c:forEach items="${orderList}" var="ol">
-    var productName = "${ol.productname}";
-    productNames.push(productName);
+    var Productname = "${ol.productname}";
+    Productnames.push(Productname);
 </c:forEach>
 
 /* 주문 요청 */
@@ -383,10 +383,10 @@ $(".order_btn").on("click", function() {
 
 	// 주문 버튼 클릭 시에 finalTotalPrice 값
 	let finalTotalPrice = parseFloat($(".finalTotalPrice_span").text().replace(',', '')); // 쉼표 제거 후 숫자로 변환
-	let productName = "${ol.productname}";
+	let Productname = "${ol.productname}";
 	/* 주소 정보 & 받는이 */
     var IMP = window.IMP;
-    IMP.init('imp55665285'); // iamport 대신 자신의 "가맹점 식별코드"를 사용
+    IMP.init('imp55665285');
 
     $(".addressInfo_input_div").each(function(i, obj) {
         if ($(obj).find(".selectAddress").val() === 'T') {
@@ -398,14 +398,14 @@ $(".order_btn").on("click", function() {
             // 주소 정보 설정 후 아임포트 결제 요청
             IMP.request_pay({
                 // 결제 정보 설정
-                pg: "html5_inicis",
+                pg: "html5_inicis.INIpayTest",
                 pay_method: "card",
-                merchant_uid: "merchant_",
-                name: productNames.join(', '),
+                merchant_uid: new Date().getTime() + '_' + Math.random().toString(36).substring(7),
+                name: Productnames.join(', '),
                 amount: finalTotalPrice,
                 buyer_email : "test22@naver.com",
-                buyer_tel : '010-1234-5678',
                 buyer_name: "김테스트",
+                buyer_tel : "010-1234-5678",
                 buyer_addr: $("input[name='addr']").val(),
                 buyer_postcode: $("input[name='postnum']").val(),
                 m_redirect_url: "main.jsp",
