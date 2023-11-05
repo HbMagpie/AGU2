@@ -30,6 +30,7 @@
  ![내정보 이름변경](https://github.com/HbMagpie/AGU/assets/118106602/966a3ac8-bf99-4d65-9c81-a829f0735e89)
  ![내정보 주소변경](https://github.com/HbMagpie/AGU/assets/118106602/f43ee83f-4c8b-44a5-a894-290cc60905cf)
  <br/> <br/> <br/> 
+    
     - 관리자 : 관리자로 로그인 했을 경우에만 보이는 메뉴 구현(회원 관리, 상품 등록 / 삭제 / 주문 관리 / 공지사항)
  <br/><br/>  👉🏻 *관리자로그인* / *회원관리* / *공지*
   ![관리자로그인,공지](https://github.com/HbMagpie/AGU/assets/118106602/2e077bb2-eed4-4048-b8ee-4dd2a722ab4f)
